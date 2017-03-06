@@ -1,20 +1,20 @@
-package main.peripherals;
+package peripherals;
 import java.io.IOException;
 import java.net.InetAddress;
 
 public class Lock implements IPeripheral{
-	private int id;
+	private long id;
 	
 	private String ip;
 	private String port;
 	
-	public Lock(String ip, String port, int id){
+	public Lock(String ip, String port, long id){
 		this.id = id;
 		this.ip = ip;
 		this.port = port;
 	}
 	
-	public Lock(InetAddress ip, int port, int id){
+	public Lock(InetAddress ip, int port, long id){
 		this.ip = ip.toString();
 		this.port = Integer.toString(port);
 		this.id = id;
@@ -48,8 +48,13 @@ public class Lock implements IPeripheral{
 	}
 
 	@Override
-	public int getId() {
+	public long getId() {
 		return id;
+	}
+
+	@Override
+	public String toString(){
+		return ip + ":" + port;
 	}
 
 }
