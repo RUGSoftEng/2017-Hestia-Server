@@ -1,10 +1,13 @@
 package messageHandlers;
 
 import clientHandlers.JSONExtractor;
+import clientHandlers.UnexpectedActionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.expectThrows;
 
 public class JSONHandlerTest{
     JSONExtractor jsonEx;
@@ -20,20 +23,37 @@ public class JSONHandlerTest{
     }
 
     @Test
-    void testMessageHandlerLock() {
-        assertEquals("openLock",jsonEx.handleMessage(testMessageOpen).getAction());
-        assertEquals("closeLock",jsonEx.handleMessage(testMessageClose).getAction());
+    void testMessageHandlerOpenLock() {
+        try {
+            assertEquals("openLock",jsonEx.handleMessage(testMessageOpen).getAction());
+        } catch (UnexpectedActionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void setTestMessageCloseLock(){
+        try {
+            assertEquals("closeLock",jsonEx.handleMessage(testMessageClose).getAction());
+        } catch (UnexpectedActionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     void testPeripheralID() {
-        assertEquals(1,jsonEx.handleMessage(testMessageOpen).getTargetId());
-        assertEquals(2,jsonEx.handleMessage(testMessageClose).getTargetId());
+        try {
+            assertEquals(1,jsonEx.handleMessage(testMessageOpen).getTargetId());
+            assertEquals(2,jsonEx.handleMessage(testMessageClose).getTargetId());
+        } catch (UnexpectedActionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    void testNOP() {
-        assertEquals("NOP",jsonEx.handleMessage("Some garbage String").getAction());
-        assertEquals("NOP",jsonEx.handleMessage("{\"status\": {\"id\": 1}}").getAction());
+    void testUndefinedAction() {
+        assertThrows(UnexpectedActionException.class, ()->jsonEx.handleMessage("Some garbage String").getAction());
+        assertThrows(UnexpectedActionException.class,()->jsonEx.handleMessage("{\"status\": {\"id\": 1}}").getAction
+                ());
     }
 }
