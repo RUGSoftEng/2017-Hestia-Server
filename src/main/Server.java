@@ -1,3 +1,4 @@
+import clientHandler.ClientHandlerThread;
 import clientInteractors.ClientInteractorInterface;
 import clientInteractors.TCPClientInteractor;
 
@@ -11,7 +12,12 @@ public class Server {
 
     private static void runServer() {
         while(true){
-           ClientInteractorInterface clientInteractor = setUpInteraction();
+            ClientInteractorInterface clientInteractor = setUpInteraction();
+            try {
+                new Thread(new ClientHandlerThread(clientInteractor.getDataFromClient())).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
