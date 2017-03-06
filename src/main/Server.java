@@ -1,10 +1,10 @@
-import clientInteractors.ClientInteractorInterface;
-import clientInteractors.TCPClientInteractor;
+//import clientInteractors.ClientInteractorInterface;
+//import clientInteractors.TCPClientInteractor;
 
 import java.io.IOException;
 
 public class Server {
-
+/*
     public static void main(String[] args) {
 	    runServer();
     }
@@ -26,5 +26,5 @@ public class Server {
         }
         return interactor;
     }
-
+*/
 }
