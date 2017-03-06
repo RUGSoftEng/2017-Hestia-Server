@@ -1,4 +1,4 @@
-package clientHandlers;
+package MessageExtractor;
 
 /**
  * Wrapper for the action extracted from the message sent to the server. This object is returned by the message

@@ -1,4 +1,4 @@
-package clientHandlers;
+package MessageExtractor;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;

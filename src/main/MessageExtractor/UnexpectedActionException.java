@@ -1,4 +1,4 @@
-package clientHandlers;
+package MessageExtractor;
 
 public class UnexpectedActionException extends Exception{
     public UnexpectedActionException(){
