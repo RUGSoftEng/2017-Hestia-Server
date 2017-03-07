@@ -13,11 +13,7 @@ public class Server {
     private static void runServer() {
         while(true){
             ClientInteractorInterface clientInteractor = setUpInteraction();
-            try {
-                new Thread(new ClientHandlerThread(clientInteractor.getDataFromClient())).start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            new Thread(new ClientHandlerThread(clientInteractor)).start();
         }
     }
 

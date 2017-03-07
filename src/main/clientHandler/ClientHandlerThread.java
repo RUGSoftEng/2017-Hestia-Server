@@ -1,8 +1,9 @@
 package clientHandler;
 
-import MessageExtractor.JSONExtractor;
-import MessageExtractor.PeripheralAction;
-import MessageExtractor.UnexpectedActionException;
+import messageExtractor.JSONExtractor;
+import messageExtractor.PeripheralAction;
+import messageExtractor.UnexpectedActionException;
+import clientInteractors.ClientInteractorInterface;
 import peripherals.ActionNotDefinedException;
 import peripherals.IPeripheral;
 import peripherals.Lock;
@@ -10,26 +11,31 @@ import peripherals.Lock;
 import java.io.IOException;
 
 public class ClientHandlerThread implements Runnable{
-    private String messageFromClient;
+    private ClientInteractorInterface clientInteractor;
 
-    public ClientHandlerThread(String dataFromClient) {
-        messageFromClient = dataFromClient;
+    public ClientHandlerThread(ClientInteractorInterface clientIntractor) {
+        this.clientInteractor = clientIntractor;
     }
 
     @Override
     public void run() {
         PeripheralAction actionToPerform = null;
         try {
-            actionToPerform = new JSONExtractor().handleMessage(messageFromClient);
-        } catch (UnexpectedActionException e) {
+            actionToPerform = new JSONExtractor().handleMessage(clientInteractor.getDataFromClient());
+        } catch (UnexpectedActionException | IOException e) {
             e.printStackTrace();
+            return;
+        } finally {
+            try {
+                clientInteractor.stopInteracting();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        // TODO Currently, we always get messages with id 1, change this to support multiple ids
-        assert(actionToPerform != null && actionToPerform.getTargetId() == 1);
 
         // TODO there should be a different architecture for adding peripherals, they should not be created here.
         String loopbackIp = "127.0.0.1";
-        String tempPort = "8800";
+        String tempPort = "80";
         IPeripheral target = new Lock(loopbackIp,tempPort,actionToPerform.getTargetId());
         System.out.println(target);
         System.out.println(actionToPerform.getAction());

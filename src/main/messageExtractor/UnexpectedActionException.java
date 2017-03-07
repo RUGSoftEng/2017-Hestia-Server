@@ -1,4 +1,4 @@
-package MessageExtractor;
+package messageExtractor;
 
 public class UnexpectedActionException extends Exception{
     public UnexpectedActionException(){
