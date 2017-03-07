@@ -2,6 +2,8 @@ package peripherals;
 import java.io.IOException;
 import java.net.InetAddress;
 
+
+
 public class Lock implements IPeripheral{	
 	private String ip;
 	private String port;
@@ -11,6 +13,7 @@ public class Lock implements IPeripheral{
 		this.port = port;
 	}
 	
+
 	public Lock(InetAddress ip, int port){
 		this.ip = ip.toString();
 		this.port = Integer.toString(port);
