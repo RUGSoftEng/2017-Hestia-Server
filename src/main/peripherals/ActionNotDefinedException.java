@@ -1,4 +1,4 @@
-package main.peripherals;
+package peripherals;
 
 public class ActionNotDefinedException extends Exception{
 
