@@ -2,22 +2,21 @@ package peripherals;
 import java.io.IOException;
 import java.net.InetAddress;
 
-public class Lock implements IPeripheral{
-	private long id;
-	
+
+
+public class Lock implements IPeripheral{	
 	private String ip;
 	private String port;
 	
-	public Lock(String ip, String port, long id){
-		this.id = id;
+	public Lock(String ip, String port){
 		this.ip = ip;
 		this.port = port;
 	}
 	
-	public Lock(InetAddress ip, int port, long id){
+
+	public Lock(InetAddress ip, int port){
 		this.ip = ip.toString();
 		this.port = Integer.toString(port);
-		this.id = id;
 	}
 	
 	@Override
@@ -33,28 +32,15 @@ public class Lock implements IPeripheral{
 	
 	private void sendCurl(String action) throws IOException, InterruptedException{
 		Runtime runtime = Runtime.getRuntime();
-		System.out.println(runtime.toString());
-		
 		String command = ip + ":" + port + "/arduino/" + action;
 		Process process = runtime.exec("curl " + command );
 		int resultCode = process.waitFor();
 	
 		if (resultCode != 0) {
-		     // Sending the action didn't work
+		    // Sending the action didn't work
 			// Perhaps create a special exception for this
 			throw new IOException();
 		} 
 
 	}
-
-	@Override
-	public long getId() {
-		return id;
-	}
-
-	@Override
-	public String toString(){
-		return ip + ":" + port;
-	}
-
 }
