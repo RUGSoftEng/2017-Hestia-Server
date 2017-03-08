@@ -1,2 +1,7 @@
 Server.iml
 .idea/
+out/
+/bin/
+.project
+.classpath
+*.classpath
