@@ -34,9 +34,9 @@ public class ClientHandlerThread implements Runnable{
         }
 
         // TODO there should be a different architecture for adding peripherals, they should not be created here.
-        String loopbackIp = "127.0.0.1";
+        String loopbackIp = "192.168.178.17";
         String tempPort = "80";
-        IPeripheral target = new Lock(loopbackIp,tempPort,actionToPerform.getTargetId());
+        IPeripheral target = new Lock(loopbackIp,tempPort);
         System.out.println(target);
         System.out.println(actionToPerform.getAction());
 
