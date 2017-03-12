@@ -1,24 +1,42 @@
-import clientHandler.ClientHandlerThread;
-import clientInteractors.ClientInteractorInterface;
+import clientHandler.ClientHandler;
 import clientInteractors.TCPClientInteractor;
 
 import java.io.IOException;
+import clientInteractors.ClientInteractor;
 
-public class Server {
+/**
+ * This class contains the main functions on which the server depends.
+ * It constantly listens for incoming messages. Upon receiving 
+ * @see ClientHandler
+ * @see ClientInteractor
+ */
+
+public class Server implements Runnable {
 
     public static void main(String[] args) {
-	    runServer();
+	    new Server().run();
     }
 
-    private static void runServer() {
+    /**
+     * The run method waits until a connection is established. After connecting
+     * a new thread is created containing a handler. This new thread handles the
+     * messages coming from the clientInteractor
+     */
+    public void run() {
         while(true){
-            ClientInteractorInterface clientInteractor = setUpInteraction();
-            new Thread(new ClientHandlerThread(clientInteractor)).start();
+            ClientInteractor clientInteractor = setUpInteraction();
+            new ClientHandler(clientInteractor).run();
         }
     }
 
-    private static ClientInteractorInterface setUpInteraction() {
-        ClientInteractorInterface interactor = new TCPClientInteractor();
+    /**
+     * This method waits until a connection with a client is established through
+     * TCP. 
+     * @return An interactor object which can be used to obtain data from the 
+     * client
+     */
+    private static ClientInteractor setUpInteraction() {
+        ClientInteractor interactor = new TCPClientInteractor();
         while (interactor.isNotConnected()) {
             try {
                 interactor.waitOnConnection();

@@ -27,7 +27,7 @@ class ClientHandlerThreadTest {
     @Test
     void testMessageParsing(){
         String expectedResponseMessage =  "127.0.0.1:8800\n" + "openLock";
-        new Thread(new ClientHandlerThread(testMessage)).start();
+        new Thread(new ClientHandler(testMessage)).start();
         //TODO test case incomplete, need a way to check if the message is being constructed correctly in the thread
         //assertEquals(expectedResponseMessage,outContent.toString());
     }

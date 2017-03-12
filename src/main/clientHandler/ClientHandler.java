@@ -1,27 +1,38 @@
 package clientHandler;
 
-import messageExtractor.JSONExtractor;
+import messageExtractor.MessageJSONParser;
 import messageExtractor.PeripheralAction;
 import messageExtractor.UnexpectedActionException;
-import clientInteractors.ClientInteractorInterface;
 import peripherals.ActionNotDefinedException;
 import peripherals.IPeripheral;
 import peripherals.Lock;
 
 import java.io.IOException;
+import clientInteractors.ClientInteractor;
 
-public class ClientHandlerThread implements Runnable{
-    private ClientInteractorInterface clientInteractor;
+/**
+ * ClientHandler receives a string from a ClientInteractor. This string is 
+ * parsed into a peripheral action. After this the thread is done.
+ * @see Server
+ */
+public class ClientHandler implements Runnable{
+    private ClientInteractor clientInteractor;
 
-    public ClientHandlerThread(ClientInteractorInterface clientIntractor) {
-        this.clientInteractor = clientIntractor;
+    public ClientHandler(ClientInteractor clientInteractor) {
+        this.clientInteractor = clientInteractor;
     }
 
+    /**
+     * The run method constantly tries to handle messages from the 
+     * clientInteractor. It then sends a message to the peripheral based on the 
+     * object that was sent as input.
+     */
     @Override
     public void run() {
+        
         PeripheralAction actionToPerform = null;
         try {
-            actionToPerform = new JSONExtractor().handleMessage(clientInteractor.getDataFromClient());
+            actionToPerform = new MessageJSONParser().parseMessage(clientInteractor.getDataFromClient());
         } catch (UnexpectedActionException | IOException e) {
             e.printStackTrace();
             return;

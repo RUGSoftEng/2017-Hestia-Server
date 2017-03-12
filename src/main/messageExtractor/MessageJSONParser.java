@@ -4,9 +4,15 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
-public class JSONExtractor implements MessageExtractorInterface{
+/**
+ * This class parses a JSON message. It will create a message object to be used
+ * by the ClientHandler.
+ * @see MessageExtractor
+ * @see ClientHandler
+ */
+public class MessageJSONParser implements MessageExtractor{
     @Override
-    public PeripheralAction handleMessage(String input) throws UnexpectedActionException {
+    public PeripheralAction parseMessage(String input) throws UnexpectedActionException {
         JSONParser parser = new JSONParser();
         String action = "";
         long id = -1;
