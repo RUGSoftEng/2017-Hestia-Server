@@ -2,8 +2,10 @@ package peripherals;
 import java.io.IOException;
 import java.net.InetAddress;
 
-
-
+/**
+ * Implementation of the IPeripheral interface for the Lock peripheral. The lock works with
+ * HTTP GET requests. 
+ */
 public class Lock implements IPeripheral{	
 	private String ip;
 	private String port;
@@ -13,7 +15,6 @@ public class Lock implements IPeripheral{
 		this.port = port;
 	}
 	
-
 	public Lock(InetAddress ip, int port){
 		this.ip = ip.toString();
 		this.port = Integer.toString(port);
@@ -30,6 +31,12 @@ public class Lock implements IPeripheral{
 		}
 	}
 	
+	/**
+	 * This function sends the command to the peripheral using curl.
+	 * @param action : The to perform action
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	private void sendCurl(String action) throws IOException, InterruptedException{
 		Runtime runtime = Runtime.getRuntime();
 		String command = ip + ":" + port + "/arduino/" + action;

@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  * Created by sebastian on 3/3/17.
  */
 public abstract class ClientInteractorTest {
-    ClientInteractorInterface interactor;
+    ClientInteractor interactor;
 
     @Before
     public abstract void InitWithConcreteImplementation();

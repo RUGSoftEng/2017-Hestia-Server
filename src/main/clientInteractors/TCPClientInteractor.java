@@ -8,12 +8,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by sebastian on 3/2/17.
+ * The TCPClientInteractor is a specific implementation of the ClientInteractor
+ * interface. It works over TCP.
+ * @see ClientInteractor
  */
-public class TCPClientInteractor implements ClientInteractorInterface {
+public class TCPClientInteractor implements ClientInteractor {
     private static int port = 8000;
     private Socket clientSocket;
 
+    /**
+     * This method blocks until a connection can be accepted. 
+     * @throws IOException 
+     */
     @Override
     public void waitOnConnection() throws IOException {
             ServerSocket serverSocket = new ServerSocket(port);
@@ -21,6 +27,12 @@ public class TCPClientInteractor implements ClientInteractorInterface {
             serverSocket.close();
     }
 
+    /**
+     * This method returns a message from the socket as a string.
+     * We assume that an incoming message is self-contained on a single line.
+     * @return a string to be used as a message by the ClientHandler class.
+     * @throws IOException 
+     */
     @Override
     public String getDataFromClient() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
