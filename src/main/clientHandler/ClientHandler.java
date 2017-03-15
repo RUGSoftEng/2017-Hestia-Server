@@ -1,7 +1,7 @@
 package clientHandler;
 
 import messageExtractor.MessageJSONParser;
-import messageExtractor.PeripheralRequest;
+import messageExtractor.RequestManager;
 import messageExtractor.UnexpectedActionException;
 import peripherals.ActionNotDefinedException;
 import peripherals.IPeripheral;
@@ -9,6 +9,7 @@ import peripherals.Lock;
 
 import java.io.IOException;
 import clientInteractors.ClientInteractor;
+import peripheralDatabase.PeripheralDatabase;
 
 /**
  * ClientHandler receives a string from a ClientInteractor. This string is 
@@ -17,9 +18,11 @@ import clientInteractors.ClientInteractor;
  */
 public class ClientHandler implements Runnable{
     private ClientInteractor clientInteractor;
+    private PeripheralDatabase peripheralDatabase;
 
-    public ClientHandler(ClientInteractor clientInteractor) {
+    public ClientHandler(ClientInteractor clientInteractor, PeripheralDatabase database) {
         this.clientInteractor = clientInteractor;
+        this.peripheralDatabase = database;
     }
 
     /**
@@ -30,9 +33,9 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         
-        PeripheralRequest actionToPerform = null;
+        RequestManager actionToPerform = null;
         try {
-            actionToPerform = new MessageJSONParser().parseMessage(clientInteractor.getDataFromClient());
+            actionToPerform = new MessageJSONParser().parseMessage(clientInteractor.getDataFromClient(), peripheralDatabase);
         } catch (UnexpectedActionException | IOException e) {
             e.printStackTrace();
             return;
@@ -49,12 +52,8 @@ public class ClientHandler implements Runnable{
         String tempPort = "80";
         IPeripheral target = new Lock(loopbackIp,tempPort);
         System.out.println(target);
-        System.out.println(actionToPerform.getAction());
+        //System.out.println(actionToPerform.getAction());
 
-        try {
-            target.performAction(actionToPerform.getAction());
-        } catch (ActionNotDefinedException | IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        actionToPerform.handleMessage();
     }
 }

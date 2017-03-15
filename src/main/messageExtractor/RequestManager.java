@@ -1,16 +1,23 @@
 package messageExtractor;
 
+import peripheralDatabase.PeripheralDatabase;
 import peripherals.IPeripheral;
 
+/**
+ * This class is the super class of PeripheralRequestManager and ServerRequestManager.
+ */
 public class RequestManager {
 	String type;
+	PeripheralDatabase peripheralDatabase;
 	
-	public RequestManager(){
+	public RequestManager(PeripheralDatabase database){
 		this.type = null;
+		this.peripheralDatabase = database;
 	}
 	
-	public RequestManager(String type){
+	public RequestManager(String type, PeripheralDatabase database){
 		this.type = type;
+		this.peripheralDatabase = database;
 	}
 	
 	public String getType(){
@@ -21,6 +28,6 @@ public class RequestManager {
 		this.type = type;
 	}
 	
-	public void handleMessage(IPeripheral target){}
+	public void handleMessage(){}
 
 }

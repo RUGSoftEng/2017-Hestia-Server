@@ -3,6 +3,7 @@ import clientInteractors.TCPClientInteractor;
 
 import java.io.IOException;
 import clientInteractors.ClientInteractor;
+import peripheralDatabase.PeripheralDatabase;
 
 /**
  * This class contains the main functions on which the server depends.
@@ -12,9 +13,15 @@ import clientInteractors.ClientInteractor;
  */
 
 public class Server implements Runnable {
+	private PeripheralDatabase peripheralDatabase;
+	
+	public Server(PeripheralDatabase database){
+		this.peripheralDatabase = database;
+	}
 
     public static void main(String[] args) {
-	    new Server().run();
+    	//TODO make method initialize for server to get peripheralDatabase.
+	    new Server(new PeripheralDatabase()).run();
     }
 
     /**
@@ -25,7 +32,7 @@ public class Server implements Runnable {
     public void run() {
         while(true){
             ClientInteractor clientInteractor = setUpInteraction();
-            new ClientHandler(clientInteractor).run();
+            new ClientHandler(clientInteractor, peripheralDatabase).run();
         }
     }
 
