@@ -1,7 +1,7 @@
 package clientHandler;
 
 import messageExtractor.MessageJSONParser;
-import messageExtractor.PeripheralAction;
+import messageExtractor.PeripheralRequest;
 import messageExtractor.UnexpectedActionException;
 import peripherals.ActionNotDefinedException;
 import peripherals.IPeripheral;
@@ -30,7 +30,7 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         
-        PeripheralAction actionToPerform = null;
+        PeripheralRequest actionToPerform = null;
         try {
             actionToPerform = new MessageJSONParser().parseMessage(clientInteractor.getDataFromClient());
         } catch (UnexpectedActionException | IOException e) {
