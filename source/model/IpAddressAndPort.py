@@ -1,6 +1,5 @@
 import ipaddress
 
-
 class IpAddressAndPort():
 
     def __init__(self):
