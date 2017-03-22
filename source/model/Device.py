@@ -1,16 +1,34 @@
-class Device():
+from abc import ABC, abstractmethod
+
+
+class Device(ABC):
     cntr = 0
 
-    def __init__(self, name):
-        Device.cntr += 1
-        self.deviceId = Device.cntr
-        self.name = name
-        self.actions = list()
+    def __init__(self):
+        self.deviceId = self.__class__.newId()
+        self._activators = list()
 
-    def get(self, actionId):
-        return next(action for action in self.actions if action.actionId == actionId)
+    @classmethod
+    def newId(cls):
+        cls.cntr += 1
+        return cls.cntr
 
-    def addAction(self, action):
-        self.actions.append(action)
+    @property
+    @abstractmethod
+    def name(self):
+        pass
 
+    @property
+    @abstractmethod
+    def pluginType(self):
+        pass
 
+    @property
+    def activators(self):
+        return self._activators
+
+    def addActivator(self, activator):
+        self.activators.append(activator)
+
+    def getActivator(self, activatorId):
+        return next(activator for activator in self.activators if activator.activatorId == activatorId)
