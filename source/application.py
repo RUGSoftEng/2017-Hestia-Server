@@ -3,11 +3,9 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from endpoints.api import api
 from model.DeviceDAO import DeviceDAO
-from plugins.dimmableLight.DimmableLight import DimmableLight
 from plugins.simpleLock.simpleLock import simpleLock
 
 DAO = DeviceDAO()
-DAO.addDevice(DimmableLight())
 DAO.addDevice(simpleLock())
 
 app = Flask(__name__)
