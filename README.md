@@ -5,11 +5,11 @@ Tested on python version 3.5.2
 
 # How to get setup for development
 1. Install pip on your machine
-(optional: use virtualenvwrapper to create a virtual environment)
-2. Clone the repository.
-3. cd into your repository
-4. Run 'pip install source/requirements.txt'
-5. Run the webservice using 'python3 source/application.py'
+2. (optional: use virtualenvwrapper to create a virtual environment)
+3. Clone the repository.
+4. cd into your repository
+5. Run `pip install source/requirements.txt`
+6. Run the webservice using `python3 source/application.py`
 
 # Information
 - [Virtual environment setup](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
