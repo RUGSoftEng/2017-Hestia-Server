@@ -28,12 +28,9 @@ class Dimmer(Activator):
     def state(self):
         return self._state
 
-    @state.setter
-    def state(self, value):
-        if not isinstance(value, self.stateType):
-            raise Exception()
 
-        self._state = value
+    def setStateWithString(self, value):
+        self._state = bool(value)
 
     def perform(self):
         print("Set intesity to: " + str(self.state))

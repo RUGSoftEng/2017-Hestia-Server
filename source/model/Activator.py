@@ -36,9 +36,8 @@ class Activator(ABC):
         pass
 
     @property
-    @abstractmethod
     def stateString(self, value):
-        pass
+        str(self.state)
 
     @abstractmethod
     def perform(self):

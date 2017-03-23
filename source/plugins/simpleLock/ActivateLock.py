@@ -31,11 +31,6 @@ class ActivateLock(Activator):
     def setStateWithString(self, value):
         self._state = bool(value)
 
-    @property
-    def stateString(self, value):
-        return str(self._state)
-
-
     def perform(self):
         if self.state == True:
             print("Open lock")
