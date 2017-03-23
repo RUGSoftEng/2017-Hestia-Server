@@ -3,6 +3,10 @@ Home automation server.
 
 Tested on python version 3.5.2
 
+THIS GUIDE IS CURRENTLY BROKEN, TRY
+`pip install flask`
+`pip install flask_restplus`
+
 # How to get setup for development
 1. Install pip on your machine
 2. (optional: use virtualenvwrapper to create a virtual environment)
