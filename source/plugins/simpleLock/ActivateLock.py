@@ -1,4 +1,5 @@
 from model.Activator import Activator
+from model.util.stringToBool import stringToBool
 
 
 class ActivateLock(Activator):
@@ -29,7 +30,7 @@ class ActivateLock(Activator):
         return self._state
 
     def setStateWithString(self, value):
-        self._state = bool(value)
+        self._state = stringToBool(value)
 
     def perform(self):
         if self.state == True:

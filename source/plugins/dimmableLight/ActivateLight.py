@@ -1,4 +1,6 @@
 from model.Activator import Activator
+from model.util.stringToBool import stringToBool
+
 
 class ActivateLight(Activator):
     def __init__(self, id):
@@ -28,7 +30,7 @@ class ActivateLight(Activator):
         return self._state
 
     def setStateWithString(self, value):
-        self._state = bool(value)
+        self._state = stringToBool(value)
 
     def perform(self):
         if self.state == True:

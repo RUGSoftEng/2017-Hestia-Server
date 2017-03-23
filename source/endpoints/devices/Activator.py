@@ -2,7 +2,6 @@ from flask_restplus import Resource
 from flask_restplus import fields
 
 from endpoints.devices import ns, DAO
-from endpoints.devices.RequiredInfo import RequiredInfo
 from endpoints.util.StateTypeToString import StateTypeToString
 from endpoints.util.ToString import ToString
 
@@ -37,5 +36,6 @@ class Activator(Resource):
         ''' Post a given action of a device '''
         device = DAO.getDevice(deviceId)
         action = device.getActivator(activatorId)
-        action.setStateWithString(ns.apis[0].payload["state"])
+        value = ns.apis[0].payload["state"]
+        action.setStateWithString(value)
         action.perform()
