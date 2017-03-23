@@ -11,6 +11,6 @@ class Devices(Resource):
     @ns.marshal_list_with(device)
     def get(self):
         '''List all devices'''
-        return DAO.get()
+        return DAO.getDevices()
 
 

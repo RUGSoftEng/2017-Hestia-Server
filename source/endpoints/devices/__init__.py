@@ -1,7 +1,7 @@
 from flask_restplus import Namespace
 
-from model.DeviceDAO import DeviceDAO
+from model.Database import Database
 
-DAO = DeviceDAO()
+DAO = Database()
 
 ns = Namespace('devices', description='All devices of the system')
