@@ -6,6 +6,7 @@ class simpleLock(Device):
     def __init__(self):
         super().__init__()
         super().addActivator(ActivateLock(1))
+        #ActivateLock.setstate(False)
 
     @property
     def name(self):

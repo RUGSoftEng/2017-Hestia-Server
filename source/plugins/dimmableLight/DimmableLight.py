@@ -7,7 +7,7 @@ class DimmableLight(Device):
     def __init__(self):
         super().__init__()
         super().addActivator(ActivateLight(1))
-        super().addActivator(Dimmer(2))
+        #super().addActivator(Dimmer(2))
 
     @property
     def name(self):

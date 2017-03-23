@@ -33,7 +33,7 @@ class Activator(ABC):
 
     @state.setter
     @abstractmethod
-    def state(self, value):
+    def setstate(self, value):
         pass
 
     @abstractmethod

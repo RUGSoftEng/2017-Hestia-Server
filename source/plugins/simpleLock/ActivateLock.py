@@ -30,7 +30,7 @@ class ActivateLock(Activator):
         return self._state
 
     @state.setter
-    def state(self, value):
+    def setstate(self, value):
         if not isinstance(value, self.stateType):
             raise Exception()
 

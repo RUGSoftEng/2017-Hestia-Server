@@ -28,12 +28,13 @@ class Activator(Resource):
         device = DAO.getDevice(deviceId)
         return device.getActivator(activatorId)
 
-    @ns.doc('put_activator')
-    @ns.expect(activator)
+    @ns.doc('post_activator')
+    #@ns.expect(bool)
     @ns.marshal_with(activator)
-    def put(self, deviceId, activatorID):
-        ''' Put a given action of a device '''
+    def post(self, deviceId, activatorId):
+        ''' Post a given action of a device '''
         device = DAO.getDevice(deviceId)
-        action = device.getActivator(activatorID)
-        action.perform(ns.payload['state'])
-        return action, 201
+        action = device.getActivator(activatorId)
+        #action.perform(ns.payload['state'])
+        #action.state("False")
+        return 201
