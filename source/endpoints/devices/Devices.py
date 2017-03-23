@@ -13,11 +13,4 @@ class Devices(Resource):
         '''List all devices'''
         return DAO.get()
 
-    @ns.doc('create_device')
-    @ns.expect(device)
-    @ns.marshal_with(device, code=201)
-    def post(self):
-        '''Create a new device'''
-        return DAO.addDevice(ns.payload), 201
-
 
