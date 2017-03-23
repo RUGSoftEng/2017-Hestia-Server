@@ -31,9 +31,8 @@ class ActivateLock(Activator):
 
     @state.setter
     def setstate(self, value):
-        if not isinstance(value, self.stateType):
-            raise Exception()
-
+        #if not isinstance(value, self.stateType):
+        #    raise Exception("entered state is not of right type")
         self._state = value
 
     def perform(self):

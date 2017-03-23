@@ -14,6 +14,9 @@ activator = ns.model('Activator', {
     ,'state': ToString(attribute="state", required=True, discription='The state of an action')
     , "requiredInfo": RequiredInfo(attribute="requiredInfo", required=True, discription="The info needed to operate")
 })
+state = ns.model( 'State', {
+    'state': ToString(required = True, discription = 'new state of activator')
+})
 
 @ns.route('/<int:deviceId>/activator/<int:activatorId>')
 @ns.response(404, 'Device or action not found')
@@ -29,12 +32,12 @@ class Activator(Resource):
         return device.getActivator(activatorId)
 
     @ns.doc('post_activator')
-    #@ns.expect(bool)
-    @ns.marshal_with(activator)
+    @ns.expect(state)
+    @ns.response(201, 'state changed')
     def post(self, deviceId, activatorId):
         ''' Post a given action of a device '''
         device = DAO.getDevice(deviceId)
         action = device.getActivator(activatorId)
-        #action.perform(ns.payload['state'])
-        #action.state("False")
-        return 201
+        action.setstate = state["state"]
+        print(state["state"])
+        action.perform()
