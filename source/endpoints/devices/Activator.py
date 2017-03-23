@@ -11,7 +11,7 @@ activator = ns.model('Activator', {
     ,'name': fields.String(readOnly=True, required=True, description='The name of the action')
     ,'stateType': StateTypeToString(attribute="stateType", readOnly=True, required=True, description='The type of interaction you can have')
     ,'stateString': ToString(attribute="state", required=True, discription='The state of an action')
-    , "requiredInfo": RequiredInfo(attribute="requiredInfo", required=True, discription="The info needed to operate")
+    , "requiredInfo": ToString(attribgute="requiredInfo", required=True, discription="The info needed to operate")
 })
 state = ns.model( 'State', {
     'state': fields.String(required = True, discription = 'new state of activator')

@@ -1,11 +1,10 @@
 from model.Activator import Activator
-from model.IpAddressAndPort import IpAddressAndPort
 
 class ActivateLight(Activator):
     def __init__(self, id):
         super().__init__(id)
 
-        self._requiredInfo = IpAddressAndPort
+        self._requiredInfo = {"IpAdress": "0.0.0.0", "Port": 0}
         self._state = True
 
     @property

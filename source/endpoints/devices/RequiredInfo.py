@@ -2,7 +2,7 @@ from flask_restplus import fields
 
 from endpoints.devices import ns
 from endpoints.util.ToString import ToString
-from model.IpAddressAndPort import IpAddressAndPort
+#from model.IpAddressAndPort import IpAddressAndPort
 
 ipAddress = ns.model('ipAddressAndPort', {
                              'ipaddress': ToString(attribute='ipAddress')
