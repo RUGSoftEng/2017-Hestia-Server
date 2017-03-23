@@ -3,19 +3,18 @@ from flask_restplus import fields
 
 from endpoints.devices import ns, DAO
 from endpoints.devices.RequiredInfo import RequiredInfo
-from endpoints.util.ToString import ToString
 from endpoints.util.StateTypeToString import StateTypeToString
-
+from endpoints.util.ToString import ToString
 
 activator = ns.model('Activator', {
     'activatorId': fields.Integer(readOnly=True, required=True, discription='The unique identifier of the action')
     ,'name': fields.String(readOnly=True, required=True, description='The name of the action')
     ,'stateType': StateTypeToString(attribute="stateType", readOnly=True, required=True, description='The type of interaction you can have')
-    ,'state': ToString(attribute="state", required=True, discription='The state of an action')
+    ,'stateString': ToString(attribute="state", required=True, discription='The state of an action')
     , "requiredInfo": RequiredInfo(attribute="requiredInfo", required=True, discription="The info needed to operate")
 })
 state = ns.model( 'State', {
-    'state': ToString(required = True, discription = 'new state of activator')
+    'state': fields.String(required = True, discription = 'new state of activator')
 })
 
 @ns.route('/<int:deviceId>/activator/<int:activatorId>')
@@ -38,6 +37,5 @@ class Activator(Resource):
         ''' Post a given action of a device '''
         device = DAO.getDevice(deviceId)
         action = device.getActivator(activatorId)
-        action.setstate = state["state"]
-        print(state["state"])
+        action.setStateWithString(ns.apis[0].payload["state"])
         action.perform()

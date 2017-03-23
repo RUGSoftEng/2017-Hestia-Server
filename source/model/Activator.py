@@ -31,9 +31,13 @@ class Activator(ABC):
     def state(self):
         pass
 
-    @state.setter
     @abstractmethod
-    def state(self, value):
+    def setStateWithString(self, value):
+        pass
+
+    @property
+    @abstractmethod
+    def stateString(self, value):
         pass
 
     @abstractmethod

@@ -29,11 +29,13 @@ class ActivateLock(Activator):
     def state(self):
         return self._state
 
-    @state.setter
-    def setstate(self, value):
-        #if not isinstance(value, self.stateType):
-        #    raise Exception("entered state is not of right type")
-        self._state = value
+    def setStateWithString(self, value):
+        self._state = bool(value)
+
+    @property
+    def stateString(self, value):
+        return str(self._state)
+
 
     def perform(self):
         if self.state == True:
