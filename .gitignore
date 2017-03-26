@@ -1,7 +1,4 @@
-Server.iml
 .idea/
-out/
-/bin/
-.project
-.classpath
-*.classpath
+__pycache__/
+*.pyc
+
