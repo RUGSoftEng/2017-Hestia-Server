@@ -1,4 +1,4 @@
-push# 2017-Hestia-Server
+# 2017-Hestia-Server
 Home automation server.
 
 Tested on python version 3.5.2
