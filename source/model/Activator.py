@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class Activator(ABC):
+    """
+    An abstract implementation of a Activator.
+    Concrete activators of a plugin should implement this class
+    """
 
     def __init__(self, id):
         self.activatorId = id

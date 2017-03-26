@@ -2,6 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class Device(ABC):
+    """
+    An abstract implementation of a device
+    Concrete plugins should implement his device.
+    """
     cntr = 0
 
     def __init__(self):
@@ -16,7 +20,7 @@ class Device(ABC):
     @property
     @abstractmethod
     def name(self):
-        """ The name. So that we might identify different type of devices """
+        """ The name. So that we might identify different plugins by name """
         pass
 
     @property
