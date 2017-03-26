@@ -1,5 +1,5 @@
 from flask_restplus import Api
-from .devices.Devices import ns as devicesNamespace
+from .devices.Devices import namespace as devicesNamespace
 
 api = Api(
     version='0.2'
