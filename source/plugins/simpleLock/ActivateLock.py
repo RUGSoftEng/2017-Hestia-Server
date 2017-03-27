@@ -3,11 +3,16 @@ from model.util.stringToBool import stringToBool
 
 
 class ActivateLock(Activator):
-    def __init__(self, id):
-        super().__init__(id)
-
+    def __init__(self):
         self._requiredInfo = {"IpAdress": "0.0.0.0", "Port": 0}
         self._state = True
+
+    @property
+    def id(self):
+        return self._id
+
+    #def setId(self, value):
+    #    self._id = value
 
     @property
     def name(self):

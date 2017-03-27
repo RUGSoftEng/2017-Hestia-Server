@@ -7,8 +7,11 @@ class Activator(ABC):
     Concrete activators of a plugin should implement this class
     """
 
-    def __init__(self, id):
-        self.activatorId = id
+    @property
+    @abstractmethod
+    def id(self):
+        """ The current id of the activator"""
+        pass
 
     @property
     @abstractmethod
