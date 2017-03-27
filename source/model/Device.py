@@ -7,16 +7,9 @@ class Device(ABC):
     Concrete plugins should implement his device.
     """
     cntrActivators = 0
-    #cntr = 0
 
     def __init__(self):
-        #self.deviceId = self.__class__.newId()
         self._activators = list()
-
-    #@classmethod
-    #def newId(cls):
-    #    cls.cntr += 1
-    #    return cls.cntr
 
     @property
     def id(self):
