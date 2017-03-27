@@ -36,4 +36,4 @@ class ActivateLight(Activator):
         if self.state == True:
             print("Light goes on")
         else:
-            print("Light goes offk")
+            print("Light goes off")

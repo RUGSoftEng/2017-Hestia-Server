@@ -1,4 +1,5 @@
 class Database():
+    """ A singleton that represents our database """
     devices = list()
 
     def __init__(self):
