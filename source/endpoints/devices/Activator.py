@@ -16,7 +16,7 @@ state = namespace.model('State', {
     'state': fields.String(required = True, discription = 'new state of activator')
 })
 
-@namespace.route('/<int:deviceId>/activator/<int:activatorId>')
+@namespace.route('/<int:deviceId>/activators/<int:activatorId>')
 @namespace.response(404, 'Device or action not found')
 @namespace.param('deviceId', 'The device ID')
 @namespace.param('activatorId', 'The action ID')
