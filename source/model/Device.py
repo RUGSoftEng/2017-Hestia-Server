@@ -33,6 +33,11 @@ class Device(ABC):
         """ The activators of a device """
         return self._activators
 
+    @staticmethod
+    @abstractmethod
+    def getEmptyRequiredInfo():
+        pass
+
     def addActivator(self, activator):
         """ Add an activator to a device """
         self.cntrActivators += 1

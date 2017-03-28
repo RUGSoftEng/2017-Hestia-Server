@@ -1,5 +1,5 @@
 from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
-from plugins.hestia.simpleLock.simpleLock import SimpleLock
+from plugins.hestia.simpleLock.SimpleLock import SimpleLock
 
 
 class PluginManager:
@@ -28,10 +28,8 @@ class PluginManager:
 
     def get_required_info_of(self, organization, plugin_name):
         """ Get the required information of a specific """
-        # TODO implement method
-        raise NotImplemented()
         plugin = self.__get_class_of(organization, plugin_name)
-        return plugin.requiredInfo
+        return plugin.getEmptyRequiredInfo()
 
     def get_implementation_of(self, organization, plugin_name, requiredInfo = {}):
         """ Get a concrete implementation of a plugin"""
@@ -44,3 +42,4 @@ class PluginManager:
         organization_plugins = self.plugins.get(organization)
         plugin = organization_plugins.get(plugin_name)
         return plugin
+

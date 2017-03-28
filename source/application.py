@@ -4,7 +4,7 @@ from werkzeug.contrib.fixers import ProxyFix
 from endpoints.api import api
 from model.Database import Database
 from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
-from plugins.hestia.simpleLock.simpleLock import SimpleLock
+from plugins.hestia.simpleLock.SimpleLock import SimpleLock
 
 DAO = Database()
 DAO.addDevice(SimpleLock())
