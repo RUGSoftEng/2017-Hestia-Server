@@ -1,6 +1,6 @@
 from model.Device import Device
-from plugins.dimmableLight.ActivateLight import ActivateLight
-from plugins.dimmableLight.Dimmer import Dimmer
+from .ActivateLight import ActivateLight
+from .Dimmer import Dimmer
 
 
 class DimmableLight(Device):
