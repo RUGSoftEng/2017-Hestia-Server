@@ -1,6 +1,6 @@
 from flask_restplus import Api
 from .devices.Devices import namespace as devicesNamespace
-from .plugins.Organizations import namespace as pluginNamespace
+from .plugins.RequiredInfo import namespace as pluginNamespace
 
 api = Api(
     version='0.2'
