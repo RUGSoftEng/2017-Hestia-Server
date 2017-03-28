@@ -16,12 +16,12 @@ class PluginManager:
                }
 
     def get_organizations(self):
-        """ Get a list of organizations"""
+        """ Get a list of organizations """
         organizations = list(self.plugins.keys())
         return organizations
 
     def get_plugins_of(self, organization):
-        """ Get all the plugins of an organization"""
+        """ Get all the plugins of an organization """
         organization_plugins = self.plugins.get(organization)
         plugin_names = list(organization_plugins.keys())
         return plugin_names
@@ -31,15 +31,15 @@ class PluginManager:
         plugin = self.__get_class_of(organization, plugin_name)
         return plugin.getEmptyRequiredInfo()
 
-    def get_implementation_of(self, organization, plugin_name, requiredInfo = {}):
-        """ Get a concrete implementation of a plugin"""
-        # TODO add required info to the constructor
+    def get_implementation_of(self, organization, plugin_name, required_info):
+        """ Get a concrete implementation of a plugin """
+        # TODO implement this function
+        raise NotImplemented()
         plugin = self.__get_class_of(organization, plugin_name)
-        return plugin()
+        return plugin(required_info)
 
     def __get_class_of(self, organization, plugin_name):
-        """ Get the class of an plugin"""
+        """ Get the class of an plugin """
         organization_plugins = self.plugins.get(organization)
         plugin = organization_plugins.get(plugin_name)
         return plugin
-
