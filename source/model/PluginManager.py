@@ -29,7 +29,7 @@ class PluginManager:
     def get_required_info_of(self, organization, plugin_name):
         """ Get the required information of a specific """
         plugin = self.__get_class_of(organization, plugin_name)
-        return plugin.getEmptyRequiredInfo()
+        return plugin.getDefaultRequiredInfo()
 
     def get_implementation_of(self, organization, plugin_name, required_info):
         """ Get a concrete implementation of a plugin """

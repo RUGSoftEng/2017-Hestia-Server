@@ -17,7 +17,7 @@ class SimpleLock(Device):
         return "Lock"
 
     @staticmethod
-    def getEmptyRequiredInfo():
+    def getDefaultRequiredInfo():
         return {"ip": "127.0.0.1", "port": "0"}
 
 

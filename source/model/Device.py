@@ -36,7 +36,7 @@ class Device(ABC):
 
     @staticmethod
     @abstractmethod
-    def getEmptyRequiredInfo():
+    def getDefaultRequiredInfo():
         pass
 
     def addActivator(self, activator):

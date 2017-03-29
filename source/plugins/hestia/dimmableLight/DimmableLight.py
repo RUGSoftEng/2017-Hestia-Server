@@ -18,6 +18,6 @@ class DimmableLight(Device):
         return "Light"
 
     @staticmethod
-    def getEmptyRequiredInfo():
+    def getDefaultRequiredInfo():
         return {"ip": "127.0.0.1", "port": "0"}
 
