@@ -6,18 +6,18 @@ class SimpleLock(Device):
 
     def __init__(self):
         super().__init__()
-        super().addActivator(ActivateLock())
+        super().add_activator(ActivateLock())
 
     @property
     def name(self):
         return "SimpleLock"
     
     @property
-    def pluginType(self):
+    def plugin_type(self):
         return "Lock"
 
     @staticmethod
-    def getDefaultRequiredInfo():
+    def get_default_required_info():
         return {"ip": "127.0.0.1", "port": "0"}
 
 

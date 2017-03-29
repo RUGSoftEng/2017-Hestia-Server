@@ -8,19 +8,21 @@ from endpoints.plugins import plugin_manager, namespace
 @namespace.param('organization', 'The name of the organization of the plugin')
 @namespace.param('plugin_name', 'The name of the plugin')
 class RequiredInfo(Resource):
-    ''' Show the required information of a plugin'''
+    """ Show the required information of a plugin"""
+
     @namespace.doc('get_activator')
     def get(self, organization, plugin_name):
-        ''' Fetch the required information of a plugin '''
+        """ Fetch the required information of a plugin """
         return plugin_manager.get_required_info_of(organization, plugin_name)
 
 
 @namespace.route('/')
 class Organizations(Resource):
-    ''' Show the all the organizations that have plugins'''
+    """ Show the all the organizations that have plugins"""
+
     @namespace.doc('list_organizations')
     def get(self):
-        ''' Fetch all the organizations that have plugins installed '''
+        """ Fetch all the organizations that have plugins installed """
         return plugin_manager.get_organizations()
 
 
@@ -28,8 +30,9 @@ class Organizations(Resource):
 @namespace.response(404, 'Organization  not found')
 @namespace.param('organization', 'The name of the organization of the plugin')
 class Plugins(Resource):
-    ''' Show the required information of a plugin'''
+    """ Show the required information of a plugin"""
+
     @namespace.doc('get_activator')
     def get(self, organization):
-        ''' Fetch the required information of a plugin '''
+        """ Fetch the required information of a plugin """
         return plugin_manager.get_plugins_of(organization)

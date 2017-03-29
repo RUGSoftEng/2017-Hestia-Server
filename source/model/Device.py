@@ -6,7 +6,7 @@ class Device(ABC):
     An abstract implementation of a device
     Concrete plugins should implement his device.
     """
-    cntrActivators = 0
+    activator_counter = 0
 
     def __init__(self):
         self._activators = list()
@@ -25,7 +25,7 @@ class Device(ABC):
 
     @property
     @abstractmethod
-    def pluginType(self):
+    def plugin_type(self):
         """ The type of a device for example: Lock, Light"""
         pass
 
@@ -36,15 +36,15 @@ class Device(ABC):
 
     @staticmethod
     @abstractmethod
-    def getDefaultRequiredInfo():
+    def get_default_required_info():
         pass
 
-    def addActivator(self, activator):
+    def add_activator(self, activator):
         """ Add an activator to a device """
-        self.cntrActivators += 1
-        activator.activatorId = self.cntrActivators
+        self.activator_counter += 1
+        activator.activatorId = self.activator_counter
         self.activators.append(activator)
 
-    def getActivator(self, activatorId):
+    def get_activator(self, activator_id):
         """ Get a specific activator of a device"""
-        return next(activator for activator in self.activators if activator.activatorId == activatorId)
+        return next(activator for activator in self.activators if activator.activatorId == activator_id)
