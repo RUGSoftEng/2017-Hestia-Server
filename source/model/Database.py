@@ -1,6 +1,7 @@
 class Database():
     """ A singleton that represents our database """
     devices = list()
+    cntrDevices = 0
 
     def __init__(self):
         pass
@@ -15,6 +16,8 @@ class Database():
 
     def addDevice(self, device):
         """ Add a device to the the Data Access Object """
+        self.cntrDevices += 1
+        device.deviceId = self.cntrDevices
         Database.devices.append(device)
         return device
 

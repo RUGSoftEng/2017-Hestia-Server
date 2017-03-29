@@ -5,7 +5,7 @@ from .ActivateLock import ActivateLock
 class simpleLock(Device):
     def __init__(self):
         super().__init__()
-        super().addActivator(ActivateLock(1))
+        super().addActivator(ActivateLock())
 
     @property
     def name(self):
