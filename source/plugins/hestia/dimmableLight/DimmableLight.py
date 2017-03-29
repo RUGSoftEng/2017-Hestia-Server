@@ -1,6 +1,6 @@
 from model.Device import Device
-from plugins.dimmableLight.ActivateLight import ActivateLight
-from plugins.dimmableLight.Dimmer import Dimmer
+from .ActivateLight import ActivateLight
+from .Dimmer import Dimmer
 
 
 class DimmableLight(Device):
@@ -16,4 +16,8 @@ class DimmableLight(Device):
     @property
     def pluginType(self):
         return "Light"
+
+    @staticmethod
+    def getDefaultRequiredInfo():
+        return {"ip": "127.0.0.1", "port": "0"}
 
