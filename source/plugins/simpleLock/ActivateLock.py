@@ -8,13 +8,6 @@ class ActivateLock(Activator):
         self._state = True
 
     @property
-    def id(self):
-        return self._id
-
-    #def setId(self, value):
-    #    self._id = value
-
-    @property
     def name(self):
         return "Lock/Unlock"
 

@@ -7,10 +7,6 @@ class Dimmer(Activator):
         self._state = 5
 
     @property
-    def id(self):
-        return self._id
-
-    @property
     def name(self):
         return "Intensity"
 
