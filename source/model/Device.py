@@ -10,11 +10,12 @@ class Device(ABC):
 
     def __init__(self):
         self._activators = list()
+        self._id = None
 
     @property
     def id(self):
         """ The current id of the device"""
-        pass
+        return self._id
 
     @property
     @abstractmethod

@@ -8,10 +8,6 @@ class ActivateLight(Activator):
         self._state = True
 
     @property
-    def id(self):
-        return self._id
-
-    @property
     def name(self):
         return "On/Off"
 

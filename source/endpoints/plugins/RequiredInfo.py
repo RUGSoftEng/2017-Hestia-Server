@@ -23,6 +23,7 @@ class Organizations(Resource):
         ''' Fetch all the organizations that have plugins installed '''
         return plugin_manager.get_organizations()
 
+
 @namespace.route('/<string:organization>/')
 @namespace.response(404, 'Organization  not found')
 @namespace.param('organization', 'The name of the organization of the plugin')
