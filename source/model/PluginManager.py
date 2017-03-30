@@ -12,7 +12,7 @@ class PluginManager:
     def __init__(self):
         self.plugins = {
                 "philipsHue": {},
-                "hestia": {"SimpleLock": SimpleLock, "DimmablLight": DimmableLight}
+                "hestia": {"SimpleLock": SimpleLock, "DimmableLight": DimmableLight}
                }
 
     def get_organizations(self):
@@ -33,10 +33,9 @@ class PluginManager:
 
     def get_implementation_of(self, organization, plugin_name, required_info):
         """ Get a concrete implementation of a plugin """
-        # TODO implement this function
-        raise NotImplemented()
+        # TODO implement this function using required_info
         plugin = self.__get_class_of(organization, plugin_name)
-        return plugin(required_info)
+        return plugin()
 
     def __get_class_of(self, organization, plugin_name):
         """ Get the class of an plugin """
