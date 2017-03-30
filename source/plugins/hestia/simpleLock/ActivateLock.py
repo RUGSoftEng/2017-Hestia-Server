@@ -32,7 +32,7 @@ class ActivateLock(Activator):
         self._state = string_to_bool(value)
 
     def perform(self):
-        if self.state is True:
+        if self.state:
             print("Open lock")
         else:
             print("Close lock")
