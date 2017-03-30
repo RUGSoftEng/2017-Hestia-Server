@@ -1,10 +1,11 @@
 from model.Activator import Activator
-from model.util.stringToBool import stringToBool
+from model.util.stringToBool import string_to_bool
 
 
 class ActivateLock(Activator):
     def __init__(self):
-        self._requiredInfo = {"IpAdress": "0.0.0.0", "Port": 0}
+        super().__init__()
+        self._requiredInfo = {"IpAddress": "0.0.0.0", "Port": 0}
         self._state = True
 
     @property
@@ -12,26 +13,26 @@ class ActivateLock(Activator):
         return "Lock/Unlock"
 
     @property
-    def stateType(self):
+    def state_type(self):
         return bool
 
     @property
-    def requiredInfo(self):
+    def required_info(self):
         return self._requiredInfo
 
-    @requiredInfo.setter
-    def requiredInfo(self, value):
+    @required_info.setter
+    def required_info(self, value):
         self._requiredInfo = value
 
     @property
     def state(self):
         return self._state
 
-    def setStateWithString(self, value):
-        self._state = stringToBool(value)
+    def set_state_with_string(self, value):
+        self._state = string_to_bool(value)
 
     def perform(self):
-        if self.state == True:
+        if self.state:
             print("Open lock")
         else:
             print("Close lock")

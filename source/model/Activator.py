@@ -23,13 +23,13 @@ class Activator(ABC):
 
     @property
     @abstractmethod
-    def stateType(self):
+    def state_type(self):
         """ The type a state has. For example int, bool"""
         pass
 
     @property
     @abstractmethod
-    def requiredInfo(self):
+    def required_info(self):
         """
         The information needed to operate the activator
 
@@ -37,9 +37,9 @@ class Activator(ABC):
         """
         pass
 
-    @requiredInfo.setter
+    @required_info.setter
     @abstractmethod
-    def requiredInfo(self, value):
+    def required_info(self, value):
         """ Set the required information """
         pass
 
@@ -50,12 +50,12 @@ class Activator(ABC):
         pass
 
     @abstractmethod
-    def setStateWithString(self, value):
+    def set_state_with_string(self, value):
         """ Transform a string to a new state"""
         pass
 
     @property
-    def stateString(self, value):
+    def state_string(self):
         """ Return the state as a string """
         return str(self.state)
 

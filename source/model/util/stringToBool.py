@@ -1,4 +1,4 @@
-def stringToBool(string):
+def string_to_bool(string):
     if string == "True" or string == "true":
         return True
     elif string == "False" or string == "false":

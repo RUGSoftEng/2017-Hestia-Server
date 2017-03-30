@@ -3,7 +3,8 @@ from model.Activator import Activator
 
 class Dimmer(Activator):
     def __init__(self):
-        self._requiredInfo = {"IpAdress": "0.0.0.0", "Port": 0}
+        super().__init__()
+        self._requiredInfo = {"IpAddress": "0.0.0.0", "Port": 0}
         self._state = 5
 
     @property
@@ -11,24 +12,23 @@ class Dimmer(Activator):
         return "Intensity"
 
     @property
-    def stateType(self):
+    def state_type(self):
         return int
 
     @property
-    def requiredInfo(self):
+    def required_info(self):
         return self._requiredInfo
 
-    @requiredInfo.setter
-    def requiredInfo(self, value):
+    @required_info.setter
+    def required_info(self, value):
         self._requiredInfo = value
 
     @property
     def state(self):
         return self._state
 
-
-    def setStateWithString(self, value):
+    def set_state_with_string(self, value):
         self._state = bool(value)
 
     def perform(self):
-        print("Set intesity to: " + str(self.state))
+        print("Set intensity to: " + str(self.state))

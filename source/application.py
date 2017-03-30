@@ -7,8 +7,8 @@ from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
 from plugins.hestia.simpleLock.SimpleLock import SimpleLock
 
 DAO = Database()
-DAO.addDevice(SimpleLock())
-DAO.addDevice(DimmableLight())
+DAO.add_device(SimpleLock())
+DAO.add_device(DimmableLight())
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
