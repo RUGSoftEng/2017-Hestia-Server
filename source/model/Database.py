@@ -19,7 +19,6 @@ class Database:
         self.device_counter += 1
         device.deviceId = self.device_counter
         Database.devices.append(device)
-        return device
 
     def delete_device(self, device_id):
         """ Delete a device with a specif id from the Data Access Object """

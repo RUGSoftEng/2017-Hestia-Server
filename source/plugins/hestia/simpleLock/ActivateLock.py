@@ -1,11 +1,10 @@
 from model.Activator import Activator
 from model.util.stringToBool import string_to_bool
-
+import json
 
 class ActivateLock(Activator):
     def __init__(self):
         super().__init__()
-        self._requiredInfo = {"IpAddress": "0.0.0.0", "Port": 0}
         self._state = True
 
     @property
@@ -15,14 +14,6 @@ class ActivateLock(Activator):
     @property
     def state_type(self):
         return bool
-
-    @property
-    def required_info(self):
-        return self._requiredInfo
-
-    @required_info.setter
-    def required_info(self, value):
-        self._requiredInfo = value
 
     @property
     def state(self):

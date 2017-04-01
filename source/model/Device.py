@@ -23,6 +23,7 @@ class Device(ABC):
 
     def __init__(self):
         self._activators = list()
+        self._required_info = self._get_default_required_info()
         self._id = None
 
     @property
@@ -66,7 +67,7 @@ class Device(ABC):
     @property
     def required_info(self):
         """ The required info"""
-        return str(self._get_default_required_info())
+        return self._required_info
 
     @classmethod
     def _get_default_required_info(cls):
@@ -117,7 +118,6 @@ class Device(ABC):
         """ Return that part of the required information that is specific to each device"""
         pass
 
-    @classmethod
-    def set_extra_required_info(cls, info):
-        """ Sets that part of the required information that is specific to each device"""
-        cls.get_extra_required_info = json.loads(info)
+    @required_info.setter
+    def required_info(self,info):
+        self._required_info = info
