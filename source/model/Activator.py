@@ -29,22 +29,6 @@ class Activator(ABC):
 
     @property
     @abstractmethod
-    def required_info(self):
-        """
-        The information needed to operate the activator
-
-        This should be a dict that with a key value pairs
-        """
-        pass
-
-    @required_info.setter
-    @abstractmethod
-    def required_info(self, value):
-        """ Set the required information """
-        pass
-
-    @property
-    @abstractmethod
     def state(self):
         """ The current state of the activator"""
         pass

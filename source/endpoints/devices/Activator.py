@@ -11,7 +11,6 @@ activator = namespace.model('Activator', {
     , 'stateType': StateTypeToString(attribute="stateType", readOnly=True, required=True,
                                      description='The type of interaction you can have')
     , 'stateString': ToString(attribute="state", required=True, discription='The state of an action')
-    , 'requiredInfo': ToString(attribgute="requiredInfo", required=True, discription='The info needed to operate')
 })
 state = namespace.model('State', {
     'state': fields.String(required=True, discription='new state of activator')
