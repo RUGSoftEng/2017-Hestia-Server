@@ -1,14 +1,15 @@
 from model.Activator import Activator
+import request
 
 
-class SwitchOnOff(Activator)
+class SwitchOnOff(Activator):
     def __init__(self):
         super().__init__()
         self._state = True
 
         @property
         def name(self):
-            return "Lock/Unlock"
+            return "On/Off"
 
         @property
         def type(self):
@@ -19,10 +20,10 @@ class SwitchOnOff(Activator)
             return self._state
 
         def set_state_with_string(self, value):
-            self._state = string_to_bool(value)
+            self._state = bool(value)
 
         def perform(self):
             if self.state:
-                print("Open lock")
+                print("Switch light on")
             else:
-                print("Close lock")
+                print("Switch loght off")
