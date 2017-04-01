@@ -12,7 +12,7 @@ class ActivateLight(Activator):
         return "On/Off"
 
     @property
-    def state_type(self):
+    def type(self):
         return bool
 
     @property
