@@ -11,18 +11,18 @@ class DimmableLight(Device):
         super().add_activator(Dimmer())
 
     @classmethod
-    def organization(self):
+    def _get_organization(cls):
         return "Hestia"
 
-    @property
-    def name(self):
+    @classmethod
+    def _get_name(cls):
         return "DimmableLight"
-    
-    @property
-    def plugin_type(self):
+
+    @classmethod
+    def _get_plugin_type(cls):
         return "Light"
 
     @classmethod
-    def get_extra_required_info(cls) -> dict:
+    def _get_extra_required_info(cls) -> dict:
         return {"ip": "127.0.0.1", "port": "0"}
 
