@@ -17,13 +17,19 @@ class Device(ABC):
         """ The current id of the device"""
         return self._id
 
-    @property
+    @classmethod
     @abstractmethod
-    def name(self):
-        """ The name. So that we might identify different plugins by name """
+    def organization(self):
+        """ Return the organization name to which this plugin belongs"""
         pass
 
-    @property
+    @classmethod
+    @abstractmethod
+    def name(self):
+        """ The name. So that we might identify different plugins form the same organization """
+        pass
+
+    @classmethod
     @abstractmethod
     def plugin_type(self):
         """ The type of a device for example: Lock, Light"""
@@ -34,10 +40,25 @@ class Device(ABC):
         """ The activators of a device """
         return self._activators
 
-    @staticmethod
+    @classmethod
+    def get_default_required_info(cls):
+        """ Get the default information of this device """
+        default_info = cls.__get_standard_required_info()
+        extra_info = cls.get_extra_required_info()
+        total = default_info.copy()
+        total.update(extra_info)
+        return total
+
+    @classmethod
     @abstractmethod
-    def get_default_required_info():
+    def get_extra_required_info(cls) -> dict:
+        """ Return that part of the required information that is specific to each device"""
         pass
+
+    @classmethod
+    def __get_standard_required_info(cls):
+        """ Returns that required information that is needed for all devices"""
+        return {"organization": cls.organization(), "plugin": cls.name()}
 
     def add_activator(self, activator):
         """ Add an activator to a device """

@@ -1,5 +1,5 @@
 from model.Device import Device
-from .ActivateLock import ActivateLock
+from plugins.hestia.simpleLock.ActivateLock import ActivateLock
 
 
 class SimpleLock(Device):
@@ -8,16 +8,19 @@ class SimpleLock(Device):
         super().__init__()
         super().add_activator(ActivateLock())
 
-    @property
-    def name(self):
+    @classmethod
+    def organization(cls):
+        return 'Hestia'
+
+    @classmethod
+    def name(cls):
         return "SimpleLock"
     
     @property
     def plugin_type(self):
         return "Lock"
 
-    @staticmethod
-    def get_default_required_info():
+    @classmethod
+    def get_extra_required_info(cls) -> dict:
         return {"ip": "127.0.0.1", "port": "0"}
-
 
