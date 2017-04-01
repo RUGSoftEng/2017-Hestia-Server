@@ -111,7 +111,6 @@ class Device(ABC):
         """
         pass
 
-
     @classmethod
     @abstractmethod
     def _get_extra_required_info(cls) -> dict:
@@ -122,10 +121,3 @@ class Device(ABC):
     def set_extra_required_info(cls, info):
         """ Sets that part of the required information that is specific to each device"""
         cls.get_extra_required_info = json.loads(info)
-
-
-    def add_activator(self, activator):
-        """ Add an activator to a device """
-        self.activator_counter += 1
-        activator.activatorId = self.activator_counter
-        self.activators.append(activator)
