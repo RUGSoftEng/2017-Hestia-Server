@@ -4,11 +4,10 @@ from endpoints.devices import device_database, namespace
 from endpoints.devices.Device import device
 from endpoints.util.ToString import ToString
 from endpoints.devices import plugin_manager
+import json
 
 format_post_device = namespace.model('Device', {
-    'organization': ToString(readOnly=True, required=True, discription='The organization')
-    ,'plugin_name': ToString(readOnly=True, required=True, description='The name of the plugin')
-    , 'required_info': ToString(attribute='devicesrequired_info', required=True, discription='The info needed to operate')
+    'required_info': ToString(attribute='devicesrequired_info', required=True, discription='The info needed to operate')
 })
 
 @namespace.route('/')
@@ -26,8 +25,9 @@ class Devices(Resource):
     @namespace.response(201, 'new device')
     def post(self):
         """ Post a new device """
-        organization = namespace.apis[0].payload['organization']
-        plugin_name = namespace.apis[0].payload['plugin_name']
+        #organization = namespace.apis[0].payload['organization']
+        #plugin_name = namespace.apis[0].payload['plugin_name']
         info = namespace.apis[0].payload['required_info']
-        class_plugin = plugin_manager.get_implementation_of(organization, plugin_name, info)
+        required_info = eval(info)
+        class_plugin = plugin_manager.get_implementation_of(required_info)
         device_database.add_device(class_plugin)

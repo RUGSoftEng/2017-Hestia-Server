@@ -31,8 +31,10 @@ class PluginManager:
         plugin = self.__get_class_of(organization, plugin_name)
         return plugin.get_default_required_info()
 
-    def get_implementation_of(self, organization, plugin_name, info):
+    def get_implementation_of(self, info):
         """ Get a concrete implementation of a plugin """
+        organization = info['organization']
+        plugin_name = info['plugin']
         plugin = self.__get_class_of(organization, plugin_name)
         plugin_impl = plugin()
         plugin_impl.required_info = info
