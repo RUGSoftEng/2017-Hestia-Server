@@ -22,7 +22,7 @@ class ActivateLight(Activator):
     def set_state_with_string(self, value):
         self._state = string_to_bool(value)
 
-    def perform(self, required_info):
+    def perform(self):
         if self.state:
             print("Light goes on")
         else:

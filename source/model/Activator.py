@@ -44,6 +44,6 @@ class Activator(ABC):
         return str(self.state)
 
     @abstractmethod
-    def perform(self, required_info):
+    def perform(self):
         """ Update the real activator with the current state"""
         pass

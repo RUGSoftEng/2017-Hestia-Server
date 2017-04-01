@@ -21,5 +21,5 @@ class Dimmer(Activator):
     def set_state_with_string(self, value):
         self._state = bool(value)
 
-    def perform(self, required_info):
+    def perform(self):
         print("Set intensity to: " + str(self.state))

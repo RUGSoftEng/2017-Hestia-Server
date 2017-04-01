@@ -1,6 +1,5 @@
 from flask_restplus import Resource
 from flask_restplus import fields
-import json
 
 from endpoints.devices import namespace, device_database
 from endpoints.util.StateTypeToString import StateTypeToString

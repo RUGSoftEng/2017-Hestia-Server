@@ -1,6 +1,6 @@
 from model.Activator import Activator
 from model.util.stringToBool import string_to_bool
-import json
+
 
 class ActivateLock(Activator):
     def __init__(self):

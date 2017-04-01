@@ -4,7 +4,6 @@ from endpoints.devices import device_database, namespace
 from endpoints.devices.Device import device
 from endpoints.util.ToString import ToString
 from endpoints.devices import plugin_manager
-import json
 
 format_post_device = namespace.model('Device', {
     'organization': ToString(readOnly=True, required=True, discription='The organization')
