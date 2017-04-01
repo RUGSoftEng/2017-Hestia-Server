@@ -11,7 +11,7 @@ class Dimmer(Activator):
         return "Intensity"
 
     @property
-    def state_type(self):
+    def type(self):
         return int
 
     @property
