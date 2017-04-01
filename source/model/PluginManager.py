@@ -35,6 +35,7 @@ class PluginManager:
         """ Get a concrete implementation of a plugin """
         # TODO implement this function using required_info
         plugin = self.__get_class_of(organization, plugin_name)
+        plugin.set_extra_required_info = required_info
         return plugin()
 
     def __get_class_of(self, organization, plugin_name):

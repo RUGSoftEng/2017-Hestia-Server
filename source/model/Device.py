@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import json
 
 
 class Device(ABC):
@@ -11,7 +12,6 @@ class Device(ABC):
     def __init__(self):
         self._activators = list()
         self._id = None
-
     @property
     def id(self):
         """ The current id of the device"""
@@ -41,6 +41,11 @@ class Device(ABC):
         return self._activators
 
     @classmethod
+    def required_info(cls):
+        """ The required info"""
+        return str(cls.get_default_required_info())
+
+    @classmethod
     def get_default_required_info(cls):
         """ Get the default information of this device """
         default_info = cls.__get_standard_required_info()
@@ -59,6 +64,12 @@ class Device(ABC):
     def __get_standard_required_info(cls):
         """ Returns that required information that is needed for all devices"""
         return {"organization": cls.organization(), "plugin": cls.name()}
+
+    @classmethod
+    def set_extra_required_info(cls, info):
+        """ Sets that part of the required information that is specific to each device"""
+        cls.get_extra_required_info = json.loads(info)
+
 
     def add_activator(self, activator):
         """ Add an activator to a device """

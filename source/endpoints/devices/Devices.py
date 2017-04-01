@@ -18,16 +18,16 @@ class Devices(Resource):
     @namespace.doc('list_devices')
     @namespace.marshal_list_with(device)
     def get(self):
-        """ List all devices"""
+        """ List all devices """
         return device_database.get_devices()
 
     @namespace.doc('post_device')
     @namespace.expect(format_post_device)
     @namespace.response(201, 'new device')
     def post(self):
-        ''' Post a new device '''
-        organization = namespace.apis[0].payload["organization"]
-        plugin_name = namespace.apis[0].payload["plugin_name"]
-        required_info = namespace.apis[0].payload["required_info"]
+        """ Post a new device """
+        organization = namespace.apis[0].payload['organization']
+        plugin_name = namespace.apis[0].payload['plugin_name']
+        required_info = namespace.apis[0].payload['required_info']
         class_plugin = plugin_manager.get_implementation_of(organization, plugin_name, required_info)
-        device_database.addDevice(class_plugin)
+        device_database.add_device(class_plugin)
