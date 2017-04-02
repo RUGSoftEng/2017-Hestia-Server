@@ -13,7 +13,7 @@ class ActivateLock(Activator):
 
     @property
     def type(self):
-        return bool
+        return "bool"
 
     @property
     def state(self):

@@ -1,6 +1,7 @@
 from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
 from plugins.hestia.simpleLock.SimpleLock import SimpleLock
 from plugins.philipsHue.basicWhiteLight.BasicWhiteLight import BasicWhiteLight
+from plugins.philipsHue.colorLight.ColorLight import ColorLight
 
 
 class PluginManager:
@@ -12,7 +13,7 @@ class PluginManager:
     """
     def __init__(self):
         self.plugins = {
-                "philipsHue": {"BasicWhiteLight": BasicWhiteLight},
+                "philipsHue": {"BasicWhiteLight": BasicWhiteLight, "ColorLight": ColorLight},
                 "hestia": {"SimpleLock": SimpleLock, "DimmableLight": DimmableLight}
                }
 

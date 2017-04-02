@@ -12,7 +12,7 @@ class Dimmer(Activator):
 
     @property
     def type(self):
-        return int
+        return "unsigned_int8"
 
     @property
     def state(self):

@@ -2,15 +2,17 @@ import json
 
 from model.Device import Device
 from plugins.philipsHue.activators.SliderBrightness import SliderBrightness
+from plugins.philipsHue.activators.SliderColor import SliderColor
 from plugins.philipsHue.activators.SwitchOnOff import SwitchOnOff
 import requests
 
 
-class BasicWhiteLight(Device):
+class ColorLight(Device):
     def __init__(self):
         super().__init__()
         super().add_activator(SwitchOnOff())
         super().add_activator(SliderBrightness())
+        super().add_activator(SliderColor())
 
     def setup(self):
         self._baseUrl = "http://" + self.required_info["ip"] + "/api"
@@ -30,7 +32,7 @@ class BasicWhiteLight(Device):
         found = False
         lamp_id = 0
         for key, value in response.items():
-            if value['state']['reachable'] and value['type'] == 'Dimmable light':
+            if value['state']['reachable'] and value['type'] == 'Extended color light':
                 if found:
                     raise Exception("Multiple lights were found")
                 else :
@@ -48,7 +50,7 @@ class BasicWhiteLight(Device):
 
     @classmethod
     def _get_name(cls):
-        return "BasicWhiteLight"
+        return "ColorLight"
 
     @classmethod
     def _get_plugin_type(cls):
