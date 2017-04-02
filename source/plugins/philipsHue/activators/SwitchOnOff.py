@@ -1,3 +1,5 @@
+import requests
+
 from model.Activator import Activator
 
 
@@ -21,8 +23,11 @@ class SwitchOnOff(Activator):
     def set_state_with_string(self, value):
         self._state = bool(value)
 
-    def perform(self):
+    def perform(self, devicerequired_info):
         if self.state:
-            print("Switch light on")
+            url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"
+            data = '{"on":true}'
+            response = requests.put(url, data)
+            print(response.content)
         else:
             print("Switch loght off")

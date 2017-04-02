@@ -26,18 +26,19 @@ class BasicWhiteLight(Device):
         url = self._baseUrl + self.required_info["user"] + "/lights"
         response = json.loads(requests.get(url).content)
         found = False
+        lamp_id = 0
         for key, value in response.items():
             if value['state']['reachable']:
                 if found:
                     raise Exception("Multiple lights were found")
                 else :
                     found = True
-                    self._lampId = int(key)
+                    lamp_id = int(key)
 
         if not found:
             raise Exception("No lights were found")
 
-        print(self._lampId)
+        self.required_info["lampId"] = lamp_id
 
     @classmethod
     def _get_organization(cls):
