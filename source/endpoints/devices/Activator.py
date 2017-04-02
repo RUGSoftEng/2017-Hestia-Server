@@ -8,9 +8,9 @@ from endpoints.util.ToString import ToString
 activator = namespace.model('Activator', {
     'activatorId': fields.Integer(readOnly=True, required=True, discription='The unique identifier of the action')
     , 'name': fields.String(readOnly=True, required=True, description='The name of the action')
-    , 'stateType': StateTypeToString(attribute="stateType", readOnly=True, required=True,
+    , 'type': StateTypeToString(attribute="type", readOnly=True, required=True,
                                      description='The type of interaction you can have')
-    , 'stateString': ToString(attribute="state", required=True, discription='The state of an action')
+    , 'state': ToString(attribute="state", required=True, discription='The state of an action')
 })
 state = namespace.model('State', {
     'state': fields.String(required=True, discription='new state of activator')
