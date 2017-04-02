@@ -40,5 +40,4 @@ class Activator(Resource):
         action = device.get_activator(activator_id)
         value = namespace.apis[0].payload["state"]
         action.set_state_with_string(value)
-        print(device.required_info)
-        action.perform(device.required_info)
+        action.perform()
