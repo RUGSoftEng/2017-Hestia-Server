@@ -23,7 +23,7 @@ class Activator(ABC):
 
     @property
     @abstractmethod
-    def state_type(self):
+    def type(self):
         """ The type a state has. For example int, bool"""
         pass
 
