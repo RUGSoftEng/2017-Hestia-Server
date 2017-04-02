@@ -8,6 +8,9 @@ class SimpleLock(Device):
         super().__init__()
         super().add_activator(ActivateLock())
 
+    def setup(self):
+        print("setup lock")
+
     @classmethod
     def _get_organization(cls):
         return "Hestia"
@@ -19,10 +22,6 @@ class SimpleLock(Device):
     @classmethod
     def _get_plugin_type(cls):
         return "Lock"
-
-    @classmethod
-    def _get_extra_required_info(cls) -> dict:
-        return {"ip": "127.0.0.1", "port": "0"}
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:

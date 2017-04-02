@@ -31,3 +31,4 @@ class Devices(Resource):
         required_info = eval(info)
         class_plugin = plugin_manager.get_implementation_of(required_info)
         device_database.add_device(class_plugin)
+        class_plugin.setup()

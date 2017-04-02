@@ -16,7 +16,7 @@ class Database:
 
     def add_device(self, device):
         """ Add a device to the the Data Access Object """
-        self.device_counter += 1
+        self.increment_counter()
         device.deviceId = self.device_counter
         Database.devices.append(device)
 
@@ -25,3 +25,6 @@ class Database:
         device = next(device for device in Database.devices if device.deviceId == device_id)
         Database.devices.remove(device)
 
+    @classmethod
+    def increment_counter(cls):
+        cls.device_counter += 1

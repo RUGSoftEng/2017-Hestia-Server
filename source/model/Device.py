@@ -83,6 +83,10 @@ class Device(ABC):
         return {"organization": cls._get_organization()
                 , "plugin": cls._get_name()}
 
+    @abstractmethod
+    def setup(self):
+        pass
+
     @classmethod
     @abstractmethod
     def _get_organization(cls):
@@ -118,5 +122,5 @@ class Device(ABC):
         pass
 
     @required_info.setter
-    def required_info(self,info):
+    def required_info(self, info):
         self._required_info = info

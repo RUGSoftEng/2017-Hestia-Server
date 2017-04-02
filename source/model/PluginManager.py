@@ -1,5 +1,6 @@
 from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
 from plugins.hestia.simpleLock.SimpleLock import SimpleLock
+from plugins.philipsHue.basicWhiteLight.BasicWhiteLight import BasicWhiteLight
 
 
 class PluginManager:
@@ -11,7 +12,7 @@ class PluginManager:
     """
     def __init__(self):
         self.plugins = {
-                "philipsHue": {},
+                "philipsHue": {"BasicWhiteLight": BasicWhiteLight},
                 "hestia": {"SimpleLock": SimpleLock, "DimmableLight": DimmableLight}
                }
 
@@ -29,7 +30,7 @@ class PluginManager:
     def get_required_info_of(self, organization, plugin_name):
         """ Get the required information of a specific """
         plugin = self.__get_class_of(organization, plugin_name)
-        return plugin.get_default_required_info()
+        return plugin._get_default_required_info()
 
     def get_implementation_of(self, info):
         """ Get a concrete implementation of a plugin """
