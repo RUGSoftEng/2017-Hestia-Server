@@ -10,7 +10,7 @@ class SimpleLock(Device):
 
     @classmethod
     def _get_organization(cls):
-        return 'Hestia'
+        return "hestia"
 
     @classmethod
     def _get_name(cls):
@@ -23,4 +23,3 @@ class SimpleLock(Device):
     @classmethod
     def _get_extra_required_info(cls) -> dict:
         return {"ip": "127.0.0.1", "port": "0"}
-

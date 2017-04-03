@@ -12,7 +12,7 @@ class DimmableLight(Device):
 
     @classmethod
     def _get_organization(cls):
-        return "Hestia"
+        return "hestia"
 
     @classmethod
     def _get_name(cls):

@@ -22,6 +22,7 @@ class Device(ABC):
 
     def __init__(self):
         self._activators = list()
+        self._required_info = self._get_default_required_info()
         self._id = None
 
     @property
@@ -62,8 +63,13 @@ class Device(ABC):
         """ Get a specific activator of a device"""
         return next(activator for activator in self.activators if activator.activatorId == activator_id)
 
+    @property
+    def required_info(self):
+        """ The required info"""
+        return self._required_info
+
     @classmethod
-    def get_default_required_info(cls):
+    def _get_default_required_info(cls):
         """ Get the default information of this device """
         default_info = cls.__get_standard_required_info()
         extra_info = cls._get_extra_required_info()
@@ -105,11 +111,12 @@ class Device(ABC):
         """
         pass
 
-
     @classmethod
     @abstractmethod
     def _get_extra_required_info(cls) -> dict:
         """ Return that part of the required information that is specific to each device"""
         pass
 
-
+    @required_info.setter
+    def required_info(self,info):
+        self._required_info = info
