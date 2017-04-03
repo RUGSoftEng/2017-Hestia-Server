@@ -17,11 +17,11 @@ class SimpleLock(Device):
 
     @classmethod
     def _get_name(cls):
-        return "SimpleLock"
+        return "HestiaMotor"
 
     @classmethod
     def _get_plugin_type(cls):
-        return "Lock"
+        return "Motor"
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:

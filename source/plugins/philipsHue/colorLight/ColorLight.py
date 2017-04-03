@@ -50,7 +50,7 @@ class ColorLight(Device):
 
     @classmethod
     def _get_name(cls):
-        return "ColorLight"
+        return "HueColorLight"
 
     @classmethod
     def _get_plugin_type(cls):

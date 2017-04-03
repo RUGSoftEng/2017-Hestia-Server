@@ -55,8 +55,8 @@ class Device(ABC):
 
     def add_activator(self, activator):
         """ Add an activator to a device """
-        self.activator_counter += 1
         activator.activatorId = self.activator_counter
+        self.activator_counter += 1
         self.activators.append(activator)
 
     def get_activator(self, activator_id):

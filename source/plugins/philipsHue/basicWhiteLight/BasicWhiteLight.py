@@ -48,7 +48,7 @@ class BasicWhiteLight(Device):
 
     @classmethod
     def _get_name(cls):
-        return "BasicWhiteLight"
+        return "HueWhiteLight"
 
     @classmethod
     def _get_plugin_type(cls):
