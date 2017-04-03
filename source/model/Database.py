@@ -1,10 +1,9 @@
 class Database:
     """ A singleton that represents our database """
     devices = list()
-    device_counter = 0
 
     def __init__(self):
-        pass
+        self._device_counter = len(Database.devices)
 
     def get_devices(self):
         """ Get a devices from the Data Access Object """
