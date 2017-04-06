@@ -13,7 +13,7 @@ class ActivateLight(Activator):
 
     @property
     def type(self):
-        return bool
+        return "bool"
 
     @property
     def state(self):
@@ -22,7 +22,7 @@ class ActivateLight(Activator):
     def set_state_with_string(self, value):
         self._state = string_to_bool(value)
 
-    def perform(self):
+    def perform(self, devicerequired_info):
         if self.state:
             print("Light goes on")
         else:

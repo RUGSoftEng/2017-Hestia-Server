@@ -55,8 +55,8 @@ class Device(ABC):
 
     def add_activator(self, activator):
         """ Add an activator to a device """
-        self.activator_counter += 1
         activator.activatorId = self.activator_counter
+        self.activator_counter += 1
         self.activators.append(activator)
 
     def get_activator(self, activator_id):
@@ -82,6 +82,10 @@ class Device(ABC):
         """ Returns that required information that is needed for all devices"""
         return {"organization": cls._get_organization()
                 , "plugin": cls._get_name()}
+
+    @abstractmethod
+    def setup(self):
+        pass
 
     @classmethod
     @abstractmethod
@@ -118,5 +122,5 @@ class Device(ABC):
         pass
 
     @required_info.setter
-    def required_info(self,info):
+    def required_info(self, info):
         self._required_info = info

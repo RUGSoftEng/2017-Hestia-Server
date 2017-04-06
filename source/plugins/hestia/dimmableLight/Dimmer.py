@@ -12,7 +12,7 @@ class Dimmer(Activator):
 
     @property
     def type(self):
-        return int
+        return "unsigned_int8"
 
     @property
     def state(self):
@@ -21,5 +21,5 @@ class Dimmer(Activator):
     def set_state_with_string(self, value):
         self._state = bool(value)
 
-    def perform(self):
+    def perform(self, devicerequired_info):
         print("Set intensity to: " + str(self.state))

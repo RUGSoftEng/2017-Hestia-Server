@@ -8,17 +8,20 @@ class SimpleLock(Device):
         super().__init__()
         super().add_activator(ActivateLock())
 
+    def setup(self):
+        print("setup lock")
+
     @classmethod
     def _get_organization(cls):
         return "hestia"
 
     @classmethod
     def _get_name(cls):
-        return "SimpleLock"
+        return "HestiaMotor"
 
     @classmethod
     def _get_plugin_type(cls):
-        return "Lock"
+        return "Motor"
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:

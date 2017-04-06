@@ -10,6 +10,9 @@ class DimmableLight(Device):
         super().add_activator(ActivateLight())
         super().add_activator(Dimmer())
 
+    def setup(self):
+        print("setup lock")
+
     @classmethod
     def _get_organization(cls):
         return "hestia"
