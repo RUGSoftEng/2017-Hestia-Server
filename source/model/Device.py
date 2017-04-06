@@ -125,11 +125,12 @@ class Device(ABC):
         self.activators.append(activator)
 
     def get_next_counter(self):
+        """ Get a new counter for a device """
         new_counter = self._activator_counter
         self.activator_counter += 1
         return new_counter
 
     def get_activator(self, activator_id):
-        """ Get a specific activator of a device"""
+        """ Get a specific activator of an activator """
         return next(activator for activator in self.activators if
                     activator.activatorId == activator_id)

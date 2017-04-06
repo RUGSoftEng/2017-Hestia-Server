@@ -26,6 +26,7 @@ class Database:
 
     @classmethod
     def get_new_counter(cls):
+        """ Get a new counter for a device """
         new_counter = cls._device_counter
         cls._device_counter += 1
         return new_counter
