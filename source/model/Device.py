@@ -24,6 +24,7 @@ class Device(ABC):
         self._activators = list()
         self._required_info = self._get_default_required_info()
         self._id = None
+        self._activator_counter = 0
 
     @property
     def id(self):
@@ -55,9 +56,13 @@ class Device(ABC):
 
     def add_activator(self, activator):
         """ Add an activator to a device """
-        activator.activatorId = self.activator_counter
-        self.activator_counter += 1
+        activator.activatorId = self.get_next_counter()
         self.activators.append(activator)
+
+    def get_next_counter(self):
+        new_counter = self._activator_counter
+        self.activator_counter += 1
+        return new_counter
 
     def get_activator(self, activator_id):
         """ Get a specific activator of a device"""

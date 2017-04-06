@@ -1,7 +1,7 @@
 class Database:
     """ A singleton that represents our database """
     devices = list()
-    device_counter = 0
+    _device_counter = 0
 
     def __init__(self):
         self._device_counter = len(Database.devices)
@@ -16,8 +16,7 @@ class Database:
 
     def add_device(self, device):
         """ Add a device to the the Data Access Object """
-        device.deviceId = self.device_counter
-        self.increment_counter()
+        device.deviceId = self.get_new_counter()
         Database.devices.append(device)
 
     def delete_device(self, device_id):
@@ -26,5 +25,7 @@ class Database:
         Database.devices.remove(device)
 
     @classmethod
-    def increment_counter(cls):
-        cls.device_counter += 1
+    def get_new_counter(cls):
+        new_counter = cls._device_counter
+        cls._device_counter += 1
+        return new_counter
