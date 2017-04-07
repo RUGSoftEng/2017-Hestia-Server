@@ -23,7 +23,7 @@ if [ $(id -u) -eq 0 ]; then
   exit 1
 fi
 
-TOP=$(cd $(dirname $0) && pwd -L)
+TOP=$(cd $(dirname 0) && pwd -L)
 
 if [ -z "$WORKON_HOME" ]; then
     VIRTUALENV_ROOT=${VIRTUALENV_ROOT:-"${HOME}/.virtualenvs/$PROJECTNAME"}
