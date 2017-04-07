@@ -24,6 +24,7 @@ class Device(ABC):
         self._activators = list()
         self._required_info = self._get_default_required_info()
         self._id = None
+        self._activator_counter = 0
 
     @property
     def id(self):
@@ -53,20 +54,14 @@ class Device(ABC):
         """ The activators of a device """
         return self._activators
 
-    def add_activator(self, activator):
-        """ Add an activator to a device """
-        activator.activatorId = self.activator_counter
-        self.activator_counter += 1
-        self.activators.append(activator)
-
-    def get_activator(self, activator_id):
-        """ Get a specific activator of a device"""
-        return next(activator for activator in self.activators if activator.activatorId == activator_id)
-
     @property
     def required_info(self):
         """ The required info"""
         return self._required_info
+
+    @required_info.setter
+    def required_info(self, info):
+        self._required_info = info
 
     @classmethod
     def _get_default_required_info(cls):
@@ -118,9 +113,24 @@ class Device(ABC):
     @classmethod
     @abstractmethod
     def _get_extra_required_info(cls) -> dict:
-        """ Return that part of the required information that is specific to each device"""
+        """
+        Return that part of the required
+        that is specific to each device
+        """
         pass
 
-    @required_info.setter
-    def required_info(self, info):
-        self._required_info = info
+    def add_activator(self, activator):
+        """ Add an activator to a device """
+        activator.activatorId = self.get_next_counter()
+        self.activators.append(activator)
+
+    def get_next_counter(self):
+        """ Get a new counter for a device """
+        new_counter = self._activator_counter
+        self.activator_counter += 1
+        return new_counter
+
+    def get_activator(self, activator_id):
+        """ Get a specific activator of an activator """
+        return next(activator for activator in self.activators if
+                    activator.activatorId == activator_id)
