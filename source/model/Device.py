@@ -37,9 +37,13 @@ class Device(ABC):
         """ The name of the organization to which this plugin belongs. """
         return self._get_organization()
 
-    @abstractmethod
+    @property
     def name(self):
-        pass
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
 
     @property
     def plugin_name(self):
@@ -47,7 +51,7 @@ class Device(ABC):
 
     @property
     def plugin_type(self):
-        """ The type of a device for example: Lock, Light. """
+        """ The type of a device for example: lock, light. """
         return self._get_plugin_type()
 
     @property
@@ -106,7 +110,7 @@ class Device(ABC):
     @abstractmethod
     def _get_plugin_type(cls):
         """
-        The type of a device for example: Lock, Light.
+        The type of a device for example: lock, light.
         This is the implementation at the plugin level.
         """
         pass

@@ -3,7 +3,7 @@ from .ActivateLight import ActivateLight
 from .Dimmer import Dimmer
 
 
-class DimmableLight(Device):
+class Light(Device):
 
     def __init__(self):
         super().__init__()
@@ -11,15 +11,15 @@ class DimmableLight(Device):
         super().add_activator(Dimmer())
 
     def setup(self):
-        print("setup lock")
+        print("Mock light is being setup")
 
     @classmethod
     def _get_organization(cls):
-        return "hestia"
+        return "Mock"
 
     @classmethod
-    def _get_name(cls):
-        return "DimmableLight"
+    def _get_plugin_name(cls):
+        return "Light"
 
     @classmethod
     def _get_plugin_type(cls):

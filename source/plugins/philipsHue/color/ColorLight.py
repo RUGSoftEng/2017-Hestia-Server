@@ -46,11 +46,11 @@ class ColorLight(Device):
 
     @classmethod
     def _get_organization(cls):
-        return 'philipsHue'
+        return 'Philips'
 
     @classmethod
-    def _get_name(cls):
-        return "HueColorLight"
+    def _get_plugin_name(cls):
+        return "ColorLight"
 
     @classmethod
     def _get_plugin_type(cls):

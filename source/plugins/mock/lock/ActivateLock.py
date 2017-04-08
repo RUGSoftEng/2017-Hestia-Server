@@ -2,14 +2,14 @@ from model.Activator import Activator
 from model.util.stringToBool import string_to_bool
 
 
-class ActivateLight(Activator):
+class ActivateLock(Activator):
     def __init__(self):
         super().__init__()
         self._state = True
 
     @property
     def name(self):
-        return "On/Off"
+        return "lock/Unlock"
 
     @property
     def type(self):
@@ -24,6 +24,6 @@ class ActivateLight(Activator):
 
     def perform(self, devicerequired_info):
         if self.state:
-            print("Light goes on")
+            print("Open lock")
         else:
-            print("Light goes off")
+            print("Close lock")
