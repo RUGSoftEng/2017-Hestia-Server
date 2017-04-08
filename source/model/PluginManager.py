@@ -1,7 +1,8 @@
-from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
-from plugins.hestia.simpleLock.SimpleLock import SimpleLock
-from plugins.philipsHue.basicWhiteLight.BasicWhiteLight import BasicWhiteLight
-from plugins.philipsHue.colorLight.ColorLight import ColorLight
+from plugins.mock.light.Light import Light
+from plugins.mock.lock.Lock import Lock
+from plugins.philipsHue.white.DimmableLight import DimmableLight
+from plugins.philipsHue.color.ColorLight import ColorLight
+from plugins.setup.philips.PhilipsHueSetup import PhilipsHueSetup
 
 
 class PluginManager:
@@ -13,8 +14,9 @@ class PluginManager:
     """
     def __init__(self):
         self.plugins = {
-                "philipsHue": {"BasicWhiteLight": BasicWhiteLight, "ColorLight": ColorLight},
-                "hestia": {"SimpleLock": SimpleLock, "DimmableLight": DimmableLight}
+                "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight , "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
+                "Mock": {"Lock": Lock, "Light": Light},
+                "Setup": {"PhilipsSetup": PhilipsHueSetup}
                }
 
     def get_organizations(self):

@@ -13,7 +13,9 @@ class RequiredInfo(Resource):
     @namespace.doc('get_activator')
     def get(self, organization, plugin_name):
         """ Fetch the required information of a plugin """
-        return plugin_manager.get_required_info_of(organization, plugin_name)
+        required_info = plugin_manager.get_required_info_of(organization, plugin_name)
+        required_info["name"] = "default_name"
+        return required_info
 
 
 @namespace.route('/')
@@ -35,4 +37,5 @@ class Plugins(Resource):
     @namespace.doc('get_activator')
     def get(self, organization):
         """ Fetch the required information of a plugin """
+
         return plugin_manager.get_plugins_of(organization)

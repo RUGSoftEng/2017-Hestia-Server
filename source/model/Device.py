@@ -25,6 +25,7 @@ class Device(ABC):
         self._required_info = self._get_default_required_info()
         self._id = None
         self._activator_counter = 0
+        self._name = "not_set"
 
     @property
     def id(self):
@@ -43,15 +44,19 @@ class Device(ABC):
 
     @property
     def name(self):
-        """
-        The name.
-        So that we might identify different plugins form the same organization.
-        """
-        return self._get_name()
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+
+    @property
+    def plugin_name(self):
+        return self._get_plugin_name()
 
     @property
     def plugin_type(self):
-        """ The type of a device for example: Lock, Light. """
+        """ The type of a device for example: lock, light. """
         return self._get_plugin_type()
 
     @property
@@ -81,7 +86,7 @@ class Device(ABC):
     def __get_standard_required_info(cls):
         """ Returns that required information that is needed for all devices"""
         return {"organization": cls._get_organization()
-                , "plugin": cls._get_name()}
+                , "plugin": cls._get_plugin_name()}
 
     @abstractmethod
     def setup(self):
@@ -98,7 +103,7 @@ class Device(ABC):
 
     @classmethod
     @abstractmethod
-    def _get_name(cls):
+    def _get_plugin_name(cls):
         """
         The name.
         So that we might identify different plugins form the same organization.
@@ -110,7 +115,7 @@ class Device(ABC):
     @abstractmethod
     def _get_plugin_type(cls):
         """
-        The type of a device for example: Lock, Light.
+        The type of a device for example: lock, light.
         This is the implementation at the plugin level.
         """
         pass

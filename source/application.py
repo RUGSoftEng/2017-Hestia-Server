@@ -3,12 +3,10 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from endpoints.api import api
 from model.Database import Database
-from plugins.hestia.dimmableLight.DimmableLight import DimmableLight
-from plugins.hestia.simpleLock.SimpleLock import SimpleLock
+from plugins.mock.lock.Lock import Lock
 
 DAO = Database()
-DAO.add_device(SimpleLock())
-#DAO.add_device(DimmableLight())
+DAO.add_device(Lock())
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
