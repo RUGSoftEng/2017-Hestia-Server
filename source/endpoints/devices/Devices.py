@@ -26,6 +26,8 @@ class Devices(Resource):
         """ Post a new device """
         info = namespace.apis[0].payload['required_info']
         required_info = eval(info)
+        name = required_info.pop("name", None)
         class_plugin = plugin_manager.get_implementation_of(required_info)
+        class_plugin.name = name
         device_database.add_device(class_plugin)
         class_plugin.setup()

@@ -11,13 +11,21 @@ class SimpleLock(Device):
     def setup(self):
         print("setup lock")
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+
     @classmethod
     def _get_organization(cls):
         return "hestia"
 
     @classmethod
-    def _get_name(cls):
-        return "HestiaMotor"
+    def _get_plugin_name(cls):
+        return "SimpleLock"
 
     @classmethod
     def _get_plugin_type(cls):

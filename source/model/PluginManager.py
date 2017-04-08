@@ -13,7 +13,7 @@ class PluginManager:
     """
     def __init__(self):
         self.plugins = {
-                "philipsHue": {"BasicWhiteLight": BasicWhiteLight, "ColorLight": ColorLight},
+                "philipsHue": {"HueWhiteLight": BasicWhiteLight, "ColorLight": ColorLight},
                 "hestia": {"SimpleLock": SimpleLock, "DimmableLight": DimmableLight}
                }
 
