@@ -6,7 +6,7 @@ from endpoints.util.StateTypeToString import StateTypeToString
 from endpoints.util.ToString import ToString
 
 activator = namespace.model('Activator', {
-    'activatorId': fields.Integer(readOnly=True, required=True, discription='The unique identifier of the action')
+    'activatorId': fields.Integer(attribute="id", readOnly=True, required=True, discription='The unique identifier of the action')
     , 'name': fields.String(readOnly=True, required=True, description='The name of the action')
     , 'type': fields.String(attribute="type", readOnly=True, required=True,
                                      description='The type of interaction you can have')

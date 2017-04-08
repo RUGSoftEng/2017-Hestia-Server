@@ -26,8 +26,8 @@ class PhilipsHueSetup(Device):
             #message = json.loads(response.content)[0]
             #succes = message['success']
             self.required_info["user"] = 'CGxOchdTOaFQx-tUS8q0Orqfr4hYifYXQaRRJwR2'#succes['username']
-            print(self.deviceId)
-            self.required_info["id"] = self.deviceId
+            print(self.id)
+            self.required_info["id"] = self.id
 
     @classmethod
     def _get_plugin_type(cls):
