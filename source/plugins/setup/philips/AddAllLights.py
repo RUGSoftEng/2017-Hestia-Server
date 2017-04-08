@@ -27,7 +27,7 @@ class AddAllLights(Activator):
             device_id = devicerequired_info.pop("id", None)
             print(device_id)
             for key, value in response.items():
-                if value["state"]["reachable"]:
+                if value["state"]["reachable"] and not self.isAlreadyInstalled(int(key)):
                     device = None
                     if value["type"] in ["Extended color light", "Color light"]:
                         device = ColorLight()
@@ -41,6 +41,14 @@ class AddAllLights(Activator):
 
                     self._database.add_device(device)
             self._database.delete_device(device_id)
+
+    def isAlreadyInstalled(self, lamp_id):
+        devices = self._database.get_devices()
+        for d in devices:
+            if ("lampId" in d.required_info.keys()) and d.required_info["lampId"] == lamp_id:
+                return True
+
+        return False
 
     @property
     def state(self):
