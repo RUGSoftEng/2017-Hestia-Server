@@ -15,6 +15,11 @@ class Activator(ABC):
         """ The current id of the activator"""
         return self._id
 
+    @id.setter
+    def id(self, value):
+        """ The current id of the activator"""
+        self._id = value
+
     @property
     @abstractmethod
     def name(self):
