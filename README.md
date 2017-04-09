@@ -1,16 +1,18 @@
 # 2017-Hestia-Server
 Home automation server.
 
-Tested on python version 3.5.2
+# Setup
+Run `dev_setup.sh`.
 
-Before use first install `pip`
-`pip install flask`
-`pip install flask_restplus`
+On the command line source the virtual env activator and run
+`python source/application.py`
 
-Run the webservice using `python3 source/application.py`
+If you are using an pycharm as an IDE: 
+go to `File | Settings | Project | Project Interpreter`
+and select the virtual environment named "hestia". 
 
 # Information
 - [Virtual environment setup](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
 - [Flask_restplus Framework Documentation](https://flask-restplus.readthedocs.io/en/stable/)
-- [Flask Frameworkd Documentation](http://flask.pocoo.org/)
+- [Flask Framework Documentation](http://flask.pocoo.org/)
 - [Python tutorial for Java programmers](http://www.cse.wustl.edu/~ckelleher/cse450/pythonQuickStart.pdf)
