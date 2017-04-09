@@ -6,7 +6,7 @@ from endpoints.devices.Activator import activator
 from endpoints.devices.Devices import device_database
 
 device = namespace.model('Device', {
-    'deviceId': fields.Integer(readOnly=True, required=True, description='The unique identifier of the device')
+    'deviceId': fields.Integer(attribute="id", readOnly=True, required=True, description='The unique identifier of the device')
     , 'name': fields.String(required=True, description='The name of the device')
     , 'type': fields.String(attribute='plugin_type',required=True)
     , 'required_info': fields.String(required=True, description='Required info of device')

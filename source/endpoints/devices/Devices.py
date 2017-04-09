@@ -6,7 +6,7 @@ from endpoints.util.ToString import ToString
 from endpoints.devices import plugin_manager
 
 format_post_device = namespace.model('Device', {
-    'required_info': ToString(attribute='devicesrequired_info', required=True, discription='The info needed to operate')
+    'required_info': ToString(attribute='required_info', required=True, discription='The info needed to operate')
 })
 
 @namespace.route('/')

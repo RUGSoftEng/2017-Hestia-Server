@@ -18,24 +18,33 @@ class DimmableLight(Device):
         self.getLampId()
 
     def getUser(self):
-        #data = '{"devicetype":"hue#whiteLight"}'
-        #response = requests.post(self._baseUrl, data)
-        #message = json.loads(response.content)[0]
-        #succes = message['success']
-        self.required_info["user"] = 'ijShBPnAiPkGfR9re364j8klsOeqat-C3fIjJeKw'#succes['username']
+        if self.required_info["user"] == "unknown":
+            #data = '{"devicetype":"hue#whiteLight"}'
+            #response = requests.post(self._baseUrl, data)
+            #message = json.loads(response.content)[0]
+            #succes = message['success']
+            self.required_info["user"] = 'CGxOchdTOaFQx-tUS8q0Orqfr4hYifYXQaRRJwR2'#succes['username']
 
     def getLampId(self):
         url = self._baseUrl + self.required_info["user"] + "/lights"
         response = json.loads(requests.get(url).content)
         found = False
         lamp_id = 0
-        for key, value in response.items():
-            if value['state']['reachable'] and value['type'] == 'Dimmable light':
-                if found:
-                    raise Exception("Multiple lights were found")
-                else :
+        if self.required_info["seach_method"] == "reachable" :
+            for key, value in response.items():
+                if value['state']['reachable'] and (value['type'] == 'Dimmable light' or value['type'] == "Color temperature light"):
+                    if found:
+                        raise Exception("Multiple lights were found")
+                    else :
+                        found = True
+                        lamp_id = int(key)
+
+        elif self.required_info["search_method"] == "last" :
+            for key, value in response.items():
+                if value['state'] and (value['type'] == 'Dimmable light' or value['type'] == "Color temperature light"):
                     found = True
                     lamp_id = int(key)
+
 
         if not found:
             raise Exception("No lights were found")
@@ -56,4 +65,4 @@ class DimmableLight(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-        return {"ip": "127.0.0.1"}
+        return {"ip": "127.0.0.1", "user":"unknown", "search_methode": "last"} #search method can also be "reachable"

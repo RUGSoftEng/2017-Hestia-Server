@@ -32,6 +32,11 @@ class Device(ABC):
         """ The current id of the device. """
         return self._id
 
+    @id.setter
+    def id(self, value):
+        """ The current id of the device. """
+        self._id = value
+
     @property
     def organization(self):
         """ The name of the organization to which this plugin belongs. """
@@ -126,7 +131,7 @@ class Device(ABC):
 
     def add_activator(self, activator):
         """ Add an activator to a device """
-        activator.activatorId = self.get_next_counter()
+        activator.id = self.get_next_counter()
         self.activators.append(activator)
 
     def get_next_counter(self):
@@ -138,4 +143,4 @@ class Device(ABC):
     def get_activator(self, activator_id):
         """ Get a specific activator of an activator """
         return next(activator for activator in self.activators if
-                    activator.activatorId == activator_id)
+                    activator.id == activator_id)

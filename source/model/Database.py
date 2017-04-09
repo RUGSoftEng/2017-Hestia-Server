@@ -12,16 +12,16 @@ class Database:
 
     def get_device(self, device_id):
         """ Get a device with a specific id from the Data Access Object """
-        return next(device for device in Database.devices if device.deviceId == device_id)
+        return next(device for device in Database.devices if device.id == device_id)
 
     def add_device(self, device):
         """ Add a device to the the Data Access Object """
-        device.deviceId = self.get_new_counter()
+        device.id = self.get_new_counter()
         Database.devices.append(device)
 
     def delete_device(self, device_id):
         """ Delete a device with a specif id from the Data Access Object """
-        device = next(device for device in Database.devices if device.deviceId == device_id)
+        device = next(device for device in Database.devices if device.id == device_id)
         Database.devices.remove(device)
 
     @classmethod
