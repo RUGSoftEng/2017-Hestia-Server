@@ -6,7 +6,7 @@ from plugins.philipsHue.activators.SwitchOnOff import SwitchOnOff
 import requests
 
 
-class BasicWhiteLight(Device):
+class DimmableLight(Device):
     def __init__(self):
         super().__init__()
         super().add_activator(SwitchOnOff())
@@ -44,11 +44,11 @@ class BasicWhiteLight(Device):
 
     @classmethod
     def _get_organization(cls):
-        return 'philipsHue'
+        return 'Philips'
 
     @classmethod
-    def _get_name(cls):
-        return "HueWhiteLight"
+    def _get_plugin_name(cls):
+        return "DimmableLight"
 
     @classmethod
     def _get_plugin_type(cls):
