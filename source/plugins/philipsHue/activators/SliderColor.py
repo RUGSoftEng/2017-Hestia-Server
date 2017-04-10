@@ -20,9 +20,7 @@ class SliderColor(Activator):
         return self._state
 
     def set_state_with_string(self, value):
-        self._state = int(value)
-        if self._state > 65535:
-            raise Exception("Value to high")
+        self._state = int(float(value) * 65535)
 
     def perform(self, devicerequired_info):
         data = '{"on":true,"hue":' + str(self._state) + '}'
