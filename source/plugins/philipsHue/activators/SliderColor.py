@@ -9,7 +9,7 @@ class SliderColor(Activator):
 
     @property
     def name(self):
-        return "Brightness"
+        return "Color"
 
     @property
     def type(self):

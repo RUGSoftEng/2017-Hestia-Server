@@ -21,11 +21,11 @@ class ColorLight(Device):
 
     def getUser(self):
         if self.required_info["user"] == "unknown" :
-            #data = '{"devicetype":"hue#whiteLight"}'
-            #response = requests.post(self._baseUrl, data)
-            #message = json.loads(response.content)[0]
-            #succes = message['success']
-            self.required_info["user"] = 'CGxOchdTOaFQx-tUS8q0Orqfr4hYifYXQaRRJwR2'#succes['username']
+            data = '{"devicetype":"hue#whiteLight"}'
+            response = requests.post(self._baseUrl, data)
+            message = json.loads(response.content)[0]
+            succes = message['success']
+            self.required_info["user"] = succes['username']
 
     def getLampId(self):
         url = self._baseUrl + self.required_info["user"] + "/lights"

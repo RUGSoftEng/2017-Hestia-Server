@@ -18,7 +18,6 @@ class Device(ABC):
     As standard the __<function_name> functions are for internal use and should
     not be called from the outside.
     """
-    activator_counter = 0
 
     def __init__(self):
         self._activators = list()
@@ -137,7 +136,7 @@ class Device(ABC):
     def get_next_counter(self):
         """ Get a new counter for a device """
         new_counter = self._activator_counter
-        self.activator_counter += 1
+        self._activator_counter += 1
         return new_counter
 
     def get_activator(self, activator_id):
