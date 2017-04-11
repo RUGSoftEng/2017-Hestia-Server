@@ -4,7 +4,7 @@ from model.Activator import Activator
 class Dimmer(Activator):
     def __init__(self):
         super().__init__()
-        self._state = 5
+        self._state = 0
 
     @property
     def name(self):
