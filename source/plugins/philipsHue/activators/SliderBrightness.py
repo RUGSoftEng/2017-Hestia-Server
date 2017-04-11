@@ -20,9 +20,7 @@ class SliderBrightness(Activator):
         return self._state
 
     def set_state_with_string(self, value):
-        self._state = int(value)
-        if self._state > 255:
-            raise Exception("Value to high")
+        self._state = int(float(value) * 255)
 
     def perform(self, devicerequired_info):
         if self._state == 0:
