@@ -19,11 +19,11 @@ class DimmableLight(Device):
 
     def getUser(self):
         if self.required_info["user"] == "unknown":
-            #data = '{"devicetype":"hue#whiteLight"}'
-            #response = requests.post(self._baseUrl, data)
-            #message = json.loads(response.content)[0]
-            #succes = message['success']
-            self.required_info["user"] = 'CGxOchdTOaFQx-tUS8q0Orqfr4hYifYXQaRRJwR2'#succes['username']
+            data = '{"devicetype":"hue#whiteLight"}'
+            response = requests.post(self._baseUrl, data)
+            message = json.loads(response.content)[0]
+            succes = message['success']
+            self.required_info["user"] = succes['username']
 
     def getLampId(self):
         url = self._baseUrl + self.required_info["user"] + "/lights"
@@ -65,4 +65,4 @@ class DimmableLight(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-        return {"ip": "127.0.0.1", "user":"unknown", "search_methode": "last"} #search method can also be "reachable"
+        return {"ip": "127.0.1", "user":"unknown", "search_methode": "last"} #search method can also be "reachable"
