@@ -25,4 +25,4 @@ class Lock(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-        return {"ip": "127.0.0.1", "port": "0", "maximum spin speed": "90"}
+        return {"ip": "", "port": "", "maximum spin speed": ""}

@@ -20,13 +20,14 @@ class SliderBrightness(Activator):
         return self._state
 
     def set_state_with_string(self, value):
-        self._state = int(float(value) * 255)
+        self._state = float(value)
 
     def perform(self, devicerequired_info):
-        if self._state == 0:
+        int_state = int(self._state * 255)
+        if int_state == 0:
             data = '{"on":false,"bri":0}'
         else :
-            data = '{"on":true,"bri":' + str(self._state) + '}'
+            data = '{"on":true,"bri":' + str(int_state) + '}'
 
         url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"
         response = requests.put(url, data)

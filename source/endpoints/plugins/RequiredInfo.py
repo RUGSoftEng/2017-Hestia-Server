@@ -14,7 +14,7 @@ class RequiredInfo(Resource):
     def get(self, organization, plugin_name):
         """ Fetch the required information of a plugin """
         required_info = plugin_manager.get_required_info_of(organization, plugin_name)
-        required_info["name"] = "default_name"
+        required_info["name"] = "default"
         return required_info
 
 
