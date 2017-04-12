@@ -1,15 +1,56 @@
-# 2017-Hestia-Server
-Home automation server.
+# Hestia-Server
+Home automation, made simple again!
+
+# General Description
+This repository contains the server side code of the Hestia home automation
+system.
+The idea behind this project is to create a simple home automation system.
+We strive to provide a platform that can extend to new type of devices without
+needing structural changes.
+In the end, it should be possible for consumers to create their own plugins for
+the system that allow the hestia platform to work with their devices as well.
+
+Currently, we are in the development phase of this project.
+What we have here is what we call our MVP.
+It is a bear bones system with one functional type of plugin for the Philips Hue.
+The current audience is still the homebrew and diy community that is willing to
+do a little setup to get the system working.
+
+The final goal is to make the hestia platform and thus the server easy to work
+work with, secure and plug and play.
 
 # Setup
-Run `dev_setup.sh`.
+To setup a development environments or to run the server you can follow these
+steps.
 
-On the command line source the virtual env activator and run
-`python source/application.py`
+First, you run `dev_setup.sh` contained in the root directory of this project.
 
-If you are using an pycharm as an IDE: 
-go to `File | Settings | Project | Project Interpreter`
-and select the virtual environment named "hestia". 
+Then, if you want to run the application from the command line you can read this
+paragrapph if you only want to integrate it in your IDE you can skip it and go
+to the next.
+You first have to source the virtual environment activator.
+If you have no idea where it is situated it is probably in its default location
+so you run `source ~/.virtualenvs/hestia/bin/activate`, if you changed the 
+Then to run the application you run `python source/application.py`.
+
+If you are using an pycharm as an IDE you need to go to `File | Settings | Project | Project Interpreter`
+and select the virtual environment named "hestia". Pycharm will take care of the
+rest.
+
+# Usage
+The server has an public REST api to interact with. 
+Since we are still in the early beta stage (0.x.y version numbers) no guarantees
+are made about the stability of the current api.
+In other words, expect it to change in the near future.
+
+To get an overview of the current public REST api it is best to start up an
+instance of the server and to navigate to the port `8000`.
+Here a nice swagger UI is shown similar to the picture below.
+It shows the current state of the current API and allows you to interact with
+the server.
+
+![swagger_ui_screenshot](https://cloud.githubusercontent.com/assets/6391025/24971097/076699de-1fb7-11e7-8eed-a1ceccefe38f.png)
+
 
 # Information
 - [Virtual environment setup](https://virtualenvwrapper.readthedocs.io/en/latest/install.html)
