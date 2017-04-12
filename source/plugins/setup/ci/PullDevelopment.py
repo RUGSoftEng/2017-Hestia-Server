@@ -16,6 +16,9 @@ class PullDevelopment(Activator):
         return "bool"
 
     def perform(self, devicerequired_info):
+        """
+        First changes the app debug mode and then pulls development.
+        """
         import os
         from git import Repo
         from application import app
@@ -26,7 +29,7 @@ class PullDevelopment(Activator):
         app.debug = True
         repo = Repo(server_path)
         git = repo.git
-        git.checkout("feature/hestia_ci")
+        git.checkout("development")
         git.pull()
         app.debug = debug
 

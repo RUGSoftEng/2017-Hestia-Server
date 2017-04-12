@@ -3,6 +3,10 @@ from plugins.setup.ci.PullDevelopment import PullDevelopment
 
 
 class CI(Device):
+    """
+    This device is used as a demonstration of what the system can do. It is a basic continues integration system. 
+    Different activators reflect different branches to pull.
+    """
     def __init__(self):
         super().__init__()
         super().add_activator(PullDevelopment())
@@ -16,6 +20,9 @@ class CI(Device):
         return "Setup"
 
     def setup(self):
+        """
+        There is no setup required for this device at the moment. Later versions should include a way of login in.
+        """
         True
 
     @classmethod
