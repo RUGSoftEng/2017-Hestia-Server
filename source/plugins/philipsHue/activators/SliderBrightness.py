@@ -1,10 +1,12 @@
 import requests
+
 from model.Activator import Activator
 
 
 class SliderBrightness(Activator):
     """
-    Activator that can be used with the philips hue lighting devices. Changes the brightness of a lamp.
+    Activator that can be used with the philips hue lighting devices.
+    Changes the brightness of a lamp.
     """
     def __init__(self):
         super().__init__()
@@ -25,11 +27,13 @@ class SliderBrightness(Activator):
     def set_state_with_string(self, value):
         self._state = float(value)
 
-    def perform(self, devicerequired_info):
+    def perform(self, device_required_info):
         """
-        Sends an HTTP PUT request to change the lamp's brightness. Also turns the light on, and off when the brightness
+        Sends an HTTP PUT request to change the lamp's brightness.
+        Also turns the light on, and off when the brightness
         is set to 0.
-        :param devicerequired_info: should at least contain a "user","lampID" and "ip" field
+        device_required_info: should at least contain a "user","lampID"
+                             and "ip" field
         """
         int_state = int(self._state * 255)
         if int_state == 0:
@@ -37,5 +41,8 @@ class SliderBrightness(Activator):
         else :
             data = '{"on":true,"bri":' + str(int_state) + '}'
 
-        url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"
+        url = ("http://" + device_required_info["ip"]
+               + "/api/" + device_required_info["user"]
+               + "/lights/" + str(device_required_info["lampId"])
+               + "/state")
         response = requests.put(url, data)

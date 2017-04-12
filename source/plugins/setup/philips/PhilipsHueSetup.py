@@ -20,17 +20,19 @@ class PhilipsHueSetup(Device):
 
     def setup(self):
         """
-        Philips hue needs a string as identification for communication. When no string is given or it is said to be
-        unknown this method retrieves a string that can be used as identification for all further communications.
-        It also adds the id of this device to the required_info, using this te activator can remove the device when
-        needed.
+        Philips hue needs a string as identification for communication. When no
+        string is given or it is said to be unknown this method retrieves a
+        string that can be used as identification for all further communications
+        . It also adds the id of this device to the required_info, using this
+        the activator can remove the device when needed.
         """
         if self.required_info["user"] in ["unknown", ""]:
             data = '{"devicetype":"hue#PhilipsSetup"}'
-            response = requests.post("http://" + self.required_info["ip"] + "/api", data)
+            response = requests.post("http://" + self.required_info["ip"]
+                                     + "/api", data)
             message = json.loads(response.content)[0]
-            succes = message["success"]
-            self.required_info["user"] = succes["username"]
+            success = message["success"]
+            self.required_info["user"] = success["username"]
             self.required_info["id"] = self.id
 
     @classmethod
