@@ -18,8 +18,7 @@ class PluginManager:
         self.plugins = {
                 "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight, "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
                 "Mock": {"Lock": Lock, "Light": Light},
-                "Setup": {"PhilipsSetup": PhilipsHueSetup, "HestiaCI": CI}
-
+                "Setup": {"PhilipsHue": PhilipsHueSetup, "HestiaCI": CI}
                }
 
     def get_organizations(self):
@@ -40,8 +39,8 @@ class PluginManager:
 
     def get_implementation_of(self, info):
         """ Get a concrete implementation of a plugin """
-        organization = info['organization']
-        plugin_name = info['plugin']
+        organization = info["organization"]
+        plugin_name = info["plugin"]
         plugin = self.__get_class_of(organization, plugin_name)
         plugin_impl = plugin()
         plugin_impl.required_info = info
