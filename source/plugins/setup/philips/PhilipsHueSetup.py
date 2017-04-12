@@ -1,16 +1,15 @@
 import json
 
 from model.Device import Device
-from plugins.philipsHue.activators.SliderBrightness import SliderBrightness
-from plugins.philipsHue.activators.SliderColor import SliderColor
-from plugins.philipsHue.activators.SwitchOnOff import SwitchOnOff
 import requests
 
 from plugins.setup.philips.AddAllLights import AddAllLights
 
 
 class PhilipsHueSetup(Device):
-    # This device has all activators neccessary to setup all light allready on a philips hue bridge
+    """
+    Device that can be used to setup everything related to philips hue
+    """
     def __init__(self):
         super().__init__()
         super().add_activator(AddAllLights())
@@ -20,14 +19,18 @@ class PhilipsHueSetup(Device):
         return "Setup"
 
     def setup(self):
-
-        if self.required_info["user"] == "unknown":
+        """
+        Philips hue needs a string as identification for communication. When no string is given or it is said to be
+        unknown this method retrieves a string that can be used as identification for all further communications.
+        It also adds the id of this device to the required_info, using this te activator can remove the device when
+        needed.
+        """
+        if self.required_info["user"] in ["unknown", ""]:
             data = '{"devicetype":"hue#PhilipsSetup"}'
             response = requests.post("http://" + self.required_info["ip"] + "/api", data)
             message = json.loads(response.content)[0]
-            succes = message['success']
-            self.required_info["user"] = succes['username']
-            print(self.id)
+            succes = message["success"]
+            self.required_info["user"] = succes["username"]
             self.required_info["id"] = self.id
 
     @classmethod
@@ -36,8 +39,12 @@ class PhilipsHueSetup(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-        return {"ip": "192.168.178.32", "user": "unknown"}
+        """
+        ip : ip of philips hue bridge
+        user : string for identification
+        """
+        return {"ip": "127.0.0.1", "user": "unknown"}
 
     @classmethod
     def _get_plugin_name(cls):
-        return "PhilipsSetup"
+        return "PhilipsHue"

@@ -8,6 +8,10 @@ from plugins.philipsHue.white.DimmableLight import DimmableLight
 
 
 class AddAllLights(Activator):
+    """
+    Activator for the philips hue setup device. When a "true" state is performed all lights in the hue bridge are 
+    added.
+    """
     def __init__(self):
         super().__init__()
         self._state = False
@@ -21,6 +25,12 @@ class AddAllLights(Activator):
         return "bool"
 
     def perform(self, devicerequired_info):
+        """
+        Retrieves all lights from the hue bridge. Adds all reachable lights to the database using their corresponding
+        device class. Duplicate lights aren't added. Removes the encapsulating device after all lights are added.
+        :param devicerequired_info: requires a "user", "ip" and "id" field.
+        :return: 
+        """
         if self._state:
             url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights"
             response = json.loads(requests.get(url).content)
@@ -43,6 +53,10 @@ class AddAllLights(Activator):
             self._database.delete_device(device_id)
 
     def isAlreadyInstalled(self, lamp_id):
+        """
+        Checks if there is already a philips hue light in the database that has the given lamp id.
+        :param lamp_id: id to search for in the database. 
+        """
         devices = self._database.get_devices()
         for d in devices:
             if ("lampId" in d.required_info.keys()) and d.required_info["lampId"] == lamp_id:

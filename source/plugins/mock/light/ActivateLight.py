@@ -3,6 +3,10 @@ from model.util.stringToBool import string_to_bool
 
 
 class ActivateLight(Activator):
+    """
+    Activator for the mock light plugin. Depicts how a light could
+    be turned on or off.
+    """
     def __init__(self):
         super().__init__()
         self._state = True

@@ -3,6 +3,10 @@ from model.Activator import Activator
 
 
 class SliderColor(Activator):
+    """
+    Activator that can be used with the philips hue lighting devices that have the feature of changing color.
+    This activator is responsible for changing the color of a light.
+    """
     def __init__(self):
         super().__init__()
         self._state = 0
@@ -23,7 +27,10 @@ class SliderColor(Activator):
         self._state = float(value)
 
     def perform(self, devicerequired_info):
+        """
+        Sends an HTTP PUT request to change the lamp's color.
+        :param devicerequired_info: should at least contain a "user","lampID" and "ip" field
+        """
         data = '{"on":true,"hue":' + str(int(self._state * 65535)) + '}'
         url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"
         response = requests.put(url, data)
-        print(response.content)

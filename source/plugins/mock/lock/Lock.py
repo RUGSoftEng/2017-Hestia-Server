@@ -3,7 +3,9 @@ from plugins.mock.lock.ActivateLock import ActivateLock
 
 
 class Lock(Device):
-
+    """"
+    Mock lock device. 
+    """
     def __init__(self):
         super().__init__()
         super().add_activator(ActivateLock())
