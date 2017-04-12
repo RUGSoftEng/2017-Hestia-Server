@@ -7,7 +7,7 @@ from endpoints.devices import plugin_manager
 
 format_post_device = namespace.model('new_device', {
     'required_info': fields.String(attribute='required_info', required=True,
-                              description='The organization and plugin_name of device and additional info')
+                                   description='The organization and plugin_name of device and additional info')
 })
 
 

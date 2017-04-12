@@ -12,7 +12,7 @@ activator = namespace.model('Activator', {
     , 'state': fields.String(attribute='state', required=True, description='The state of an action')
 })
 state = namespace.model('State', {
-    'state': fields.String(required=True, discription='new state of activator')
+    'state': fields.String(required=True, description='new state of activator')
 })
 
 
