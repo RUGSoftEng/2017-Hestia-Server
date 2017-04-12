@@ -68,7 +68,7 @@ class Device(ABC):
 
     @property
     def required_info(self):
-        """ The required infon """
+        """ The required info """
         return self._required_info
 
     @required_info.setter
