@@ -31,7 +31,7 @@ class ColorLight(Device):
 
     def getUser(self):
         """
-        Philips hue needs an string as identification for communication. When no string is given or it is said to be 
+        Philips hue needs a string as identification for communication. When no string is given or it is said to be
         unknown this method retrieves a string that can be used as identification for all further communications.
         """
         if self.required_info["user"] in ["unknown", ""]:
@@ -45,8 +45,8 @@ class ColorLight(Device):
         """
          Gets the id of the new lamp. Can use two different methods.
          last : retrieves the id of the last lamp added to the philips hue bridge.
-         reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights to not
-         have power.
+         reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights not
+         to have power.
          """
         url = self._baseUrl + self.required_info["user"] + "/lights"
         response = json.loads(requests.get(url).content)
@@ -88,7 +88,7 @@ class ColorLight(Device):
     def _get_extra_required_info(cls) -> dict:
         """
         ip : ip of philips hue bridge
-        user :  string for identification
+        user : string for identification
         search_method : method used to find the lamp ID
         """
         return {"ip": "127.0.0.1", "user": "unknown", "search_methode": "last"}

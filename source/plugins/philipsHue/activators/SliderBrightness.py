@@ -29,7 +29,7 @@ class SliderBrightness(Activator):
         """
         Sends an HTTP PUT request to change the lamp's brightness. Also turns the light on, and off when the brightness
         is set to 0.
-        :param devicerequired_info: should atleast contain an "user","lampID" and "ip" field
+        :param devicerequired_info: should at least contain a "user","lampID" and "ip" field
         """
         int_state = int(self._state * 255)
         if int_state == 0:

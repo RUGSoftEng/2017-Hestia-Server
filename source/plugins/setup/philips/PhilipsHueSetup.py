@@ -20,7 +20,7 @@ class PhilipsHueSetup(Device):
 
     def setup(self):
         """
-        Philips hue needs an string as identification for communication. When no string is given or it is said to be 
+        Philips hue needs a string as identification for communication. When no string is given or it is said to be
         unknown this method retrieves a string that can be used as identification for all further communications.
         It also adds the id of this device to the required_info, using this te activator can remove the device when
         needed.

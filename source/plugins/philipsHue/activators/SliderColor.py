@@ -29,7 +29,7 @@ class SliderColor(Activator):
     def perform(self, devicerequired_info):
         """
         Sends an HTTP PUT request to change the lamp's color.
-        :param devicerequired_info: should atleast contain an "user","lampID" and "ip" field
+        :param devicerequired_info: should at least contain a "user","lampID" and "ip" field
         """
         data = '{"on":true,"hue":' + str(int(self._state * 65535)) + '}'
         url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"

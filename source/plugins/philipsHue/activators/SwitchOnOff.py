@@ -28,7 +28,7 @@ class SwitchOnOff(Activator):
     def perform(self, devicerequired_info):
         """
         Sends an HTTP PUT request to turn a light on or off.
-        :param devicerequired_info: should atleast contain an "user","lampID" and "ip" field
+        :param devicerequired_info: should at least contain a "user","lampID" and "ip" field
         """
         if self._state:
             data = '{"on":true}'

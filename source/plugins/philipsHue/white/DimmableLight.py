@@ -9,7 +9,7 @@ import requests
 class DimmableLight(Device):
     """
     Device that can be used for the following philips hue types:
-    - Dimmable lightS
+    - Dimmable light
     - Color temperature light
     """
     def __init__(self):
@@ -28,7 +28,7 @@ class DimmableLight(Device):
 
     def getUser(self):
         """
-        Philips hue needs an string as identification for communication. When no string is given or it is said to be 
+        Philips hue needs a string as identification for communication. When no string is given or it is said to be
         unknown this method retrieves a string that can be used as identification for all further communications.
         """
         if self.required_info["user"] in ["unknown", ""]:
@@ -42,8 +42,8 @@ class DimmableLight(Device):
         """
          Gets the id of the new lamp. Can use two different methods.
          last : retrieves the id of the last lamp added to the philips hue bridge.
-         reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights to not
-         have power.
+         reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights not
+         to have power.
          """
         url = self._baseUrl + self.required_info["user"] + "/lights"
         response = json.loads(requests.get(url).content)
