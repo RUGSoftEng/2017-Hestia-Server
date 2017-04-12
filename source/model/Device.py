@@ -28,37 +28,37 @@ class Device(ABC):
 
     @property
     def id(self):
-        """ The current id of the device. """
+        """ The current id of the device """
         return self._id
 
     @id.setter
     def id(self, value):
-        """ The current id of the device. """
+        """ The current id of the device """
         self._id = value
 
     @property
     def organization(self):
-        """ The name of the organization to which this plugin belongs. """
+        """ The name of the organization to which this plugin belongs """
         return self._get_organization()
 
     @property
     def name(self):
-        """ The name of the device, this name is also used as an representation in the client. """
+        """ The name of the device, this name is also used as a representation in the client """
         return self._name
 
     @name.setter
     def name(self, value):
-        """ The name of the device, this name is also used as an representation in the client. """
+        """ The name of the device, this name is also used as a representation in the client """
         self._name = value
 
     @property
     def plugin_name(self):
-        """ The name of the plugin, this name is used for installation of the plugin. """
+        """ The name of the plugin, this name is used for installation of the plugin """
         return self._get_plugin_name()
 
     @property
     def plugin_type(self):
-        """ The type of a device for example: lock, light. """
+        """ The type of a device for example: lock, light """
         return self._get_plugin_type()
 
     @property
@@ -68,12 +68,12 @@ class Device(ABC):
 
     @property
     def required_info(self):
-        """ The required info"""
+        """ The required infon """
         return self._required_info
 
     @required_info.setter
     def required_info(self, info):
-        """ The required info"""
+        """ The required info """
         self._required_info = info
 
     @classmethod
@@ -87,14 +87,14 @@ class Device(ABC):
 
     @classmethod
     def __get_standard_required_info(cls):
-        """ Returns that required information that is needed for all devices"""
+        """ Returns that required information that is needed for all devices """
         return {"organization": cls._get_organization()
                 , "plugin": cls._get_plugin_name()}
 
     @abstractmethod
     def setup(self):
         """
-        This method is supposed to establish the first connection with the peripheral. At this moment new information
+        This method is supposed to establish the first connection with the peripheral. At this moment, new information
         can be added to the required_info that is needed for the activators and their perform function.
         """
         pass
@@ -120,13 +120,13 @@ class Device(ABC):
     @classmethod
     @abstractmethod
     def _get_plugin_type(cls):
-        """ The type of a device for example: lock, light. This is the implementation at the plugin level."""
+        """ The type of a device for example: lock, light. This is the implementation at the plugin level """
         pass
 
     @classmethod
     @abstractmethod
     def _get_extra_required_info(cls) -> dict:
-        """ Return that part of the required that is specific to each device"""
+        """ Return that part of the required that is specific to each device """
         pass
 
     def add_activator(self, activator):

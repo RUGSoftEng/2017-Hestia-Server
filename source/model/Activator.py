@@ -3,26 +3,27 @@ from abc import ABC, abstractmethod
 
 class Activator(ABC):
     """
-    An abstract implementation of a Activator.
+    An abstract implementation of an Activator.
     Concrete activators of a plugin should implement this class.
     """
+
     def __init__(self):
         self._id = None
 
     @property
     def id(self):
-        """ The current id of the activator"""
+        """ The current id of the activator """
         return self._id
 
     @id.setter
     def id(self, value):
-        """ The current id of the activator"""
+        """ The current id of the activator """
         self._id = value
 
     @property
     @abstractmethod
     def name(self):
-        """ The name of the activator which will be shown on the button"""
+        """ The name of the activator which will be shown on the button """
         pass
 
     @property
@@ -30,19 +31,19 @@ class Activator(ABC):
     def type(self):
         """ 
         The type a state has. For example int, bool. This type can be used by the clients to decide how the 
-        activator should be represented
+        activator should be represented.
         """
         pass
 
     @property
     @abstractmethod
     def state(self):
-        """ The current state of the activator"""
+        """ The current state of the activator """
         pass
 
     @abstractmethod
     def set_state_with_string(self, value):
-        """ Transform a string to a new state"""
+        """ Transform a string to a new state """
         pass
 
     @property

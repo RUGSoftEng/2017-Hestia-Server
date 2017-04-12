@@ -1,5 +1,6 @@
 class Database:
     """ A singleton that represents our database """
+
     devices = list()
     _device_counter = 0
 
@@ -20,7 +21,7 @@ class Database:
         Database.devices.append(device)
 
     def delete_device(self, device_id):
-        """ Delete a device with a specif id from the Data Access Object """
+        """ Delete a device with a specific id from the Data Access Object """
         device = next(device for device in Database.devices if device.id == device_id)
         Database.devices.remove(device)
 
