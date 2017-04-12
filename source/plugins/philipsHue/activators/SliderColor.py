@@ -34,4 +34,3 @@ class SliderColor(Activator):
         data = '{"on":true,"hue":' + str(int(self._state * 65535)) + '}'
         url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"
         response = requests.put(url, data)
-        print(response.content)

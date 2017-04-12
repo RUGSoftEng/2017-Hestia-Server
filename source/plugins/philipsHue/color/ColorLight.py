@@ -86,5 +86,9 @@ class ColorLight(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-
-        return {"ip": "127.0.0.1", "user": "unknown", "search_methode" : "last/reachable"}
+        """
+        ip : ip of philips hue bridge
+        user :  string for identification
+        search_method : method used to find the lamp ID
+        """
+        return {"ip": "127.0.0.1", "user": "unknown", "search_methode": "last"}

@@ -24,7 +24,6 @@ class SwitchOnOff(Activator):
 
     def set_state_with_string(self, value):
         self._state = (value == "True" or value == "true")
-        print(self.state)
 
     def perform(self, devicerequired_info):
         """
@@ -39,4 +38,3 @@ class SwitchOnOff(Activator):
         url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" \
               + str(devicerequired_info["lampId"]) + "/state"
         response = requests.put(url, data)
-        print(response.content)

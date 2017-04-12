@@ -39,4 +39,3 @@ class SliderBrightness(Activator):
 
         url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(devicerequired_info["lampId"]) + "/state"
         response = requests.put(url, data)
-        print(response.content)

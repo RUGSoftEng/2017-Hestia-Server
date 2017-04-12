@@ -86,7 +86,7 @@ class DimmableLight(Device):
     def _get_extra_required_info(cls) -> dict:
         """
         ip : ip of philips hue bridge
-        user : identification string for identification
+        user : string for identification
         search_method : method used to find the lamp ID
         """
-        return {"ip": "127.0.1", "user":"unknown", "search_methode": "last"}
+        return {"ip": "127.0.0.1", "user":"unknown", "search_methode": "last"}
