@@ -31,7 +31,7 @@ class DimmableLight(Device):
         Philips hue needs an string as identification for communication. When no string is given or it is said to be 
         unknown this method retrieves a string that can be used as identification for all further communications.
         """
-        if self.required_info["user"] == "unknown":
+        if self.required_info["user"] in ["unknown", ""]:
             data = '{"devicetype":"hue#whiteLight"}'
             response = requests.post(self._baseUrl, data)
             message = json.loads(response.content)[0]

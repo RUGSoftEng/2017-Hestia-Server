@@ -1,16 +1,15 @@
 import json
 
 from model.Device import Device
-from plugins.philipsHue.activators.SliderBrightness import SliderBrightness
-from plugins.philipsHue.activators.SliderColor import SliderColor
-from plugins.philipsHue.activators.SwitchOnOff import SwitchOnOff
 import requests
 
 from plugins.setup.philips.AddAllLights import AddAllLights
 
 
 class PhilipsHueSetup(Device):
-    # This device has all activators neccessary to setup all light allready on a philips hue bridge
+    """
+    Device that can be used to setup everything related to philips hue
+    """
     def __init__(self):
         super().__init__()
         super().add_activator(AddAllLights())
@@ -20,8 +19,7 @@ class PhilipsHueSetup(Device):
         return "Setup"
 
     def setup(self):
-
-        if self.required_info["user"] == "unknown":
+        if self.required_info["user"] in ["unknown", ""]:
             data = '{"devicetype":"hue#PhilipsSetup"}'
             response = requests.post("http://" + self.required_info["ip"] + "/api", data)
             message = json.loads(response.content)[0]
