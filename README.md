@@ -25,17 +25,16 @@ steps.
 
 First, you run `dev_setup.sh` contained in the root directory of this project.
 
-Then, if you want to run the application from the command line you can read this
-paragrapph if you only want to integrate it in your IDE you can skip it and go
-to the next.
-You first have to source the virtual environment activator.
+Then, if you want to run the application from the command you first have to 
+source the virtual environment activator.
 If you have no idea where it is situated it is probably in its default location
-so you run `source ~/.virtualenvs/hestia/bin/activate`, if you changed the 
+so you run `source ~/.virtualenvs/hestia/bin/activate`.
+If you changed the default location you probably know where to find it.
 Then to run the application you run `python source/application.py`.
 
 If you are using an pycharm as an IDE you need to go to `File | Settings | Project | Project Interpreter`
-and select the virtual environment named "hestia". Pycharm will take care of the
-rest.
+and select the virtual environment named "hestia".
+Pycharm will take care of the rest.
 
 # Usage
 The server has an public REST api to interact with. 
