@@ -21,7 +21,7 @@ class ColorLight(Device):
 
     def setup(self):
         """
-        Setup connects with the philips hue bridge to get all the information neccessary
+        By calling this method the system connects with the philips hue bridge to get all the information neccessary
         to control the light.
         """
         self._baseUrl = "http://" + self.required_info["ip"] + "/api"
@@ -43,11 +43,11 @@ class ColorLight(Device):
 
     def getLampId(self):
         """
-            Gets the id of the new lamp. Can use two different methods.
-            last : retrieves the id of the last lamp added to the philips hue bridge.
-            reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights to not
-            have power.
-            """
+         Gets the id of the new lamp. Can use two different methods.
+         last : retrieves the id of the last lamp added to the philips hue bridge.
+         reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights to not
+         have power.
+         """
         url = self._baseUrl + self.required_info["user"] + "/lights"
         response = json.loads(requests.get(url).content)
         found = False
@@ -86,9 +86,5 @@ class ColorLight(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-        """
-        ip : ip of philips hue bridge
-        user : identification string for identification
-        search_method : method used to find the lamp ID
-        """
+
         return {"ip": "127.0.0.1", "user": "unknown", "search_methode" : "last/reachable"}

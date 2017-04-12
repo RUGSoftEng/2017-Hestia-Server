@@ -7,17 +7,30 @@ import requests
 
 
 class DimmableLight(Device):
+    """
+    Device that can be used for the following philips hue types:
+    - Dimmable lightS
+    - Color temperature light
+    """
     def __init__(self):
         super().__init__()
         super().add_activator(SwitchOnOff())
         super().add_activator(SliderBrightness())
 
     def setup(self):
+        """
+        By calling this method the system connects with the philips hue bridge to get all the information neccessary
+        to control the light.
+        """
         self._baseUrl = "http://" + self.required_info["ip"] + "/api"
         self.getUser()
         self.getLampId()
 
     def getUser(self):
+        """
+        Philips hue needs an string as identification for communication. When no string is given or it is said to be 
+        unknown this method retrieves a string that can be used as identification for all further communications.
+        """
         if self.required_info["user"] == "unknown":
             data = '{"devicetype":"hue#whiteLight"}'
             response = requests.post(self._baseUrl, data)
@@ -26,6 +39,12 @@ class DimmableLight(Device):
             self.required_info["user"] = succes['username']
 
     def getLampId(self):
+        """
+         Gets the id of the new lamp. Can use two different methods.
+         last : retrieves the id of the last lamp added to the philips hue bridge.
+         reachable : retrieves the id of the only lamp that is currently reachable. This requires all other lights to not
+         have power.
+         """
         url = self._baseUrl + self.required_info["user"] + "/lights"
         response = json.loads(requests.get(url).content)
         found = False
@@ -65,4 +84,9 @@ class DimmableLight(Device):
 
     @classmethod
     def _get_extra_required_info(cls) -> dict:
-        return {"ip": "127.0.1", "user":"unknown", "search_methode": "last"} #search method can also be "reachable"
+        """
+        ip : ip of philips hue bridge
+        user : identification string for identification
+        search_method : method used to find the lamp ID
+        """
+        return {"ip": "127.0.1", "user":"unknown", "search_methode": "last"}

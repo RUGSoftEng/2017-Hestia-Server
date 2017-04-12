@@ -1,7 +1,11 @@
 import requests
 from model.Activator import Activator
 
+
 class SwitchOnOff(Activator):
+    """
+    Activator that can be used with the philips hue lighting devices. Turns the lamp on or off.
+    """
     def __init__(self):
         super().__init__()
         self._state = True
@@ -23,15 +27,16 @@ class SwitchOnOff(Activator):
         print(self.state)
 
     def perform(self, devicerequired_info):
+        """
+        Sends an HTTP PUT request to turn a light on or off.
+        :param devicerequired_info: should atleast contain an "user","lampID" and "ip" field
+        """
         if self._state:
-            url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" \
-                  + str(devicerequired_info["lampId"]) + "/state"
             data = '{"on":true}'
-            response = requests.put(url, data)
-            print(response.content)
         else:
-            url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" + str(
-                devicerequired_info["lampId"]) + "/state"
             data = '{"on":false}'
-            response = requests.put(url, data)
-            print(response.content)
+
+        url = "http://" + devicerequired_info["ip"] + "/api/" + devicerequired_info["user"] + "/lights/" \
+              + str(devicerequired_info["lampId"]) + "/state"
+        response = requests.put(url, data)
+        print(response.content)
