@@ -3,6 +3,10 @@ from model.util.stringToBool import string_to_bool
 
 
 class ActivateLock(Activator):
+    """
+    Activator for the mock lock plugin. Depicts how a lock could be
+    closed or opened.
+    """
     def __init__(self):
         super().__init__()
         self._state = True

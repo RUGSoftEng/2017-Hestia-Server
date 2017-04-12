@@ -4,7 +4,9 @@ from .Dimmer import Dimmer
 
 
 class Light(Device):
-
+    """"
+    Mock light device. 
+    """
     def __init__(self):
         super().__init__()
         super().add_activator(ActivateLight())
