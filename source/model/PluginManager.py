@@ -12,11 +12,12 @@ class PluginManager:
     this is a hard coded plugin manager that implements all the functions we expect from the plugin manager.
     it is build so that later it can used as a adaptor around the real implementation of the plugin manager.
     """
+
     def __init__(self):
         self.plugins = {
-                "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight , "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
+                "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight, "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
                 "Mock": {"Lock": Lock, "Light": Light},
-                "Setup": {"PhilipsSetup": PhilipsHueSetup}
+                "Setup": {"PhilipsHue": PhilipsHueSetup}
                }
 
     def get_organizations(self):
@@ -45,7 +46,7 @@ class PluginManager:
         return plugin_impl
 
     def __get_class_of(self, organization, plugin_name):
-        """ Get the class of an plugin """
+        """ Get the class of a plugin """
         organization_plugins = self.plugins.get(organization)
         plugin = organization_plugins.get(plugin_name)
         return plugin
