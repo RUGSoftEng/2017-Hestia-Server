@@ -43,14 +43,17 @@ class Device(ABC):
 
     @property
     def name(self):
+        """ The name of the device, this name is also used as an representation in the client. """
         return self._name
 
     @name.setter
     def name(self, value):
+        """ The name of the device, this name is also used as an representation in the client. """
         self._name = value
 
     @property
     def plugin_name(self):
+        """ The name of the plugin, this name is used for installation of the plugin. """
         return self._get_plugin_name()
 
     @property
@@ -70,6 +73,7 @@ class Device(ABC):
 
     @required_info.setter
     def required_info(self, info):
+        """ The required info"""
         self._required_info = info
 
     @classmethod
@@ -89,6 +93,10 @@ class Device(ABC):
 
     @abstractmethod
     def setup(self):
+        """
+        This method is supposed to establish the first connection with the peripheral. At this moment new information
+        can be added to the required_info that is needed for the activators and their perform function.
+        """
         pass
 
     @classmethod
@@ -103,8 +111,7 @@ class Device(ABC):
     @classmethod
     @abstractmethod
     def _get_plugin_name(cls):
-        """
-        The name.
+        """  The name.
         So that we might identify different plugins form the same organization.
         This is the implementation at the plugin level.
         """
@@ -113,19 +120,13 @@ class Device(ABC):
     @classmethod
     @abstractmethod
     def _get_plugin_type(cls):
-        """
-        The type of a device for example: lock, light.
-        This is the implementation at the plugin level.
-        """
+        """ The type of a device for example: lock, light. This is the implementation at the plugin level."""
         pass
 
     @classmethod
     @abstractmethod
     def _get_extra_required_info(cls) -> dict:
-        """
-        Return that part of the required
-        that is specific to each device
-        """
+        """ Return that part of the required that is specific to each device"""
         pass
 
     def add_activator(self, activator):

@@ -47,4 +47,4 @@ class PhilipsHueSetup(Device):
 
     @classmethod
     def _get_plugin_name(cls):
-        return "PhilipsSetup"
+        return "PhilipsHue"

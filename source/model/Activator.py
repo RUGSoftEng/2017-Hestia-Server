@@ -4,9 +4,8 @@ from abc import ABC, abstractmethod
 class Activator(ABC):
     """
     An abstract implementation of a Activator.
-    Concrete activators of a plugin should implement this class
+    Concrete activators of a plugin should implement this class.
     """
-
     def __init__(self):
         self._id = None
 
@@ -29,7 +28,10 @@ class Activator(ABC):
     @property
     @abstractmethod
     def type(self):
-        """ The type a state has. For example int, bool"""
+        """ 
+        The type a state has. For example int, bool. This type can be used by the clients to decide how the 
+        activator should be represented
+        """
         pass
 
     @property
@@ -50,5 +52,8 @@ class Activator(ABC):
 
     @abstractmethod
     def perform(self, devicerequired_info):
-        """ Update the real activator with the current state"""
+        """ 
+        Calling this method should result in an action performed by the real life peripheral of which the device
+        containing this activator is an abstraction.
+        """
         pass

@@ -14,9 +14,9 @@ class PluginManager:
     """
     def __init__(self):
         self.plugins = {
-                "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight , "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
+                "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight, "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
                 "Mock": {"Lock": Lock, "Light": Light},
-                "Setup": {"PhilipsSetup": PhilipsHueSetup}
+                "Setup": {"PhilipsHue": PhilipsHueSetup}
                }
 
     def get_organizations(self):
