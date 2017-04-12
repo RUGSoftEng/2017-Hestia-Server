@@ -8,6 +8,6 @@ server_path = os.path.dirname(app_path)
 repo = Repo(server_path)
 origin = repo.remotes.origin
 git = repo.git
-git.pull()
 git.checkout("development")
+git.pull()
 print("reached")
