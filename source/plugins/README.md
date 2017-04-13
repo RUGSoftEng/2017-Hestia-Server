@@ -40,11 +40,11 @@ For example, with the activators of philips hue devices this in when the REST
 post is send to the bridge.
 
 # Examples
-To have a look at some really simple implementation take a look at the plugins
+To have a look at some really simple implementations take a look at the plugins
 of the mock organization.
 These should be easily understood and give an idea about what a plugin should 
 look like.
-For a more real life and working example take a look at the plugins of the 
-"khilips" organization.
+For more real life and working examples take a look at the plugins of the 
+"Philips" organization.
 This are the plugins used for installing new devices for the peripherals of 
 the Philips hue.
