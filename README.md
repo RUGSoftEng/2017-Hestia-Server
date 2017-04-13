@@ -5,14 +5,14 @@ Home automation, made simple again!
 This repository contains the server side code of the Hestia home automation
 system.
 The idea behind this project is to create a simple home automation system.
-We strive to provide a platform that can extend to new type of devices without
+We strive to provide a platform that can extend to new types of peripherals  without
 needing structural changes.
 In the end, it should be possible for consumers to create their own plugins for
-the system that allow the hestia platform to work with their devices as well.
+the system that allow the hestia platform to work with their peripherals as well.
 
 Currently, we are in the development phase of this project.
 What we have here is what we call our MVP.
-It is a bear bones system with one functional type of plugin for the Philips Hue.
+It is a bear bones system with one functional plugin, which is for the Philips Hue.
 The current audience is still the homebrew and diy community that is willing to
 do a little setup to get the system working.
 
