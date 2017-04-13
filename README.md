@@ -12,7 +12,7 @@ the system that allow the hestia platform to work with their peripherals as well
 
 Currently, we are in the development phase of this project.
 What we have here is what we call our MVP.
-It is a bear bones system with one functional plugin, which is for the Philips Hue.
+It is a barebones system with one functional plugin, which is for the Philips Hue.
 The current audience is still the homebrew and diy community that is willing to
 do a little setup to get the system working.
 
@@ -32,12 +32,12 @@ so you run `source ~/.virtualenvs/hestia/bin/activate`.
 If you changed the default location you probably know where to find it.
 Then to run the application you run `python source/application.py`.
 
-If you are using an pycharm as an IDE you need to go to `File | Settings | Project | Project Interpreter`
+If you are using a pycharm as an IDE you need to go to `File | Settings | Project | Project Interpreter`
 and select the virtual environment named "hestia".
 Pycharm will take care of the rest.
 
 # Usage
-The server has an public REST api to interact with. 
+The server has a public REST api to interact with. 
 Since we are still in the early beta stage (0.x.y version numbers) no guarantees
 are made about the stability of the current api.
 In other words, expect it to change in the near future.
