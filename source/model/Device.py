@@ -43,17 +43,26 @@ class Device(ABC):
 
     @property
     def name(self):
-        """ The name of the device, this name is also used as a representation in the client """
+        """
+        The name of the device, this name is also used as a representation
+        in the client
+        """
         return self._name
 
     @name.setter
     def name(self, value):
-        """ The name of the device, this name is also used as a representation in the client """
+        """
+        The name of the device, this name is also used as a representation
+        in the client
+        """
         self._name = value
 
     @property
     def plugin_name(self):
-        """ The name of the plugin, this name is used for installation of the plugin """
+        """
+        The name of the plugin, this name is used for installation of the
+        plugin
+        """
         return self._get_plugin_name()
 
     @property
@@ -94,8 +103,10 @@ class Device(ABC):
     @abstractmethod
     def setup(self):
         """
-        This method is supposed to establish the first connection with the peripheral. At this moment, new information
-        can be added to the required_info that is needed for the activators and their perform function.
+        This method is supposed to establish the first connection with the
+        peripheral. At this moment, new information can be added to the
+        required_info that is needed for the activators and their perform
+        function.
         """
         pass
 
@@ -120,7 +131,10 @@ class Device(ABC):
     @classmethod
     @abstractmethod
     def _get_plugin_type(cls):
-        """ The type of a device for example: lock, light. This is the implementation at the plugin level """
+        """
+        The type of a device for example: lock, light.
+        This is the implementation at the plugin level
+        """
         pass
 
     @classmethod

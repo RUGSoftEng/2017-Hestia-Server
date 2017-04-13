@@ -10,15 +10,21 @@ class PluginManager:
     """
     A hard coded plugin manager.
 
-    this is a hard coded plugin manager that implements all the functions we expect from the plugin manager.
-    it is build so that later it can used as a adaptor around the real implementation of the plugin manager.
+    This is a hard coded plugin manager that implements all the functions we
+    expect from the plugin manager. It is build so that later it can used as an
+    adaptor around the real implementation of the plugin manager.
     """
 
     def __init__(self):
         self.plugins = {
-                "Philips": {"DimmableLight": DimmableLight, "ColorLight": ColorLight, "ExtendedColorLight": ColorLight, "ColorTemperatureLight": DimmableLight},
-                "Mock": {"Lock": Lock, "Light": Light},
-                "Setup": {"PhilipsHue": PhilipsHueSetup, "HestiaCI": CI}
+                "Philips": {"DimmableLight": DimmableLight
+                            , "ColorLight": ColorLight
+                            , "ExtendedColorLight": ColorLight
+                            , "ColorTemperatureLight": DimmableLight},
+                "Mock": {"Lock": Lock
+                         , "Light": Light},
+                "Setup": {"PhilipsHue": PhilipsHueSetup
+                          , "HestiaCI": CI}
                }
 
     def get_organizations(self):
