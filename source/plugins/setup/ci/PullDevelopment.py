@@ -15,7 +15,7 @@ class PullDevelopment(Activator):
     def type(self):
         return "bool"
 
-    def perform(self, devicerequired_info):
+    def perform(self, device_required_info):
         """
         First changes the app debug mode and then pulls development.
         """
