@@ -3,58 +3,59 @@ from abc import ABC, abstractmethod
 
 class Activator(ABC):
     """
-    An abstract implementation of a Activator.
-    Concrete activators of a plugin should implement this class
+    An abstract implementation of an Activator.
+    Concrete activators of a plugin should implement this class.
     """
 
-    def __init__(self, id):
-        self.activatorId = id
+    def __init__(self):
+        self._id = None
+
+    @property
+    def id(self):
+        """ The current id of the activator """
+        return self._id
+
+    @id.setter
+    def id(self, value):
+        """ The current id of the activator """
+        self._id = value
 
     @property
     @abstractmethod
     def name(self):
-        """ The name of the activator which will be shown on the button"""
+        """ The name of the activator which will be shown on the button """
         pass
 
     @property
     @abstractmethod
-    def stateType(self):
-        """ The type a state has. For example int, bool"""
-        pass
-
-    @property
-    @abstractmethod
-    def requiredInfo(self):
+    def type(self):
+        """ 
+        The type a state has. For example int, bool. This type can be used by
+        the clients to decide how the activator should be represented.
         """
-        The information needed to operate the activator
-
-        This should be a dict that with a key value pairs
-        """
-        pass
-
-    @requiredInfo.setter
-    @abstractmethod
-    def requiredInfo(self, value):
-        """ Set the required information """
         pass
 
     @property
     @abstractmethod
     def state(self):
-        """ The current state of the activator"""
+        """ The current state of the activator """
         pass
 
     @abstractmethod
-    def setStateWithString(self, value):
-        """ Transform a string to a new state"""
+    def set_state_with_string(self, value):
+        """ Transform a string to a new state """
         pass
 
     @property
-    def stateString(self, value):
+    def state_string(self):
         """ Return the state as a string """
         return str(self.state)
 
     @abstractmethod
-    def perform(self):
-        """ Update the real activator with the current state"""
+    def perform(self, devicerequired_info):
+        """
+        Calling this method should result in an action performed by the real
+        life peripheral of which the device containing this activator is an
+        abstraction.
+        """
         pass
