@@ -15,11 +15,7 @@ class TestDatabase(unittest.TestCase):
 
         self.database_instance.devices.append(self.mock_instance_lock)
         self.database_instance.get_new_counter()
-
-    def test_get_devices(self):
-        devicelist = list()
-        devicelist.append(self.mock_instance_lock)
-        self.assertEqual(self.database_instance.get_devices(), devicelist)
+        
 
     def test_get_device(self):
         device = self.database_instance.get_device(0)
