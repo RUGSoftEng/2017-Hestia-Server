@@ -1,6 +1,7 @@
 import requests
 
 from model.Activator import Activator
+from plugins.philipsHue.utils import send_state_change_to_bridge
 
 
 class SliderBrightness(Activator):
@@ -41,8 +42,7 @@ class SliderBrightness(Activator):
         else :
             data = '{"on":true,"bri":' + str(int_state) + '}'
 
-        url = ("http://" + device_required_info["ip"]
-               + "/api/" + device_required_info["user"]
-               + "/lights/" + str(device_required_info["lampId"])
-               + "/state")
-        response = requests.put(url, data)
+        send_state_change_to_bridge(device_required_info["ip"]
+                                    , device_required_info["user"]
+                                    , device_required_info["lamp_id"],
+                                    data)

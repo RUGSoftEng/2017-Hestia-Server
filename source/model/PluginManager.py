@@ -1,9 +1,9 @@
 from plugins.mock.light.Light import Light
 from plugins.mock.lock.Lock import Lock
-from plugins.philipsHue.white.DimmableLight import DimmableLight
 from plugins.philipsHue.color.ColorLight import ColorLight
+from plugins.philipsHue.setup.PhilipsHueSetup import PhilipsHueSetup
+from plugins.philipsHue.white.DimmableLight import DimmableLight
 from plugins.setup.ci.CI import CI
-from plugins.setup.philips.PhilipsHueSetup import PhilipsHueSetup
 
 
 class PluginManager:
