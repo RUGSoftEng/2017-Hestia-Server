@@ -20,15 +20,18 @@ class TestPluginManager(unittest.TestCase):
         cls.mock_plugin_manager = mock_plugin_manager
 
     def test_get_organizations(self):
-        self.assertEqual(self.mock_plugin_manager.get_organizations(), "Mock")
+        organization = self.mock_plugin_manager.get_organizations()
+        self.assertEqual(organization, "Mock")
 
     def test_get_plugins_of(self):
-        self.assertEqual(self.mock_plugin_manager.get_plugins_of("Mock"), "Lock")
+        plugins = self.mock_plugin_manager.get_plugins_of("Mock")
+        self.assertEqual(plugins, "Lock")
 
     def test_get_required_info_of(self):
         plugin_manager = self.mock_plugin_manager
         required_info = plugin_manager.get_required_info_of("Mock", "Lock")
-        self.assertEqual(required_info, Lock._get_default_required_info())
+        default_info = Lock._get_default_required_info()
+        self.assertEqual(required_info, default_info)
 
     def test_implementation_of(self):
         plugin_manager = self.mock_plugin_manager
