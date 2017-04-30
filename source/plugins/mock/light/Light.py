@@ -11,8 +11,10 @@ class Light(Device):
         super().__init__()
         super().add_activator(ActivateLight())
         super().add_activator(Dimmer())
+        self._is_setup_done = False
 
     def setup(self):
+        self._is_setup_done = True
         print("Mock light is being setup")
 
     @classmethod
