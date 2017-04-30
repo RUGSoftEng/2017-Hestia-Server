@@ -1,4 +1,3 @@
-import copy
 import unittest
 from model.Database import Database
 from plugins.mock.lock.Lock import Lock
@@ -15,7 +14,7 @@ class TestDatabase(unittest.TestCase):
 
         self.database_instance.devices.append(self.mock_instance_lock)
         self.database_instance.get_new_counter()
-        
+
 
     def test_get_device(self):
         device = self.database_instance.get_device(0)
