@@ -3,7 +3,7 @@ from plugins.mock.lock.Lock import Lock
 from plugins.philipsHue.color.ColorLight import ColorLight
 from plugins.philipsHue.setup.PhilipsHueSetup import PhilipsHueSetup
 from plugins.philipsHue.white.DimmableLight import DimmableLight
-from plugins.setup.git.GitPull import GitPull
+from plugins.setup.git.UpdateServer import UpdateServer
 
 
 class PluginManager:
@@ -24,7 +24,7 @@ class PluginManager:
                             , "Setup": PhilipsHueSetup},
                 "Mock": {"Lock": Lock
                          , "Light": Light},
-                "Hestia": {"GitPull": CI}
+                "Hestia": {"UpdateServer": UpdateServer}
                }
 
     def get_organizations(self):

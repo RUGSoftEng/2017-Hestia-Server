@@ -2,7 +2,7 @@ from model.Device import Device
 from plugins.setup.git.PullDevelopment import PullDevelopment
 
 
-class GitPull(Device):
+class UpdateServer(Device):
     """
     This device is used as a demonstration of what the system can do.
     It is a basic continues integration system.
@@ -33,4 +33,4 @@ class GitPull(Device):
 
     @classmethod
     def _get_plugin_name(cls):
-        return "GitPull"
+        return "UpdateServer"
