@@ -17,7 +17,7 @@ class PhilipsHueSetup(Device):
 
     @classmethod
     def _get_organization(cls):
-        return "Setup"
+        return "Philips"
 
     def setup(self):
         self.required_info["id"] = self.id
@@ -37,4 +37,4 @@ class PhilipsHueSetup(Device):
 
     @classmethod
     def _get_plugin_name(cls):
-        return "PhilipsHue"
+        return "Setup"

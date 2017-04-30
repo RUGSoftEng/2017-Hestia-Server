@@ -1,8 +1,8 @@
 from model.Device import Device
-from plugins.setup.ci.PullDevelopment import PullDevelopment
+from plugins.setup.git.PullDevelopment import PullDevelopment
 
 
-class CI(Device):
+class GitPull(Device):
     """
     This device is used as a demonstration of what the system can do.
     It is a basic continues integration system.
@@ -18,7 +18,7 @@ class CI(Device):
 
     @classmethod
     def _get_organization(cls):
-        return "Setup"
+        return "Hestia"
 
     def setup(self):
         """
@@ -33,4 +33,4 @@ class CI(Device):
 
     @classmethod
     def _get_plugin_name(cls):
-        return "HestiaCI"
+        return "GitPull"

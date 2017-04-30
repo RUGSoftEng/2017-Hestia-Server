@@ -3,7 +3,7 @@ from plugins.mock.lock.Lock import Lock
 from plugins.philipsHue.color.ColorLight import ColorLight
 from plugins.philipsHue.setup.PhilipsHueSetup import PhilipsHueSetup
 from plugins.philipsHue.white.DimmableLight import DimmableLight
-from plugins.setup.ci.CI import CI
+from plugins.setup.git.GitPull import GitPull
 
 
 class PluginManager:
@@ -20,11 +20,11 @@ class PluginManager:
                 "Philips": {"DimmableLight": DimmableLight
                             , "ColorLight": ColorLight
                             , "ExtendedColorLight": ColorLight
-                            , "ColorTemperatureLight": DimmableLight},
+                            , "ColorTemperatureLight": DimmableLight
+                            , "Setup": PhilipsHueSetup},
                 "Mock": {"Lock": Lock
                          , "Light": Light},
-                "Setup": {"PhilipsHue": PhilipsHueSetup
-                          , "HestiaCI": CI}
+                "Hestia": {"GitPull": CI}
                }
 
     def get_organizations(self):
