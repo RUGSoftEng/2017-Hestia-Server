@@ -23,7 +23,7 @@ work with, secure and plug and play.
 # Run the server
 
 First, you run `dev_setup.sh` contained in the root directory of this project.
-Then, you run `launch.sh` and you have running server.
+Then, you run `launch.sh` and you have a running server.
 
 # Development setup
 To setup a development environments or to run the server you can follow these
