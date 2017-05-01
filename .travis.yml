@@ -8,4 +8,4 @@ install:
   - pip3 install -r requirements.txt 
 # command to run tests
 script:
-  - python -m unittest discover -t source/ -s source/tests/
+  - ./run_tests.sh
