@@ -26,14 +26,14 @@ class Activator(Resource):
     @namespace.doc("get_activator")
     @namespace.marshal_with(activator)
     def get(self, device_id, activator_id):
-        """ Fetch a given action of a device """
+        """ Fetch a given activator of a device """
         return business_logic_activator.get_activator_from_database_by_device_and_activator_id(device_id, activator_id)
 
     @namespace.doc("post_activator")
     @namespace.expect(state)
     @namespace.response(201, "state updated")
     def post(self, device_id, activator_id):
-        """ Post a given action of a device """
+        """ Post a given activator of a device """
         state = namespace.apis[0].payload["state"]
         business_logic_activator.change_activator_state_with_string(device_id, activator_id, state)
         return "state updated", 201
