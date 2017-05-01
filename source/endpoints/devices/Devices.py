@@ -15,7 +15,6 @@ format_post_device = namespace.model("new_device", {
 class Devices(Resource):
     """ Shows a list of all devices and adds a new device with POST """
 
-
     @namespace.doc("list_devices")
     @namespace.marshal_list_with(device)
     def get(self):
