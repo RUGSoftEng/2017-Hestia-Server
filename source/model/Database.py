@@ -1,8 +1,6 @@
 class Database:
     """ This class represents our database """
 
-    _device_counter = 0
-
     def __init__(self):
         self.devices = list()
         self._device_counter = len(self.devices)
