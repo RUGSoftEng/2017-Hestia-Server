@@ -1,4 +1,5 @@
-# Hestia-Server
+[![Build Status](https://travis-ci.org/RUGSoftEng/2017-Hestia-Server.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2017-Hestia-Server)
+# Hestia-Server 
 Home automation, made simple again!
 
 # General Description
