@@ -17,11 +17,11 @@ class Organizations(Resource):
 @namespace.response(404, "Organization  not found")
 @namespace.param("organization", "The name of the organization of the plugin")
 class Plugins(Resource):
-    """ Show the required information of a plugin """
+    """ Show the plugins of an organization """
 
     @namespace.doc("get_activator")
     def get(self, organization):
-        """ Fetch the required information of a plugin """
+        """ Fetch the plugins of an organization """
         return plugin_manager.get_plugins_of(organization)
 
 
