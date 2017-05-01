@@ -35,4 +35,4 @@ class RequiredInfo(Resource):
     @namespace.doc("get_activator")
     def get(self, organization, plugin_name):
         """ Fetch the required information of a plugin based on its organization and name """
-        return business_logic_required_info.get_required_info_by_organization_and_plugin_name(organization, plugin_name)
+        return business_logic_required_info.get_required_info(organization, plugin_name)

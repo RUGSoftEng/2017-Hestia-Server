@@ -12,7 +12,7 @@ class BusinessLogicRequiredInfo:
     def get_plugins_by_organization(self,organization):
         return self._plugin_manager.get_plugins_of(organization)
 
-    def get_required_info_by_organization_and_plugin_name(self, organization, plugin_name):
+    def get_required_info(self, organization, plugin_name):
         required_info = self._plugin_manager.get_required_info_of(organization, plugin_name)
         required_info["name"] = "default"
         return required_info

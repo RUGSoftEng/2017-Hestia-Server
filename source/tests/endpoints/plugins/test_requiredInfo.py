@@ -5,7 +5,7 @@ from model.PluginManager import PluginManager
 from plugins.mock.lock.Lock import Lock
 
 
-class TestEndpointRequiredInfo(unittest.TestCase):
+class TestEndpointBusinessLogicRequiredInfo(unittest.TestCase):
     """
     A test for the endpoint RequiredInfo.
     It uses a mock list of plugins.
@@ -27,7 +27,7 @@ class TestEndpointRequiredInfo(unittest.TestCase):
         self.assertEqual(plugins, ["Lock"])
 
     def test_get_required_info_from_plugin_manager_by_organization_and_plugin(self):
-        required_info = self._logic.get_required_info_by_organization_and_plugin_name("Mock", "Lock")
+        required_info = self._logic.get_required_info("Mock", "Lock")
         default_info = Lock._get_default_required_info()
         default_info["name"] = "default"
         self.assertEqual(required_info, default_info)
