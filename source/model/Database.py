@@ -1,5 +1,5 @@
 class Database:
-    """ A singleton that represents our database """
+    """ This class represents our database """
 
     _device_counter = 0
 
@@ -8,7 +8,7 @@ class Database:
         self._device_counter = len(self.devices)
 
     def get_devices(self):
-        """ Get a devices from the Data Access Object """
+        """ Get all devices from the Data Access Object """
         return self.devices
 
     def get_device(self, device_id):
