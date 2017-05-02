@@ -10,7 +10,7 @@ plugin_manager = PluginManager()
 
 device_database = Database()
 business_logic_device = BusinessLogicDevice(device_database)
-business_logic_devices = BusinessLogicDevices(device_database, PluginManager)
+business_logic_devices = BusinessLogicDevices(device_database, plugin_manager)
 business_logic_activator = BusinessLogicActivator(device_database)
 
 namespace = Namespace('devices', description='All devices of the system')
