@@ -9,7 +9,7 @@ class BusinessLogicRequiredInfo:
     def get_organizations(self):
         return self._plugin_manager.get_organizations()
 
-    def get_plugins_by_organization(self,organization):
+    def get_plugins_by_organization(self, organization):
         return self._plugin_manager.get_plugins_of(organization)
 
     def get_required_info(self, organization, plugin_name):

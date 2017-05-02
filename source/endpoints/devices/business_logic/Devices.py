@@ -14,7 +14,7 @@ class BusinessLogicDevices:
         return plugin
 
     def install_new_device(self, device):
-        self._database.add_device = device
+        self._database.add_device(device)
         device.setup()
 
 
