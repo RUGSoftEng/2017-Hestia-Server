@@ -1,4 +1,5 @@
-# Hestia-Server
+[![Build Status](https://travis-ci.org/RUGSoftEng/2017-Hestia-Server.svg?branch=development)](https://travis-ci.org/RUGSoftEng/2017-Hestia-Server)
+# Hestia-Server 
 Home automation, made simple again!
 
 # General Description
@@ -19,7 +20,12 @@ do a little setup to get the system working.
 The final goal is to make the hestia platform and thus the server easy to work
 work with, secure and plug and play.
 
-# Setup
+# Run the server
+
+First, you run `dev_setup.sh` contained in the root directory of this project.
+Then, you run `launch.sh` and you have a running server.
+
+# Development setup
 To setup a development environments or to run the server you can follow these
 steps.
 
@@ -30,7 +36,7 @@ source the virtual environment activator.
 If you have no idea where it is situated it is probably in its default location
 so you run `source ~/.virtualenvs/hestia/bin/activate`.
 If you changed the default location you probably know where to find it.
-Then to run the application you run `python source/application.py`.
+Then to run the application you run `python source/application.py` or `launch.sh`.
 
 If you are using a pycharm as an IDE you need to go to `File | Settings | Project | Project Interpreter`
 and select the virtual environment named "hestia".

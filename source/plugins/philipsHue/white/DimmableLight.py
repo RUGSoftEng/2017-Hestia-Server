@@ -4,6 +4,7 @@ import requests
 from model.Device import Device
 from plugins.philipsHue.activators.SliderBrightness import SliderBrightness
 from plugins.philipsHue.activators.SwitchOnOff import SwitchOnOff
+from plugins.philipsHue.utils import get_new_user_if_needed, get_lamp_id_for_types
 
 
 class DimmableLight(Device):
@@ -12,6 +13,9 @@ class DimmableLight(Device):
     - Dimmable light
     - Color temperature light
     """
+
+    types = ["Color temperature light", "Dimmable light"]
+
     def __init__(self):
         super().__init__()
         super().add_activator(SwitchOnOff())
@@ -23,58 +27,9 @@ class DimmableLight(Device):
         By calling this method the system connects with the philips hue bridge
         to get all the information necessary to control the light.
         """
-        self._base_url = "http://" + self.required_info["ip"] + "/api"
-        self.get_user()
-        self.get_lamp_id()
+        get_new_user_if_needed(self.required_info)
+        get_lamp_id_for_types(self.required_info, self.types)
 
-    def get_user(self):
-        """
-        Philips hue needs a string as identification for communication. When no
-        string is given or it is said to be unknown this method retrieves a
-        string that can be used as identification for all further communications
-        .
-        """
-        if self.required_info["user"] in ["unknown", ""]:
-            data = '{"devicetype":"hue#whiteLight"}'
-            response = requests.post(self._base_url, data)
-            message = json.loads(response.content)[0]
-            success = message['success']
-            self.required_info["user"] = success['username']
-
-    def get_lamp_id(self):
-        """
-         Gets the id of the new lamp. Can use two different methods.
-         last :         retrieves the id of the last lamp added to the philips
-                        hue bridge.
-         reachable :    retrieves the id of the only lamp that is currently
-                        reachable. This requires all other lights not to have
-                        power.
-         """
-        url = self._base_url + self.required_info["user"] + "/lights"
-        response = json.loads(requests.get(url).content)
-        found = False
-        lamp_id = 0
-        if self.required_info["search_method"] == "reachable":
-            for key, value in response.items():
-                if (value['state']['reachable']
-                        and self.__is_current_type(value['type'])):
-                    if found:
-                        raise Exception("Multiple lights were found")
-                    else:
-                        found = True
-                        lamp_id = int(key)
-
-        elif self.required_info["search_method"] == "last":
-            for key, value in response.items():
-                if (value['state']
-                        and self.__is_current_type(value['type'])):
-                    found = True
-                    lamp_id = int(key)
-
-        if not found:
-            raise Exception("No lights were found")
-
-        self.required_info["lampId"] = lamp_id
 
     @classmethod
     def _get_organization(cls):
@@ -96,8 +51,3 @@ class DimmableLight(Device):
         search_method : method used to find the lamp ID
         """
         return {"ip": "127.0.0.1", "user": "unknown", "search_method": "last"}
-
-    @staticmethod
-    def __is_current_type(light_type):
-        return (light_type == "Dimmable light"
-                or light_type == "Color temperature light")
