@@ -22,7 +22,7 @@ class Plugins(Resource):
     @namespace.doc("get_activator")
     def get(self, organization):
         """ Fetch all plugins of an organization """
-        return business_logic_required_info.get_plugins_by_organization(organization)
+        return business_logic_required_info.get_plugins(organization)
 
 
 @namespace.route("/<string:organization>/plugins/<string:plugin_name>")

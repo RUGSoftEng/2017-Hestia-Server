@@ -1,3 +1,5 @@
 flask-restplus
 requests
 GitPython
+pymongo
+bson

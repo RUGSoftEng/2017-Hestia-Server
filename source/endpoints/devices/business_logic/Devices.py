@@ -3,18 +3,18 @@ class BusinessLogicDevices:
         self._database = db
         self._plugin_manager = pm
 
-    def get_all_devices_from_database(self):
-        return self._database.get_devices()
+    def get_all_devices(self):
+        devices = self._database.get_all_devices()
+        return devices
 
-    def create_new_device_from_json_input(self, json):
-        information = eval(json)
-        name = information.pop("name", None)
-        plugin = self._plugin_manager.get_implementation_of(information)
-        plugin.name = name
-        return plugin
+    def create_new_device(self, json):
+        organization = json.pop("organization")
+        plugin_name = json.pop("plugin_name")
+        name = json.pop("name")
+        self._plugin_manager.implement_plugin(organization
+                                                       , plugin_name
+                                                       , name
+                                                       , json)
 
-    def install_new_device(self, device):
-        self._database.add_device(device)
-        device.setup()
 
 
