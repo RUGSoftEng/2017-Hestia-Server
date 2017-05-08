@@ -1,6 +1,6 @@
 from flask_restplus import abort
 
-from model.PluginManager import NotFoundException
+from model.util.NotFoundException import NotFoundException
 
 
 class BusinessLogicRequiredInfo:

@@ -1,3 +1,4 @@
+from model.util.NotFoundException import NotFoundException
 from plugins.mock.light.Light import Light
 from plugins.mock.lock.Lock import Lock
 from plugins.philipsHue.color.ColorLight import ColorLight
@@ -88,5 +89,3 @@ class PluginManager:
         return plugin
 
 
-class NotFoundException(Exception):
-    pass

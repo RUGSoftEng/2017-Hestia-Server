@@ -1,6 +1,7 @@
 import unittest
 
-from model.PluginManager import PluginManager, NotFoundException
+from model.PluginManager import PluginManager
+from model.util.NotFoundException import NotFoundException
 from plugins.mock.lock.Lock import Lock
 
 
