@@ -1,3 +1,4 @@
+from model.util.NotFoundException import NotFoundException
 from plugins.mock.light.Light import Light
 from plugins.mock.lock.Lock import Lock
 from plugins.philipsHue.color.ColorLight import ColorLight
@@ -34,7 +35,7 @@ class PluginManager:
 
     def get_plugins_of(self, organization):
         """ Get all the plugins of an organization """
-        organization_plugins = self.plugins.get(organization)
+        organization_plugins = self.__get_organization_plugins(organization)
         plugin_names = list(organization_plugins.keys())
         return plugin_names
 
@@ -45,15 +46,46 @@ class PluginManager:
 
     def get_implementation_of(self, info):
         """ Get a concrete implementation of a plugin """
-        organization = info["organization"]
-        plugin_name = info["plugin"]
+        organization, plugin_name = self.__get_info(info)
         plugin = self.__get_class_of(organization, plugin_name)
         plugin_impl = plugin()
         plugin_impl.required_info = info
         return plugin_impl
 
+    @staticmethod
+    def __get_info(info):
+        if not isinstance(info, dict):
+            error_message = "Unable to parse malformed required info"
+            raise NotFoundException(error_message)
+        if "organization" not in info.keys():
+            error_message = "No organization in required info"
+            raise NotFoundException(error_message)
+        if "plugin" not in info.keys():
+            error_message = "No plugin in required info"
+            raise NotFoundException(error_message)
+
+        organization = info["organization"]
+        plugin_name = info["plugin"]
+        return organization, plugin_name
+
+    def __get_organization_plugins(self, organization):
+        """ Get all the plugins of a organization """
+        organization_plugins = self.plugins.get(organization)
+        if organization_plugins is None:
+            error_message = "Unable to find plugins for: " \
+                            "[" + organization + "]"
+            raise NotFoundException(error_message)
+        return organization_plugins
+
     def __get_class_of(self, organization, plugin_name):
         """ Get the class of a plugin """
-        organization_plugins = self.plugins.get(organization)
+        organization_plugins = self.__get_organization_plugins(organization)
         plugin = organization_plugins.get(plugin_name)
+        if plugin is None:
+            error_message = "Unable to find plugin with name: " \
+                            + "[" + plugin_name + "]" \
+                            + " of organization: " + "[" + organization + "]"
+            raise NotFoundException(error_message)
         return plugin
+
+
