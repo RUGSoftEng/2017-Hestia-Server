@@ -45,12 +45,27 @@ class PluginManager:
 
     def get_implementation_of(self, info):
         """ Get a concrete implementation of a plugin """
-        organization = info["organization"]
-        plugin_name = info["plugin"]
+        organization, plugin_name = self.__get_info(info)
         plugin = self.__get_class_of(organization, plugin_name)
         plugin_impl = plugin()
         plugin_impl.required_info = info
         return plugin_impl
+
+    @staticmethod
+    def __get_info(info):
+        if not isinstance(info, dict):
+            error_message = "Unable to parse malformed required info"
+            raise NotFoundException(error_message)
+        if "organization" not in info.keys():
+            error_message = "No organization in required info"
+            raise NotFoundException(error_message)
+        if "plugin" not in info.keys():
+            error_message = "No plugin in required info"
+            raise NotFoundException(error_message)
+
+        organization = info["organization"]
+        plugin_name = info["plugin"]
+        return organization, plugin_name
 
     def __get_organization_plugins(self, organization):
         """ Get all the plugins of a organization """
