@@ -34,7 +34,7 @@ class PluginManager:
 
     def get_plugins_of(self, organization):
         """ Get all the plugins of an organization """
-        organization_plugins = self.plugins.get(organization)
+        organization_plugins = self.__get_organization_plugins(organization)
         plugin_names = list(organization_plugins.keys())
         return plugin_names
 
@@ -52,8 +52,26 @@ class PluginManager:
         plugin_impl.required_info = info
         return plugin_impl
 
+    def __get_organization_plugins(self, organization):
+        """ Get all the plugins of a organization """
+        organization_plugins = self.plugins.get(organization)
+        if organization_plugins is None:
+            error_message = "Unable to find plugins for: " \
+                            "[" + organization + "]"
+            raise NotFoundException(error_message)
+        return organization_plugins
+
     def __get_class_of(self, organization, plugin_name):
         """ Get the class of a plugin """
-        organization_plugins = self.plugins.get(organization)
+        organization_plugins = self.__get_organization_plugins(organization)
         plugin = organization_plugins.get(plugin_name)
+        if plugin is None:
+            error_message = "Unable to find plugin with name: " \
+                            + "[" + plugin_name + "]" \
+                            + " of organization: " + "[" + organization + "]"
+            raise NotFoundException(error_message)
         return plugin
+
+
+class NotFoundException(Exception):
+    pass
