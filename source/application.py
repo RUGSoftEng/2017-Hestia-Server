@@ -36,7 +36,6 @@ def cov():
     cov.save()
     print("Coverage summary")
     cov.report()
-    cov.erase()
 
 if __name__ == "__main__":
     manager.run()
