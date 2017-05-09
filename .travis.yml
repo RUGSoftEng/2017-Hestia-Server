@@ -10,5 +10,6 @@ install:
 # command to run tests
 script:
   - ./run_tests.sh
+# After succesfull running of the test check the test coverage
 after_success:
   - coveralls
