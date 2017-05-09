@@ -6,10 +6,9 @@ python:
 # command to install dependencies
 install: 
   - pip3 install -r requirements.txt 
-  - pip3 install coveralls
 # command to run tests
 script:
-  - ./run_tests.sh
-# After succesfull running of the test check the test coverage
+  - python source/application.py cov
+# After successful running of the test upload the test coverage
 after_success:
   - coveralls

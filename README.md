@@ -36,10 +36,11 @@ source the virtual environment activator.
 If you have no idea where it is situated it is probably in its default location
 so you run `source ~/.virtualenvs/hestia/bin/activate`.
 If you changed the default location you probably know where to find it.
-Then to run the application you run `python source/application.py` or `launch.sh`.
+Then to run the application you run `python source/application.py dev`.
 
 If you are using a pycharm as an IDE you need to go to `File | Settings | Project | Project Interpreter`
 and select the virtual environment named "hestia".
+Also you need to add the script parameter `dev` to your run configuration.
 Pycharm will take care of the rest.
 
 # Usage
