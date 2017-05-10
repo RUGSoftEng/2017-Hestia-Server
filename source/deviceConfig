@@ -1,0 +1,22 @@
+{
+  "Mock": {
+    "Lock": {
+      "module": "plugins.mock.Lock",
+      "class": "Lock",
+      "type" : "Lock",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "bridge_port": 80
+      },
+      "activators": [
+        {
+          "module" : "plugins.mock.ActivateLock",
+          "class": "ActivateLock",
+          "name": "Activate",
+          "type": "bool",
+          "state" : true
+        }
+      ]
+    }
+  }
+}

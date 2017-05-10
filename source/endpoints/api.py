@@ -9,5 +9,6 @@ api = Api(
     , description='A home automation hub for all your IOT devices'
 )
 
+
 api.add_namespace(devices_namespace)
 api.add_namespace(plugin_namespace)
