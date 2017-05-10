@@ -1,12 +1,12 @@
 import importlib
 
-from bson import ObjectId
+from bson.objectid import ObjectId
 from pymongo import MongoClient
 
 
 class DeviceDatabase:
-    def __init__(self):
-        self._devices = MongoClient()["Hestia"]["devices"]
+    def __init__(self, collection):
+        self._devices = MongoClient()["Hestia"][collection]
 
     def get_all_devices(self):
         devices = []
@@ -27,7 +27,7 @@ class DeviceDatabase:
         """Adds the given plugin info as a new device"""
         data = plugin
         data["_id"] = ObjectId()
-        self._devices.insert(data)
+        self._devices.insert_one(data)
 
     def delete_device(self, device_id):
         self._devices.delete_one({"_id" : ObjectId(device_id)})

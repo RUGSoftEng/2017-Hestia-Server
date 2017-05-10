@@ -1,9 +1,9 @@
 from flask_restplus import Resource
 from flask_restplus import fields
 
-from endpoints.devices import business_logic_devices, namespace
-from endpoints.devices import plugin_manager
+from endpoints.devices import namespace
 from endpoints.devices.Device import device
+from logic import device_logic
 
 format_post_device = namespace.model("new_device", {
     "required_info": fields.Raw(attribute="required_info", required=True,
@@ -19,7 +19,7 @@ class Devices(Resource):
     @namespace.marshal_list_with(device)
     def get(self):
         """ List all devices """
-        return business_logic_devices.get_all_devices()
+        return device_logic.get_all_devices()
 
     @namespace.doc("post_device")
     @namespace.expect(format_post_device)
@@ -27,5 +27,5 @@ class Devices(Resource):
     def post(self):
         """ Post a new device """
         json_required_info = namespace.apis[0].payload["required_info"]
-        business_logic_devices.create_new_device(json_required_info)
+        device_logic.create_new_device(json_required_info)
         return "new device", 201

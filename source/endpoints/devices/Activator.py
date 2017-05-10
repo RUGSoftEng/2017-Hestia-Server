@@ -1,7 +1,8 @@
 from flask_restplus import Resource
 from flask_restplus import fields
 
-from endpoints.devices import namespace, business_logic_activator
+from endpoints.devices import namespace
+from logic import activator_logic
 
 activator = namespace.model("Activator", {
     "activatorId": fields.String(attribute="identifier", readOnly=True, required=True,
@@ -27,7 +28,7 @@ class Activator(Resource):
     @namespace.marshal_with(activator)
     def get(self, device_id, activator_id):
         """ Fetch a given activator of a device """
-        return business_logic_activator.get_activator(device_id, activator_id)
+        return activator_logic.get_activator(device_id, activator_id)
 
     @namespace.doc("post_activator")
     @namespace.expect(state)
@@ -35,5 +36,5 @@ class Activator(Resource):
     def post(self, device_id, activator_id):
         """ Post a given activator of a device """
         value = namespace.apis[0].payload["state"]
-        business_logic_activator.change_activator_state(device_id, activator_id, value)
+        activator_logic.change_activator_state(device_id, activator_id, value)
         return "state updated", 201

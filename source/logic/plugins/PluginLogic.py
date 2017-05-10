@@ -1,6 +1,6 @@
-class BusinessLogicRequiredInfo:
+class PluginLogic:
     """
-    This class holds the logic behind the methods in RequiredInfo
+    This class holds the logic to retrieve information regarding plugins.
     """
 
     def __init__(self, plugin_manager):

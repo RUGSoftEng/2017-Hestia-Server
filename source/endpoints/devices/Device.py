@@ -1,8 +1,9 @@
 from flask_restplus import Resource
 from flask_restplus import fields
 
-from endpoints.devices import namespace, business_logic_device
+from endpoints.devices import namespace
 from endpoints.devices.Activator import activator
+from logic import device_logic
 
 device = namespace.model("Device", {
     "deviceId": fields.String(attribute="identifier", readOnly=True, required=True,
@@ -23,11 +24,11 @@ class Device(Resource):
     @namespace.marshal_with(device)
     def get(self, device_id):
         """ Fetch a device given its identifier """
-        return business_logic_device.get_device(device_id)
+        return device_logic.get_device(device_id)
 
     @namespace.doc("delete_device")
     @namespace.response(204, "Device deleted")
     def delete(self, device_id):
         """ Delete a device given its identifier """
-        business_logic_device.remove_device(device_id)
+        device_logic.remove_device(device_id)
         return "", 204

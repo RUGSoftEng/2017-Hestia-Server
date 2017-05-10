@@ -20,4 +20,4 @@ fi
 
 source ${VIRTUALENV_ROOT}/bin/activate
 
-python source/application.py
+python source/application.py run

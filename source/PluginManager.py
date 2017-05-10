@@ -1,17 +1,17 @@
 import importlib
 import json
-import uuid
 
-from bson import ObjectId
+import copy
+from bson.objectid import ObjectId
 
 
 class PluginManager:
-    def __init__(self, device_config_location, database):
-        self._plugins = json.load(open(device_config_location))
+    def __init__(self, device_config, database):
+        self._plugins = json.load(open(device_config))
         self._database = database
 
     def implement_plugin(self, organization, plugin_name, name, required_info):
-        data = self._plugins[organization][plugin_name]
+        data = copy.deepcopy(self._plugins[organization][plugin_name])
 
         #Remove unneeded plugin info
         activators = data.pop('activators', None)
