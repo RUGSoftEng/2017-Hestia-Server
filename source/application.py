@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from werkzeug.contrib.fixers import ProxyFix
 from endpoints.api import api

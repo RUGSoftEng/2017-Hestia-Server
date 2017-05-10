@@ -3,7 +3,6 @@ import unittest
 from bson import ObjectId
 from pymongo import MongoClient
 
-from PluginManager import PluginManager
 from database.DeviceDatabase import DeviceDatabase
 from models.Device import Device
 
@@ -12,7 +11,6 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def setUp(self):
         self._database = DeviceDatabase("testing")
         self._direct_database = MongoClient()["Hestia"]["testing"]
-        #self._plugin_manager = PluginManager("deviceConfig", self._database)
 
         self._device_data = {
                               "module": "plugins.mock.Lock",
@@ -46,7 +44,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_get_all_devices(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
 
         retrieved_devices = self._database.get_all_devices()
 
@@ -54,7 +52,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
 
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
 
         retrieved_devices = self._database.get_all_devices()
 
@@ -64,7 +62,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_get_device(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
 
         device = self._database.get_device(_id)
 
@@ -81,7 +79,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_delete_device(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
         initial_count = self._direct_database.count()
 
         self._database.delete_device(_id)
@@ -92,7 +90,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_update_field(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
         new_name = "Hestia"
 
         self._database.update_field(_id, "name", new_name)
@@ -103,7 +101,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_get_field(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
 
         name = self._database.get_field(_id, "name")
 
@@ -112,7 +110,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_get_activator_field(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
 
         activators = self._direct_database.find_one({"_id": _id})["activators"]
         act_id = list(activators.keys())[0]
@@ -126,7 +124,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def test_update_activator_field(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
-        self._direct_database.insert(self._device_data)
+        self._direct_database.insert_one(self._device_data)
 
         activators = self._direct_database.find_one({"_id": _id})["activators"]
         act_id = list(activators.keys())[0]

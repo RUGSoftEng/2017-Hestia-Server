@@ -27,7 +27,7 @@ class DeviceDatabase:
         """Adds the given plugin info as a new device"""
         data = plugin
         data["_id"] = ObjectId()
-        self._devices.insert(data)
+        self._devices.insert_one(data)
 
     def delete_device(self, device_id):
         self._devices.delete_one({"_id" : ObjectId(device_id)})
