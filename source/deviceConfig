@@ -1,5 +1,5 @@
 {
-  "mock": {
+  "Mock": {
     "Lock": {
       "module": "plugins.mock.Lock",
       "class": "Lock",
