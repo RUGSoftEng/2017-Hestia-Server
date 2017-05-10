@@ -9,3 +9,5 @@ install:
 # command to run tests
 script:
   - python source/application.py cov
+after_success:
+  - coverage report --omit="source/tests/*" -m --fail-under=35
