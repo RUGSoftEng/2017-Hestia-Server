@@ -1,10 +1,11 @@
+
 import unittest
 
 from coverage import coverage
+
 from flask import Flask
 from flask_script import Manager
 from werkzeug.contrib.fixers import ProxyFix
-
 from endpoints.api import api
 
 app = Flask(__name__)
