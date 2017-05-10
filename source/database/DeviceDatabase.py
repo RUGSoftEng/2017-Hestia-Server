@@ -5,8 +5,8 @@ from pymongo import MongoClient
 
 
 class DeviceDatabase:
-    def __init__(self):
-        self._devices = MongoClient()["Hestia"]["devices"]
+    def __init__(self, collection):
+        self._devices = MongoClient()["Hestia"][collection]
 
     def get_all_devices(self):
         devices = []
