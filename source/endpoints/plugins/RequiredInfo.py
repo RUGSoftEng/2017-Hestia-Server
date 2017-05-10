@@ -1,6 +1,7 @@
 from flask_restplus import Resource
 
-from endpoints.plugins import namespace, business_logic_required_info
+from endpoints.plugins import namespace
+from logic import plugin_logic
 
 
 @namespace.route("/")
@@ -10,7 +11,7 @@ class Organizations(Resource):
     @namespace.doc("list_organizations")
     def get(self):
         """ Fetch all the organizations that have plugins installed """
-        return business_logic_required_info.get_organizations()
+        return plugin_logic.get_organizations()
 
 
 @namespace.route("/<string:organization>/")
@@ -22,7 +23,7 @@ class Plugins(Resource):
     @namespace.doc("get_activator")
     def get(self, organization):
         """ Fetch all plugins of an organization """
-        return business_logic_required_info.get_plugins(organization)
+        return plugin_logic.get_plugins(organization)
 
 
 @namespace.route("/<string:organization>/plugins/<string:plugin_name>")
@@ -35,4 +36,4 @@ class RequiredInfo(Resource):
     @namespace.doc("get_activator")
     def get(self, organization, plugin_name):
         """ Fetch the required information of a plugin based on its organization and name """
-        return business_logic_required_info.get_required_info(organization, plugin_name)
+        return plugin_logic.get_required_info(organization, plugin_name)

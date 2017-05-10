@@ -1,4 +1,9 @@
-class BusinessLogicActivator:
+class ActivatorLogic:
+    """This class contain all logic needed to retrieve and interact with activators. 
+    Currently this only involves interaction with the database. In later versions this
+    could be extended to, for example, checking whether or not the user is allowed to
+    access the requested activator."""
+
     def __init__(self, db):
         self._database = db
 

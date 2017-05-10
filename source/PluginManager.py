@@ -1,8 +1,8 @@
 import importlib
 import json
-import uuid
 
-from bson import ObjectId
+import bson
+from bson.objectid import ObjectId
 
 
 class PluginManager:
