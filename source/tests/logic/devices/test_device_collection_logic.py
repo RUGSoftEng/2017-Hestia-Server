@@ -3,16 +3,15 @@ import unittest
 from bson import ObjectId
 from pymongo import MongoClient
 
-from PluginManager import PluginManager
-from database.DeviceDatabase import DeviceDatabase
 from logic import DeviceCollectionLogic
+from tests import test_util
 
 
 class TestEndpointActivator(unittest.TestCase):
     def setUp(self):
         self._direct_database = MongoClient()["Hestia"]["testing"]
-        self._database = DeviceDatabase("testing")
-        self._plugin_manager = PluginManager("deviceConfig")
+        self._database = test_util.get_dabase()
+        self._plugin_manager = test_util.get_plugin_manager(self._database)
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
