@@ -4,7 +4,6 @@ from PluginManager import PluginManager
 from database.DeviceDatabase import DeviceDatabase
 from logic import ActivatorLogic
 from tests import test_util
-from util.BasePath import get_base_path
 
 
 class TestEndpointActivator(unittest.TestCase):
