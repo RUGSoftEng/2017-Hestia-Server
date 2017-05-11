@@ -12,125 +12,127 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
         self._database = test_util.get_dabase()
         self._direct_database = MongoClient()["Hestia"]["testing"]
 
-        self._device_data = {
-                              "module": "plugins.mock.Lock",
-                              "class": "Lock",
-                              "type" : "Lock",
-                              "name" : "TestDevice",
-                              "options": {
-                                "bridge_ip": "127.0.2.1",
-                                "bridge_port": 90
-                              },
-                              "activators": [
-                                {
-                                  "module" : "plugins.mock.ActivateLock",
-                                  "class": "ActivateLock",
-                                  "name": "Activate",
-                                  "type": "bool",
-                                  "state" : True
-                                }
-                              ]
-                            }
-        activators = self._device_data.pop("activators", None)
-        self._device_data["activators"] = {}
-        for activator in activators:
-            _id = str(ObjectId())
-            self._device_data["activators"][_id] = activator
-
     def tearDown(self):
-        self._device_data = {}
         self._direct_database.delete_many({})
 
     def test_get_all_devices(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
 
         retrieved_devices = self._database.get_all_devices()
 
         self.assertEqual(1, len(retrieved_devices))
 
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
 
         retrieved_devices = self._database.get_all_devices()
 
         self.assertEqual(2, len(retrieved_devices))
 
     def test_get_device(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
 
-        device = self._database.get_device(_id)
+        device = self._database.get_device(device_data["_id"])
 
-        self.assertEqual(_id, device.identifier)
+        self.assertEqual(device_data["name"], device.name)
         self.assertIsInstance(device, Device)
 
     def test_add_device(self):
+        device_data = self._get_device_data()
         initial_count = self._direct_database.count()
 
-        self._database.add_device(self._device_data)
+        self._database.add_device(device_data)
 
         self.assertEqual(initial_count+1, self._direct_database.count())
 
     def test_delete_device(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
         initial_count = self._direct_database.count()
 
-        self._database.delete_device(_id)
+        self._database.delete_device(device_data["_id"])
 
         self.assertEqual(initial_count - 1, self._direct_database.count())
 
 
     def test_update_field(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
         new_name = "Hestia"
 
-        self._database.update_field(_id, "name", new_name)
+        self._database.update_field(device_data["_id"], "name", new_name)
 
-        device = self._direct_database.find_one({"_id": _id})
+        device = self._direct_database.find_one({"_id": device_data["_id"]})
         self.assertEqual(device["name"], new_name)
 
     def test_get_field(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
 
-        name = self._database.get_field(_id, "name")
+        name = self._database.get_field(device_data["_id"], "name")
 
-        self.assertEqual(self._device_data["name"], name)
+        self.assertEqual(device_data["name"], name)
 
     def test_get_activator_field(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
 
-        activators = self._direct_database.find_one({"_id": _id})["activators"]
+        activators = self._direct_database.find_one({"_id": device_data["_id"]})["activators"]
         act_id = list(activators.keys())[0]
 
-        activator_name = self._database.get_activator_field(_id, act_id, "name")
+        activator_name = self._database.get_activator_field(device_data["_id"], act_id, "name")
 
-        real_name = self._device_data["activators"][act_id]["name"]
+        real_name = device_data["activators"][act_id]["name"]
 
         self.assertEqual(real_name, activator_name)
 
     def test_update_activator_field(self):
-        _id = ObjectId()
-        self._device_data["_id"] = _id
-        self._direct_database.insert_one(self._device_data)
+        device_data = self._get_device_data()
+        device_data["_id"] = str(ObjectId())
+        self._direct_database.insert_one(device_data)
 
-        activators = self._direct_database.find_one({"_id": _id})["activators"]
+        activators = self._direct_database.find_one({"_id": device_data["_id"]})["activators"]
         act_id = list(activators.keys())[0]
 
         new_name = "new_name"
-        self._database.update_activator_field(_id, act_id, "name", new_name)
+        self._database.update_activator_field(device_data["_id"], act_id, "name", new_name)
 
-        name_in_database = self._direct_database.find_one({"_id": _id})["activators"][act_id]["name"]
+        device_in_db = self._direct_database.find_one({"_id": device_data["_id"]})
+        activator_name_in_db = device_in_db["activators"][act_id]["name"]
 
-        self.assertEqual(name_in_database, new_name)
+        self.assertEqual(activator_name_in_db, new_name)
+
+    def _get_device_data(self):
+        device_data = {
+            "module": "plugins.mock.Lock",
+            "class": "Lock",
+            "type": "Lock",
+            "name": "TestDevice",
+            "options": {
+                "bridge_ip": "127.0.2.1",
+                "bridge_port": 90
+            },
+            "activators": [
+                {
+                    "module": "plugins.mock.ActivateLock",
+                    "class": "ActivateLock",
+                    "name": "Activate",
+                    "type": "bool",
+                    "state": True
+                }
+            ]
+        }
+        activators = device_data.pop("activators", None)
+        device_data["activators"] = {}
+        for activator in activators:
+            _id = str(ObjectId())
+            device_data["activators"][_id] = activator
+        return device_data
