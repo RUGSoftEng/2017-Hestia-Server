@@ -18,5 +18,26 @@
         }
       ]
     }
+  },
+  "Philips":{
+    "DimmableLight": {
+      "module": "plugins.philips.white.DimmableLight",
+      "class": "DimmableLight",
+      "type" : "Light",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "search_method": "reachable",
+        "user": "unknown"
+      },
+      "activators": [
+        {
+          "module" : "plugins.philips.activators.SwitchOnOff",
+          "class": "SwitchOnOff",
+          "name": "On/Off",
+          "type": "bool",
+          "state" : true
+        }
+      ]
+    }
   }
 }

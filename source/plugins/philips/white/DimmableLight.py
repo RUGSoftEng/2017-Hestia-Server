@@ -12,5 +12,5 @@ class DimmableLight(PhilipsDevice):
     def setup(cls, required_info):
         options = required_info
         types = ["Color temperature light", "Dimmable light"]
-        options["lamp_id"] = cls._get_lamp_id(required_info, types)
-        options[""]
+        options["base_path"] = cls._get_base_path(required_info, types)
+        return options

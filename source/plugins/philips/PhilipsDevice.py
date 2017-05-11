@@ -19,9 +19,8 @@ class PhilipsDevice(Device):
         pass
 
     @classmethod
-    @abstractmethod
-    def _get_lamp_id(cls, required_info, types):
-        url = "http://" + required_info["ip"] + "/api" + required_info["user"] + "/lights"
+    def _get_lamp_id(cls, required_info, user,  types):
+        url = "http://" + required_info["bridge_ip"] + "/api" + user + "/lights"
         response = json.loads(requests.get(url).content)
         if required_info["search_method"] == "reachable":
             return ReachableSearch.search(response, types)
@@ -29,7 +28,7 @@ class PhilipsDevice(Device):
             return LastSearch.search(response, types)
 
     @classmethod
-    def _get_new_user(cls, required_info, ):
+    def _get_new_user(cls, required_info):
         """ 
         Philips hue needs a string as identification for communication. When no
         string is given or it is said to be unknown this method retrieves a
@@ -38,8 +37,8 @@ class PhilipsDevice(Device):
         the activator can remove the device when needed.
         """
         if required_info["user"] in ["unknown", ""]:
-            data = '{"devicetype":"hue#' + required_info["plugin"] + '"}'
-            response = requests.post("http://" + required_info["ip"]
+            data = '{"devicetype":"hue# hestia"}'
+            response = requests.post("http://" + required_info["bridge_ip"]
                                      + "/api", data)
             message = json.loads(response.content)[0]
             success = message["success"]
@@ -48,3 +47,13 @@ class PhilipsDevice(Device):
 
         else:
             return required_info["user"]
+
+    @classmethod
+    def _get_base_path(cls, required_info, types):
+        user = cls._get_new_user(required_info)
+        lamp_id = cls._get_lamp_id(required_info, user, types)
+        path = ("http://" + required_info["bridge_ip"]
+                + "/api/" + user
+                + "/lights/" + str(lamp_id)
+                + "/")
+        return path
