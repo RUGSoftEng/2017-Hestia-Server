@@ -15,10 +15,11 @@ class DeviceCollectionLogic:
         organization = json.pop("organization")
         plugin_name = json.pop("plugin_name")
         name = json.pop("name")
-        self._plugin_manager.implement_plugin(organization
-                                                       , plugin_name
-                                                       , name
-                                                       , json)
+        plugin = self._plugin_manager.get_plugin(organization
+                                        , plugin_name
+                                        , json)
+        plugin["name"] = name
+        self._database.add_device(plugin)
 
     def get_device(self, device_id):
         return self._database.get_device(device_id)

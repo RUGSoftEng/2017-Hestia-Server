@@ -10,7 +10,7 @@ from util.BasePath import get_base_path
 _device_database = DeviceDatabase("devices")
 
 device_config = get_base_path() + "deviceConfig"
-_plugin_manager = PluginManager(device_config , _device_database)
+_plugin_manager = PluginManager(device_config, _device_database)
 
 
 device_logic = DeviceCollectionLogic(_device_database, _plugin_manager)
