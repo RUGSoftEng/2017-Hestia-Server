@@ -8,9 +8,8 @@ from bson.objectid import ObjectId
 class PluginManager:
     def __init__(self, device_config, database):
         self._plugins = json.load(open(device_config))
-        self._database = database
 
-    def implement_plugin(self, organization, plugin_name, name, required_info):
+    def get_plugin(self, organization, plugin_name, required_info):
         data = copy.deepcopy(self._plugins[organization][plugin_name])
 
         #Remove unneeded plugin info
@@ -26,8 +25,8 @@ class PluginManager:
         for activator in activators:
             _id = str(ObjectId())
             data["activators"][_id] = activator
-        data["name"] = name
-        self._database.add_device(data)
+
+        return data
 
     def get_organizations(self):
         """ Get a list of organizations """
