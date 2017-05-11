@@ -3,12 +3,14 @@ import unittest
 from PluginManager import PluginManager
 from database.DeviceDatabase import DeviceDatabase
 from logic import DeviceCollectionLogic
+from tests import test_util
+from util.BasePath import get_base_path
 
 
 class TestEndpointActivator(unittest.TestCase):
     def setUp(self):
-        self._database = DeviceDatabase("testing")
-        self._plugin_manager = PluginManager('source/tests/testing_deviceConfig', self._database)
+        self._database = test_util.get_dabase()
+        self._plugin_manager = test_util.get_plugin_manager(self._database)
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
