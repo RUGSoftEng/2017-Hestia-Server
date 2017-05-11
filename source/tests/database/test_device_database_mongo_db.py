@@ -58,7 +58,6 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
 
         self.assertEqual(2, len(retrieved_devices))
 
-
     def test_get_device(self):
         _id = ObjectId()
         self._device_data["_id"] = _id
