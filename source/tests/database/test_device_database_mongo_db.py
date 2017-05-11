@@ -5,11 +5,12 @@ from pymongo import MongoClient
 
 from database.DeviceDatabase import DeviceDatabase
 from models.Device import Device
+from tests import test_util
 
 
 class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def setUp(self):
-        self._database = DeviceDatabase("testing")
+        self._database = test_util.get_dabase()
         self._direct_database = MongoClient()["Hestia"]["testing"]
 
         self._device_data = {
