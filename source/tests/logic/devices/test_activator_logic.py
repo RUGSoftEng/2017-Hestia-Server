@@ -5,7 +5,7 @@ from database.DeviceDatabase import DeviceDatabase
 from logic import ActivatorLogic
 
 
-class TestEndpointActivator(unittest.TestCase):
+class TestActivatorLogic(unittest.TestCase):
     def setUp(self):
         self._database = DeviceDatabase("testing")
         self._plugin_manager = PluginManager('source/tests/testing_deviceConfig', self._database)
