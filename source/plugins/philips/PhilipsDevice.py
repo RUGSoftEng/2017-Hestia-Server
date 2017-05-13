@@ -4,6 +4,7 @@ import requests
 from flask import json
 
 from models.Device import Device
+from plugins.philips.searching.NameSearch import NameSearch
 from plugins.philips.searching.LastSearch import LastSearch
 from plugins.philips.searching.ReachableSearch import ReachableSearch
 
@@ -26,6 +27,8 @@ class PhilipsDevice(Device):
             return ReachableSearch.search(response, types)
         elif required_info["search_method"] == "last":
             return LastSearch.search(response, types)
+        else:
+            return NameSearch.search(response, required_info["search_method"])
 
     @classmethod
     def _get_new_user(cls, required_info):
