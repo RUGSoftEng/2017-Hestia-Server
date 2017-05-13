@@ -70,6 +70,39 @@
           "state" : 0.0
         }
       ]
+    },
+    "ColorLight": {
+      "module": "plugins.philips.color.ColorLight",
+      "class": "ColorLight",
+      "type" : "Light",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "search_method": "reachable",
+        "user": "unknown"
+      },
+      "activators": [
+        {
+          "module" : "plugins.philips.activators.SwitchOnOff",
+          "class": "SwitchOnOff",
+          "name": "On/Off",
+          "type": "bool",
+          "state" : true
+        },
+        {
+          "module" : "plugins.philips.activators.SliderBrightness",
+          "class": "SliderBrightness",
+          "name": "Brightness",
+          "type": "float",
+          "state" : 0.0
+        },
+        {
+          "module" : "plugins.philips.activators.SliderColor",
+          "class": "SliderColor",
+          "name": "Brightness",
+          "type": "float",
+          "state" : 0.0
+        }
+      ]
     }
   }
 }
