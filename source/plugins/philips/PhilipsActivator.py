@@ -11,9 +11,7 @@ class PhilipsActivator(Activator):
 
     def state(self):
         state = self._retrieve_state_from_device()
-        translated_state = self._translate_state(state)
-        self._database.update_activator_field(self._device_id, self._activator_id, "state", translated_state)
-        return translated_state
+        return state
 
     @abstractmethod
     def perform(self, options):
