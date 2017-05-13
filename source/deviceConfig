@@ -98,7 +98,7 @@
         {
           "module" : "plugins.philips.activators.SliderColor",
           "class": "SliderColor",
-          "name": "Brightness",
+          "name": "Color",
           "type": "float",
           "state" : 0.0
         }

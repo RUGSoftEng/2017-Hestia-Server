@@ -1,7 +1,7 @@
 from plugins.philips.PhilipsDevice import PhilipsDevice
 
 
-class DimmableLight(PhilipsDevice):
+class ColorLight(PhilipsDevice):
     """
        Device that can be used for the following philips hue types:
        - Color light
