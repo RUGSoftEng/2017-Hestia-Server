@@ -6,14 +6,18 @@ from logic import ActivatorLogic
 from tests import test_util
 
 
-class TestEndpointActivator(unittest.TestCase):
+class TestActivatorLogic(unittest.TestCase):
     def setUp(self):
         self._database = test_util.get_dabase()
         self._plugin_manager = test_util.get_plugin_manager(self._database)
 
         req = self._plugin_manager.get_required_info_of("mock", "Lock")
-        self._plugin_manager.implement_plugin("mock", "Lock", "test", req)
+        plugin = self._plugin_manager.get_plugin("mock", "Lock", req)
+        plugin["name"] = "TestDevice"
+        self._database.add_device(plugin)
+
         devices = self._database.get_all_devices()
+
         self._device = devices[0]
         self._activator = self._device.activators[0]
 
