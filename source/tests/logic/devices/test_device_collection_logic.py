@@ -7,7 +7,7 @@ from logic import DeviceCollectionLogic
 from tests import test_util
 
 
-class TestDeviceCollectionLogig(unittest.TestCase):
+class TestDeviceCollectionLogic(unittest.TestCase):
     def setUp(self):
         self._direct_database = MongoClient()["Hestia"]["testing"]
         self._database = test_util.get_dabase()
