@@ -21,10 +21,9 @@ class PhilipsActivator(Activator):
 
     def _send_data_to_bridge(self, data):
         options = self._database.get_field(self._device_id, "options")
-        base_path = options["base_path"]
-        url = base_path + "state"
-
-        return requests.put(url, json.dumps(data))
+        path = options["base_path"] + "state"
+        json_data = json.dumps(data)
+        return requests.put(path, json_data)
 
     def _retrieve_state_from_device(self):
         options = self._database.get_field(self._device_id, "options")

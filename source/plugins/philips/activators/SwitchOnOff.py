@@ -11,8 +11,11 @@ class SwitchOnOff(PhilipsActivator):
 
     def perform(self, options):
         data = {}
-        if self._database.get_activator_field(self._device_id, self._activator_id, "state"):
-            data["state"] = True
+        _state = self._database.get_activator_field(self._device_id, self._activator_id, "state")
+        if _state:
+            data["on"] = True
         else:
-            data["state"] = False
-        self._send_data_to_bridge(data)
+            data["on"] = False
+        reponse = self._send_data_to_bridge(data)
+
+        print(reponse)
