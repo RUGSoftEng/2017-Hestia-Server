@@ -6,7 +6,7 @@ from logic import ActivatorLogic
 from tests import test_util
 
 
-class TestEndpointActivator(unittest.TestCase):
+class TestActivatorLogic(unittest.TestCase):
     def setUp(self):
         self._database = test_util.get_dabase()
         self._plugin_manager = test_util.get_plugin_manager(self._database)

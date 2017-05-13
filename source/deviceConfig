@@ -1,7 +1,7 @@
 {
   "Mock": {
     "Lock": {
-      "module": "plugins.mock.Lock",
+      "module": "plugins.mock.lock.Lock",
       "class": "Lock",
       "type" : "Lock",
       "required_info": {
@@ -10,11 +10,36 @@
       },
       "activators": [
         {
-          "module" : "plugins.mock.ActivateLock",
+          "module" : "plugins.mock.lock.ActivateLock",
           "class": "ActivateLock",
           "name": "Activate",
           "type": "bool",
           "state" : true
+        }
+      ]
+    },
+    "Light": {
+      "module": "plugins.mock.Light.Light",
+      "class": "Light",
+      "type" : "Light",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "bridge_port": "80"
+      },
+      "activators": [
+        {
+          "module" : "plugins.mock.Light.LightSwitch",
+          "class": "LightSwitch",
+          "name": "On/Off",
+          "type": "bool",
+          "state" : true
+        },
+        {
+          "module" : "plugins.mock.Light.LightDimmer",
+          "class": "LightDimmer",
+          "name": "Dimmer",
+          "type": "float",
+          "state" : 0.5
         }
       ]
     }
