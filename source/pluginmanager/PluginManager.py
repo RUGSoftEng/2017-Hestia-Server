@@ -12,7 +12,8 @@ class PluginManager:
         self._plugins = json.load(open(device_config))
 
     def get_plugin(self, organization, plugin_name, required_info):
-        data = copy.deepcopy(self._plugins[organization][plugin_name])
+        plugin = self.__get_plugin(organization, plugin_name)
+        data = copy.deepcopy(plugin)
 
         #Remove unneeded plugin info
         activators = data.pop('activators', None)
