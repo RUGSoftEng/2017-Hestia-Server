@@ -8,10 +8,16 @@ from util.NotFoundException import NotFoundException
 
 
 class PluginManager:
+    """
+    This class is a link between the logic classes and plugins. 
+    It is used to get information about plugins and instantiate plugins.
+    """
+    
     def __init__(self, device_config, database):
         self._plugins = json.load(open(device_config))
 
     def get_plugin(self, organization, plugin_name, required_info):
+        """create new plugin"""
         plugin = self.__get_plugin(organization, plugin_name)
         data = copy.deepcopy(plugin)
 
@@ -52,6 +58,7 @@ class PluginManager:
         return getattr(mod, class_name)
 
     def __get_organization_plugins(self, organization):
+        """get all plugin names within an organization"""
         if organization in self._plugins:
             return self._plugins[organization]
         else:
@@ -59,6 +66,7 @@ class PluginManager:
             raise NotFoundException(message)
 
     def __get_plugin(self, organization, plugin_name):
+        """get required info of plugin based on organization and plugin name"""
         organization_plugins = self.__get_organization_plugins(organization)
         if plugin_name in organization_plugins:
             return organization_plugins[plugin_name]
