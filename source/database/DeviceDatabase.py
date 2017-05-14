@@ -1,6 +1,5 @@
 import importlib
 
-from bson.errors import InvalidId
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 
@@ -8,10 +7,15 @@ from util.NotFoundException import NotFoundException
 
 
 class DeviceDatabase:
+    """
+    This class communicates with the MongoDB database. 
+    It has several methods for this communication.
+    """
     def __init__(self, collection):
         self._devices = MongoClient()["Hestia"][collection]
 
     def get_all_devices(self):
+        """Instantiates all devices in database"""
         devices = []
         for data in self._devices.find():
             _id = data["_id"]
@@ -53,6 +57,7 @@ class DeviceDatabase:
                                                       + field: new_value}})
 
     def __get_device_data(self, device_id):
+        """Get data of device based on its id"""
         data = self._devices.find_one(device_id)
         if data is None:
             message = "No device with id [" + device_id + "] found."
