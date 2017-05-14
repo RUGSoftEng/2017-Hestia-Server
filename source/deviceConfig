@@ -1,20 +1,106 @@
 {
   "Mock": {
     "Lock": {
-      "module": "plugins.mock.Lock",
+      "module": "plugins.mock.lock.Lock",
       "class": "Lock",
       "type" : "Lock",
       "required_info": {
         "bridge_ip": "127.0.0.1",
-        "bridge_port": 80
+        "bridge_port": "80"
       },
       "activators": [
         {
-          "module" : "plugins.mock.ActivateLock",
+          "module" : "plugins.mock.lock.ActivateLock",
           "class": "ActivateLock",
           "name": "Activate",
           "type": "bool",
           "state" : true
+        }
+      ]
+    },
+    "Light": {
+      "module": "plugins.mock.light.Light",
+      "class": "Light",
+      "type" : "Light",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "bridge_port": "80"
+      },
+      "activators": [
+        {
+          "module" : "plugins.mock.light.LightSwitch",
+          "class": "LightSwitch",
+          "name": "On/Off",
+          "type": "bool",
+          "state" : true
+        },
+        {
+          "module" : "plugins.mock.light.LightDimmer",
+          "class": "LightDimmer",
+          "name": "Dimmer",
+          "type": "float",
+          "state" : 0.5
+        }
+      ]
+    }
+  },
+  "Philips":{
+    "DimmableLight": {
+      "module": "plugins.philips.white.DimmableLight",
+      "class": "DimmableLight",
+      "type" : "Light",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "search_method": "reachable",
+        "user": "unknown"
+      },
+      "activators": [
+        {
+          "module" : "plugins.philips.activators.SwitchOnOff",
+          "class": "SwitchOnOff",
+          "name": "On/Off",
+          "type": "bool",
+          "state" : true
+        },
+        {
+          "module" : "plugins.philips.activators.SliderBrightness",
+          "class": "SliderBrightness",
+          "name": "Brightness",
+          "type": "float",
+          "state" : 0.0
+        }
+      ]
+    },
+    "ColorLight": {
+      "module": "plugins.philips.color.ColorLight",
+      "class": "ColorLight",
+      "type" : "Light",
+      "required_info": {
+        "bridge_ip": "127.0.0.1",
+        "search_method": "reachable",
+        "user": "unknown"
+      },
+      "activators": [
+        {
+          "module" : "plugins.philips.activators.SwitchOnOff",
+          "class": "SwitchOnOff",
+          "name": "On/Off",
+          "type": "bool",
+          "state" : true
+        },
+        {
+          "module" : "plugins.philips.activators.SliderBrightness",
+          "class": "SliderBrightness",
+          "name": "Brightness",
+          "type": "float",
+          "state" : 0.0
+        },
+        {
+          "module" : "plugins.philips.activators.SliderColor",
+          "class": "SliderColor",
+          "name": "Color",
+          "type": "float",
+          "state" : 0.0
         }
       ]
     }

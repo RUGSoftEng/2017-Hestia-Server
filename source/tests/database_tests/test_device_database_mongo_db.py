@@ -9,7 +9,7 @@ from tests import test_util
 
 class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def setUp(self):
-        self._database = test_util.get_dabase()
+        self._database = test_util.get_database()
         self._direct_database = MongoClient()["Hestia"]["testing"]
 
     def tearDown(self):
@@ -112,7 +112,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
 
     def _get_device_data(self):
         device_data = {
-            "module": "plugins.mock.Lock",
+            "module": "plugins.mock.lock.Lock",
             "class": "Lock",
             "type": "Lock",
             "name": "TestDevice",

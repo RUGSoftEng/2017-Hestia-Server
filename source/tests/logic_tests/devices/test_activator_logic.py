@@ -8,7 +8,7 @@ from tests import test_util
 
 class TestActivatorLogic(unittest.TestCase):
     def setUp(self):
-        self._database = test_util.get_dabase()
+        self._database = test_util.get_database()
         self._plugin_manager = test_util.get_plugin_manager(self._database)
 
         req = self._plugin_manager.get_required_info_of("mock", "Lock")
