@@ -5,7 +5,7 @@ class ColorLight(PhilipsDevice):
     """
        Device that can be used for the following philips hue types:
        - Color light
-       - Extended olor light
+       - Extended color light
        """
 
     @classmethod
