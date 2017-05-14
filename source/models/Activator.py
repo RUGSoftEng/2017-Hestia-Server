@@ -12,6 +12,10 @@ class Activator(ABC):
         return self._activator_id
 
     @property
+    def rank(self):
+        return self._database.get_activator_field(self._device_id, self._activator_id, "rank")
+
+    @property
     def name(self):
         return self._database.get_activator_field(self._device_id, self._activator_id, "name")
 

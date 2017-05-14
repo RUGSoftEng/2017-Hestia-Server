@@ -11,6 +11,7 @@
       "activators": [
         {
           "module" : "plugins.mock.lock.ActivateLock",
+          "rank" : 0,
           "class": "ActivateLock",
           "name": "Activate",
           "type": "bool",
@@ -29,6 +30,7 @@
       "activators": [
         {
           "module" : "plugins.mock.light.LightSwitch",
+          "rank" : 0,
           "class": "LightSwitch",
           "name": "On/Off",
           "type": "bool",
@@ -36,6 +38,7 @@
         },
         {
           "module" : "plugins.mock.light.LightDimmer",
+          "rank" : 1,
           "class": "LightDimmer",
           "name": "Dimmer",
           "type": "float",
@@ -57,6 +60,7 @@
       "activators": [
         {
           "module" : "plugins.philips.activators.SwitchOnOff",
+          "rank" : 0,
           "class": "SwitchOnOff",
           "name": "On/Off",
           "type": "bool",
@@ -64,6 +68,7 @@
         },
         {
           "module" : "plugins.philips.activators.SliderBrightness",
+          "rank" : 1,
           "class": "SliderBrightness",
           "name": "Brightness",
           "type": "float",
@@ -83,6 +88,7 @@
       "activators": [
         {
           "module" : "plugins.philips.activators.SwitchOnOff",
+          "rank" : 0,
           "class": "SwitchOnOff",
           "name": "On/Off",
           "type": "bool",
@@ -90,6 +96,7 @@
         },
         {
           "module" : "plugins.philips.activators.SliderBrightness",
+          "rank" : 1,
           "class": "SliderBrightness",
           "name": "Brightness",
           "type": "float",
@@ -97,6 +104,7 @@
         },
         {
           "module" : "plugins.philips.activators.SliderColor",
+          "rank" : 2,
           "class": "SliderColor",
           "name": "Color",
           "type": "float",

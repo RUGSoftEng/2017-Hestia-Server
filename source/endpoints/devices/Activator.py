@@ -7,6 +7,8 @@ from logic import activator_logic
 activator = namespace.model("Activator", {
     "activatorId": fields.String(attribute="identifier", readOnly=True, required=True,
                                   description="The unique identifier of the action")
+    , "rank": fields.Integer(attribute="rank", readOnly=True, required=True,
+                                  description="The rank of the activator")
     , "name": fields.String(readOnly=True, required=True, description="The name of the action")
     , "type": fields.String(attribute="type", readOnly=True, required=True,
                             description="The type of interaction you can have")

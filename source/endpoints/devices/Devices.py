@@ -19,7 +19,8 @@ class Devices(Resource):
     @namespace.marshal_list_with(device)
     def get(self):
         """ List all devices """
-        return device_logic.get_all_devices()
+        devices = device_logic.get_all_devices()
+        return devices
 
     @namespace.doc("post_device")
     @namespace.expect(format_post_device)

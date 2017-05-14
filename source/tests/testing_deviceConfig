@@ -11,6 +11,7 @@
       "activators": [
         {
           "module" : "plugins.mock.lock.ActivateLock",
+          "rank" : 0,
           "class": "ActivateLock",
           "name": "Activate",
           "type": "bool",

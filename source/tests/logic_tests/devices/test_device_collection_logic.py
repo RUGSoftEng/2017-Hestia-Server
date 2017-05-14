@@ -94,6 +94,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
             "activators": [
                 {
                     "module": "plugins.mock.ActivateLock",
+                    "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate",
                     "type": "bool",
