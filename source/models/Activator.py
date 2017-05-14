@@ -4,6 +4,11 @@ from util.InvalidStateException import InvalidStateException
 
 
 class Activator(ABC):
+    """
+    An abstract implementation of an activator.
+    Concrete activators should only implement the abstract method perform.
+    """
+
     def __init__(self, database, device_id, activator_id):
         self._database = database
         self._device_id = device_id
