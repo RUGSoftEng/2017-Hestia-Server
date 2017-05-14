@@ -1,6 +1,7 @@
 from flask_restplus import abort
 
 from logic.util import abort_with_error
+from util.InvalidStateException import InvalidStateException
 from util.NotFoundException import NotFoundException
 
 
@@ -22,9 +23,12 @@ class ActivatorLogic:
             abort_with_error(str(exception))
 
     def change_activator_state(self, device_id, activator_id, state):
-        device = self._database.get_device(device_id)
-        options = device.options
-        activator = device.get_activator(activator_id)
-        activator.state = state
-        activator.perform(options)
+        try:
+            device = self._database.get_device(device_id)
+            options = device.options
+            activator = device.get_activator(activator_id)
+            activator.state = state
+            activator.perform(options)
+        except InvalidStateException as exception:
+            abort(400, str(exception))
 

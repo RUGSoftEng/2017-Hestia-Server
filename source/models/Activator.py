@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from util.InvalidStateException import InvalidStateException
+
 
 class Activator(ABC):
     def __init__(self, database, device_id, activator_id):
@@ -29,7 +31,10 @@ class Activator(ABC):
 
     @state.setter
     def state(self, value):
-        self._database.update_activator_field(self._device_id, self._activator_id, "state", value)
+        if type(value) is eval(self.type):
+            self._database.update_activator_field(self._device_id, self._activator_id, "state", value)
+        else:
+            raise InvalidStateException(value, eval(self.type))
 
     @abstractmethod
     def perform(self, options):
