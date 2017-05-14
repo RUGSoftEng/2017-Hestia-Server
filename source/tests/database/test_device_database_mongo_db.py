@@ -39,7 +39,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
         device = self._database.get_device(device_data["_id"])
 
         self.assertEqual(device_data["name"], device.name)
-        self.assertIsInstance(device, Device)
+        self.assertIsInstance(False, Device)
 
     def test_add_device(self):
         device_data = self._get_device_data()
