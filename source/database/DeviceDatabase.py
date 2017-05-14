@@ -17,7 +17,6 @@ class DeviceDatabase:
             _id = data["_id"]
             device = self._get_class(data["module"], data["class"])(self, _id)
             devices.append(device)
-
         return devices
 
     def get_device(self, device_id):
@@ -32,12 +31,10 @@ class DeviceDatabase:
         self._devices.insert_one(plugin)
 
     def delete_device(self, device_id):
-        object_id = self.__get_object_id(device_id)
-        self._devices.delete_one({"_id" : object_id})
+        self._devices.delete_one({"_id" : device_id})
 
     def update_field(self, device_id, field, new_value):
-        object_id = self.__get_object_id(device_id)
-        self._devices.find_one_and_update({"_id" : object_id}, {"$set": {field: new_value}})
+        self._devices.find_one_and_update({"_id" : device_id}, {"$set": {field: new_value}})
 
     def get_field(self, device_id, field):
         data = self.__get_device_data(device_id)
@@ -49,16 +46,14 @@ class DeviceDatabase:
         return activator[field]
 
     def update_activator_field(self, device_id, activator_id, field, new_value):
-        object_id = self.__get_object_id(device_id)
-        self._devices.find_one_and_update({"_id": object_id}
+        self._devices.find_one_and_update({"_id": device_id}
                                           , {"$set": {"activators."
                                                       + activator_id
                                                       + "."
                                                       + field: new_value}})
 
     def __get_device_data(self, device_id):
-        object_id = self.__get_object_id(device_id)
-        data = self._devices.find_one(object_id)
+        data = self._devices.find_one(device_id)
         if data is None:
             message = "No device with id [" + device_id + "] found."
             raise NotFoundException(message)
@@ -72,13 +67,6 @@ class DeviceDatabase:
         except KeyError as exception:
             message = "No activator with id [" + activator_id + "] found."
             raise NotFoundException(message)
-
-    @staticmethod
-    def __get_object_id(device_id):
-        try:
-            return ObjectId(device_id)
-        except InvalidId as exception:
-            raise NotFoundException(str(exception))
 
     @staticmethod
     def _get_class(module, class_name):
