@@ -31,4 +31,6 @@ class ActivatorLogic:
             activator.perform(options)
         except InvalidStateException as exception:
             abort(400, str(exception))
+        except NotFoundException as exception:
+            abort(404, str(exception))
 
