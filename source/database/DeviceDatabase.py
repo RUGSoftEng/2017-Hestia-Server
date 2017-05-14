@@ -46,12 +46,16 @@ class DeviceDatabase:
 
     def get_activator_field(self, device_id, activator_id, field):
         data = self.__get_device_data(device_id)
-        return data["activators"][activator_id][field]
+        activator = self.__get_activator(data, activator_id)
+        return activator[field]
 
     def update_activator_field(self, device_id, activator_id, field, new_value):
         object_id = self.__get_object_id(device_id)
         self._devices.find_one_and_update({"_id": object_id}
-                                          , {"$set": {"activators."+activator_id+"."+field: new_value}})
+                                          , {"$set": {"activators."
+                                                      + activator_id
+                                                      + "."
+                                                      + field: new_value}})
 
     def __get_device_data(self, device_id):
         object_id = self.__get_object_id(device_id)
@@ -61,6 +65,14 @@ class DeviceDatabase:
             raise NotFoundException(message)
         else:
             return data
+
+    @staticmethod
+    def __get_activator(data, activator_id):
+        try:
+            return data["activators"][activator_id]
+        except KeyError as exception:
+            message = "No activator with id [" + activator_id + "] found."
+            raise NotFoundException(message)
 
     @staticmethod
     def __get_object_id(device_id):

@@ -14,9 +14,12 @@ class ActivatorLogic:
         self._database = db
 
     def get_activator(self, device_id, activator_id):
-        device = self._database.get_device(device_id)
-        activator = device.get_activator(activator_id)
-        return activator
+        try:
+            device = self._database.get_device(device_id)
+            activator = device.get_activator(activator_id)
+            return activator
+        except NotFoundException as exception:
+            abort_with_error(str(exception))
 
     def change_activator_state(self, device_id, activator_id, state):
         device = self._database.get_device(device_id)
