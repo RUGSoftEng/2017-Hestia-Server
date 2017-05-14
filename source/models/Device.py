@@ -4,6 +4,11 @@ from abc import ABC, abstractmethod
 
 
 class Device(ABC):
+    """
+    An abstract implementation of a device
+    Concrete plugins should only implement the abstract method setup().
+    A device has a list of activators to give all actions it can perform.
+    """
 
     def __init__(self, database, device_id):
         self._database = database
