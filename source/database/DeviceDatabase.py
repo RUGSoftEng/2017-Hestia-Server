@@ -14,7 +14,7 @@ class DeviceDatabase:
     def get_all_devices(self):
         devices = []
         for data in self._devices.find():
-            _id = str(data["_id"])
+            _id = data["_id"]
             device = self._get_class(data["module"], data["class"])(self, _id)
             devices.append(device)
 
@@ -28,9 +28,8 @@ class DeviceDatabase:
 
     def add_device(self, plugin):
         """Adds the given plugin info as a new device"""
-        data = plugin
-        data["_id"] = ObjectId()
-        self._devices.insert_one(data)
+        plugin["_id"] = str(ObjectId())
+        self._devices.insert_one(plugin)
 
     def delete_device(self, device_id):
         object_id = self.__get_object_id(device_id)
@@ -81,9 +80,7 @@ class DeviceDatabase:
         except InvalidId as exception:
             raise NotFoundException(str(exception))
 
-
     @staticmethod
     def _get_class(module, class_name):
         module = importlib.import_module(module)
         return getattr(module, class_name)
-
