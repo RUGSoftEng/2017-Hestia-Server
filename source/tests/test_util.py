@@ -1,4 +1,4 @@
-from PluginManager import PluginManager
+from pluginmanager.PluginManager import PluginManager
 from database.DeviceDatabase import DeviceDatabase
 from util.BasePath import get_base_path
 
