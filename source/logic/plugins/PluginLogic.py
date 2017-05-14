@@ -21,7 +21,8 @@ class PluginLogic:
 
     def get_required_info(self, organization, plugin_name):
         try:
-            required_info = self._plugin_manager.get_required_info_of(organization, plugin_name)
+            required_info = self._plugin_manager.get_required_info_of(
+                organization, plugin_name)
             required_info["organization"] = organization
             required_info["plugin_name"] = plugin_name
             required_info["name"] = "default"
