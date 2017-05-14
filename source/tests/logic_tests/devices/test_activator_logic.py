@@ -1,7 +1,5 @@
 import unittest
 
-from PluginManager import PluginManager
-from database.DeviceDatabase import DeviceDatabase
 from logic import ActivatorLogic
 from tests import test_util
 
