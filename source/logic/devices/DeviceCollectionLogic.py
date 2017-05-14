@@ -1,3 +1,9 @@
+from flask_restplus import abort
+
+from logic.util import abort_with_error
+from util.NotFoundException import NotFoundException
+
+
 class DeviceCollectionLogic:
     """
     This class contains methods to interact with the collection of device, this
@@ -21,7 +27,13 @@ class DeviceCollectionLogic:
                                                        , json)
 
     def get_device(self, device_id):
-        return self._database.get_device(device_id)
+        try:
+            return self._database.get_device(device_id)
+        except NotFoundException as exception:
+            abort_with_error(str(exception))
 
     def remove_device(self, device_id):
-        self._database.delete_device(device_id)
+        try:
+            return self._database.delete_device(device_id)
+        except NotFoundException as exception:
+            abort_with_error(str(exception))
