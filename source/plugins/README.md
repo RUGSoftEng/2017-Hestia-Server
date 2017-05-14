@@ -40,7 +40,8 @@ As it is rather self-explanatory we have added a example below.
 Every organization has its own entry into the file.
 In the example the only organization is "Mock", it has one plugin called "Lock".
 The following fields are mandatory for each implementation of the `Device` class: "module", "class", "type".
-For the each `Activator` all fields are mandatory.
+For both `Device` and`Activator` all fields shown below are mandatory.
+It is not required to have any information in the "required_info" but the field has to be there.
 
 ```json
 {
