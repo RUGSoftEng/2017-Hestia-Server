@@ -1,6 +1,7 @@
 
 import unittest
 
+import sys
 from coverage import coverage
 
 from flask import Flask
@@ -25,18 +26,24 @@ def dev():
 
 @manager.command
 def test():
-    test = unittest.TestLoader().discover("tests")
-    unittest.TextTestRunner().run(test)
+    sys.exit(__run_test())
+
 
 @manager.command
 def cov():
     cov = coverage(source = "./")
     cov.start()
-    test()
+    succes = __run_test()
     cov.stop()
     cov.save()
     print("Coverage summary")
     cov.report()
+    sys.exit(succes)
+
+def __run_test():
+    test = unittest.TestLoader().discover("tests")
+    succes = unittest.TextTestRunner().run(test).wasSuccessful()
+    return not succes
 
 if __name__ == "__main__":
     manager.run()
