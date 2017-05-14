@@ -3,7 +3,7 @@ from database.DeviceDatabase import DeviceDatabase
 from util.BasePath import get_base_path
 
 
-def get_dabase():
+def get_database():
     return DeviceDatabase("testing")
 
 

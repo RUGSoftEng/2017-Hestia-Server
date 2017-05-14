@@ -19,7 +19,7 @@
       ]
     },
     "Light": {
-      "module": "plugins.mock.Light.Light",
+      "module": "plugins.mock.light.Light",
       "class": "Light",
       "type" : "Light",
       "required_info": {
@@ -28,14 +28,14 @@
       },
       "activators": [
         {
-          "module" : "plugins.mock.Light.LightSwitch",
+          "module" : "plugins.mock.light.LightSwitch",
           "class": "LightSwitch",
           "name": "On/Off",
           "type": "bool",
           "state" : true
         },
         {
-          "module" : "plugins.mock.Light.LightDimmer",
+          "module" : "plugins.mock.light.LightDimmer",
           "class": "LightDimmer",
           "name": "Dimmer",
           "type": "float",
