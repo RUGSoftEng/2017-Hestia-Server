@@ -11,4 +11,4 @@ install:
 script:
   - python source/application.py cov
 after_success:
-  - coverage report --omit="source/tests/*" -m --fail-under=35
+  - coverage report --omit="source/tests/*" -m --fail-under=50
