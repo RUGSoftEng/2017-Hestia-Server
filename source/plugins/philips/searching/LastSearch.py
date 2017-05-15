@@ -2,6 +2,9 @@ from plugins.philips.SearchStrategy import SearchStrategy
 
 
 class LastSearch(SearchStrategy):
+    """
+    This search method searches for the last added light to the bridge.
+    """
     @classmethod
     def search(cls, response, types):
         found = False

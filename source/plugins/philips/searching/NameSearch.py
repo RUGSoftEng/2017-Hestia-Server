@@ -2,6 +2,9 @@ from plugins.philips.SearchStrategy import SearchStrategy
 
 
 class NameSearch(SearchStrategy):
+    """
+    Searches based on a given name.
+    """
     @classmethod
     def search(cls, response, name):
         found = False
