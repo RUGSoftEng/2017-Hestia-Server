@@ -2,6 +2,10 @@ from plugins.philips.SearchStrategy import SearchStrategy
 
 
 class ReachableSearch(SearchStrategy):
+    """
+    Searches based on whether or not lights are reachable.
+    Won't work when multiple devices are reachable.
+    """
     @classmethod
     def search(cls, response, types):
         found = False
