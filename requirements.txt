@@ -1,3 +1,6 @@
+coverage
 flask-restplus
+Flask-Script
 requests
 GitPython
+pymongo
