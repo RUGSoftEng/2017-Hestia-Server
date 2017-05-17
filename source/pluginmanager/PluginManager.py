@@ -13,7 +13,7 @@ class PluginManager:
     It is used to get information about plugins and instantiate plugins.
     """
     
-    def __init__(self, device_config, database):
+    def __init__(self, device_config):
         self._plugins = json.load(open(device_config))
 
     def get_plugin(self, organization, plugin_name, required_info):

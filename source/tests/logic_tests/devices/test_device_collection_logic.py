@@ -11,7 +11,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
     def setUp(self):
         self._direct_database = MongoClient()["Hestia"]["testing"]
         self._database = test_util.get_database()
-        self._plugin_manager = test_util.get_plugin_manager(self._database)
+        self._plugin_manager = test_util.get_plugin_manager()
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
