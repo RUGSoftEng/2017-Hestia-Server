@@ -41,3 +41,7 @@ class DeviceCollectionLogic:
             return self._database.delete_device(device_id)
         except NotFoundException as exception:
             abort_with_error(str(exception))
+
+    def change_device_name(self, device_id, new_name):
+        device = self.get_device(device_id)
+        device.name = new_name
