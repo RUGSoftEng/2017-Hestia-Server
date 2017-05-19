@@ -2,10 +2,9 @@ from os.path import isfile, join
 
 from logic.util import abort_with_error
 from pluginmanager.PluginManager import PluginManager
-from util.BasePath import get_base_path
 from util.ConfigPath import get_info_plugin
 from util.ConfigPath import get_config_path
-from util.ConfigPath import get_plugins
+from util.ConfigPath import get_plugins_path
 from util.NotFoundException import NotFoundException
 from os import listdir
 
@@ -16,16 +15,14 @@ class PluginLogic:
     """
 
     def get_organizations(self):
-        list = listdir(get_config_path())
-        return list
+        return listdir(get_config_path())
 
 
     def get_plugins(self, organization):
         try:
-            plugins = get_plugins(organization)
-            list = listdir(plugins)
-            onlyfiles = [f for f in list if isfile(join(plugins, f))]
-            return onlyfiles
+            plugins_path = get_plugins_path(organization)
+            plugins = listdir(plugins_path)
+            return plugins
         except NotFoundException as exception:
             abort_with_error(str(exception))
 
