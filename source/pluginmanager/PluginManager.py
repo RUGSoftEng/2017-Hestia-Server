@@ -1,8 +1,12 @@
 import importlib
-import json
 
 import copy
+import json
+
 from bson.objectid import ObjectId
+from os import listdir
+
+from util.ConfigPath import get_config_path
 
 from util.NotFoundException import NotFoundException
 
@@ -12,9 +16,6 @@ class PluginManager:
     This class is a link between the logic classes and plugins. 
     It is used to get information about plugins and instantiate plugins.
     """
-    
-    def __init__(self, device_config):
-        self._plugins = json.load(open(device_config))
 
     def get_plugin(self, organization, plugin_name, required_info):
         """create new plugin"""
@@ -39,17 +40,16 @@ class PluginManager:
 
     def get_organizations(self):
         """ Get a list of organizations """
-        organizations = list(self._plugins.keys())
-        return organizations
+        return listdir(get_config_path())
 
     def get_plugins_of(self, organization):
         """ Get all the plugins of an organization """
         organization_plugins = self.__get_organization_plugins(organization)
-        plugin_names = list(organization_plugins.keys())
-        return plugin_names
+        #plugin_names = list(organization_plugins.keys())
+        return organization_plugins
 
     def get_required_info_of(self, organization, plugin_name):
-        """ Get the required information of a specific """
+        """ Get the required information of a specific plugin """
         plugin = self.__get_plugin(organization, plugin_name)
         return plugin["required_info"]
 
@@ -59,17 +59,24 @@ class PluginManager:
 
     def __get_organization_plugins(self, organization):
         """get all plugin names within an organization"""
-        if organization in self._plugins:
-            return self._plugins[organization]
+        config_path = get_config_path()
+        organizations = listdir(config_path)
+        if organization in organizations:
+            plugin_path = config_path + organization + "/"
+            plugins = listdir(plugin_path)
+            return plugins
         else:
             message = "Organization [" + organization + "] not found."
             raise NotFoundException(message)
 
     def __get_plugin(self, organization, plugin_name):
-        """get required info of plugin based on organization and plugin name"""
+        """get plugin based on organization and plugin name"""
         organization_plugins = self.__get_organization_plugins(organization)
         if plugin_name in organization_plugins:
-            return organization_plugins[plugin_name]
+            config_path = get_config_path()
+            plugin_path = config_path + organization + "/" + plugin_name
+            plugin = json.load(open(plugin_path))
+            return plugin[organization][plugin_name]
         else:
             message = "Plugin [" \
                       + plugin_name \

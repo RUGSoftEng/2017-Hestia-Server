@@ -9,8 +9,8 @@ class TestActivatorLogic(unittest.TestCase):
         self._database = test_util.get_database()
         self._plugin_manager = test_util.get_plugin_manager()
 
-        req = self._plugin_manager.get_required_info_of("mock", "Lock")
-        plugin = self._plugin_manager.get_plugin("mock", "Lock", req)
+        req = self._plugin_manager.get_required_info_of("Mock", "Lock")
+        plugin = self._plugin_manager.get_plugin("Mock", "Lock", req)
         plugin["name"] = "TestDevice"
         self._database.add_device(plugin)
 

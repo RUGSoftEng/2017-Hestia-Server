@@ -44,7 +44,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self.assertTrue(flag_device_two_found)
 
     def test_create_new_device(self):
-        organization = "mock"
+        organization = "Mock"
         plugin_name = "Lock"
         device_name = "TestDevice"
 
