@@ -13,6 +13,10 @@ device = namespace.model("Device", {
     , "activators": fields.List(fields.Nested(activator))
 })
 
+name = namespace.model("Name", {
+    "name": fields.String(required=True, description="The new name of the device")
+})
+
 
 @namespace.route("/<string:device_id>")
 @namespace.response(404, "Device not found")
@@ -32,3 +36,12 @@ class Device(Resource):
         """ Delete a device given its identifier """
         device_logic.remove_device(device_id)
         return "", 204
+
+    @namespace.doc("put_name")
+    @namespace.expect(name)
+    @namespace.response(201, "name changed")
+    def put(self, device_id):
+        """ Put a new name for device given its identifier """
+        new_name = namespace.apis[0].payload["name"]
+        device_logic.change_device_name(device_id, new_name)
+        return "name changed", 201
