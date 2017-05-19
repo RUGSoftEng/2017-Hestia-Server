@@ -42,12 +42,6 @@ class PluginManager:
         """ Get a list of organizations """
         return listdir(get_config_path())
 
-    def get_plugins_of(self, organization):
-        """ Get all the plugins of an organization """
-        organization_plugins = self.__get_organization_plugins(organization)
-        #plugin_names = list(organization_plugins.keys())
-        return organization_plugins
-
     def get_required_info_of(self, organization, plugin_name):
         """ Get the required information of a specific plugin """
         plugin = self.__get_plugin(organization, plugin_name)
@@ -57,7 +51,7 @@ class PluginManager:
         mod = importlib.import_module(mod)
         return getattr(mod, class_name)
 
-    def __get_organization_plugins(self, organization):
+    def get_plugins_of(self, organization):
         """get all plugin names within an organization"""
         config_path = get_config_path()
         organizations = listdir(config_path)
@@ -71,7 +65,7 @@ class PluginManager:
 
     def __get_plugin(self, organization, plugin_name):
         """get plugin based on organization and plugin name"""
-        organization_plugins = self.__get_organization_plugins(organization)
+        organization_plugins = self.get_plugins_of(organization)
         if plugin_name in organization_plugins:
             config_path = get_config_path()
             plugin_path = config_path + organization + "/" + plugin_name
