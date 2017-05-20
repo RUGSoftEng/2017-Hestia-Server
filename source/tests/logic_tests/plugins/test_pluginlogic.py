@@ -28,7 +28,6 @@ class TestPluginLogic(unittest.TestCase):
             self):
         required_info = self._plugin_logic.get_required_info("Mock", "Lock")
         expected = self.get_expected_plugin_information()
-        print(required_info)
         self.assertEqual(required_info, expected)
 
     def get_expected_plugin_information(self):
