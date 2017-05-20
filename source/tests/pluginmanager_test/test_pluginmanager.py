@@ -30,11 +30,6 @@ class TestPluginManager(unittest.TestCase):
         self.assertEqual(required_info, expected)
 
     def get_expected_plugin_information(self):
-        return {'organization': "Mock"
-                , 'plugin_name': "Lock"
-                , 'required_info': {
-                    'name': 'default_name'
-                    , 'bridge_ip': '127.0.0.1'
-                    , 'bridge_port': '80'
-                    }
-                 }
+        return {'bridge_ip': '127.0.0.1'
+                , 'bridge_port': '80'
+                }
