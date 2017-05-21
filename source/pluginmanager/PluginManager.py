@@ -4,9 +4,9 @@ import copy
 import json
 
 from bson.objectid import ObjectId
-from os import listdir
+from os import listdir, path
 
-from util.ConfigPath import get_config_path
+from util.PluginPath import get_plugin_path
 
 from util.NotFoundException import NotFoundException
 
@@ -40,7 +40,12 @@ class PluginManager:
 
     def get_organizations(self):
         """ Get a list of organizations """
-        return listdir(get_config_path())
+        plugin_path = get_plugin_path()
+        organizations = list()
+        for o in listdir(plugin_path):
+            if (path.isdir(path.join(plugin_path, o)) and o != "__pycache__"):
+                organizations.append(o)
+        return organizations
 
     def get_required_info_of(self, organization, plugin_name):
         """ Get the required information of a specific plugin """
@@ -53,11 +58,13 @@ class PluginManager:
 
     def get_plugins_of(self, organization):
         """get all plugin names within an organization"""
-        config_path = get_config_path()
-        organizations = listdir(config_path)
+        organizations = self.get_organizations()
         if organization in organizations:
-            plugin_path = config_path + organization + "/"
-            plugins = listdir(plugin_path)
+            plugin_path = get_plugin_path() + organization + "/devices/"
+            plugins = list()
+            for o in listdir(plugin_path):
+                if path.isdir(path.join(plugin_path, o)):
+                    plugins.append(o)
             return plugins
         else:
             message = "Organization [" + organization + "] not found."
@@ -67,10 +74,9 @@ class PluginManager:
         """get plugin based on organization and plugin name"""
         organization_plugins = self.get_plugins_of(organization)
         if plugin_name in organization_plugins:
-            config_path = get_config_path()
-            plugin_path = config_path + organization + "/" + plugin_name
+            plugin_path = get_plugin_path() + organization + "/devices/" + plugin_name + "/Configuration"
             plugin = json.load(open(plugin_path))
-            return plugin[organization][plugin_name]
+            return plugin
         else:
             message = "Plugin [" \
                       + plugin_name \

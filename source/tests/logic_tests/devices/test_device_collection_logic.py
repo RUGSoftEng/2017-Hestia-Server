@@ -89,7 +89,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
 
     def _add_device(self, _id, name):
         data = {
-            "module": "plugins.mock.lock.Lock",
+            "module": "plugins.mock.devices.lock.Lock",
             "class": "Lock",
             "type": "Lock",
             "name": name,
@@ -99,7 +99,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
             },
             "activators": [
                 {
-                    "module": "plugins.mock.ActivateLock",
+                    "module": "plugins.mock.activators.ActivateLock",
                     "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate",

@@ -112,7 +112,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
 
     def _get_device_data(self):
         device_data = {
-            "module": "plugins.mock.lock.Lock",
+            "module": "plugins.mock.devices.lock.Lock",
             "class": "Lock",
             "type": "Lock",
             "name": "TestDevice",
@@ -122,7 +122,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
             },
             "activators": [
                 {
-                    "module": "plugins.mock.ActivateLock",
+                    "module": "plugins.mock.activators.ActivateLock",
                     "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate",

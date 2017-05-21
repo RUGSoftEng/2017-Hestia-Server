@@ -1,7 +1,5 @@
 {
-  "mock": {
-    "Lock": {
-      "module": "plugins.mock.lock.Lock",
+      "module": "plugins.mock.devices.lock.Lock",
       "class": "Lock",
       "type" : "Lock",
       "required_info": {
@@ -10,7 +8,7 @@
       },
       "activators": [
         {
-          "module" : "plugins.mock.lock.ActivateLock",
+          "module" : "plugins.mock.activators.ActivateLock",
           "rank" : 0,
           "class": "ActivateLock",
           "name": "Activate",
@@ -18,6 +16,4 @@
           "state" : true
         }
       ]
-    }
-  }
 }
