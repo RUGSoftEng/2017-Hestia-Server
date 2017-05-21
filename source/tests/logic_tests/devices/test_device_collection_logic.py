@@ -3,15 +3,16 @@ import unittest
 from bson import ObjectId
 from pymongo import MongoClient
 
+from database.DeviceDatabase import DeviceDatabase
 from logic import DeviceCollectionLogic
-from tests import test_util
+from pluginmanager.PluginManager import PluginManager
 
 
 class TestDeviceCollectionLogic(unittest.TestCase):
     def setUp(self):
         self._direct_database = MongoClient()["Hestia"]["testing"]
-        self._database = test_util.get_database()
-        self._plugin_manager = test_util.get_plugin_manager()
+        self._database = DeviceDatabase("testing")
+        self._plugin_manager = PluginManager()
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
@@ -44,8 +45,8 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self.assertTrue(flag_device_two_found)
 
     def test_create_new_device(self):
-        organization = "Mock"
-        plugin_name = "Lock"
+        organization = "mock"
+        plugin_name = "lock"
         device_name = "TestDevice"
 
         req = self._plugin_manager.get_required_info_of(organization, plugin_name)

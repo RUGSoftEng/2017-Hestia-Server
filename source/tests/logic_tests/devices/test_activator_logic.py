@@ -1,16 +1,17 @@
 import unittest
 
+from database.DeviceDatabase import DeviceDatabase
 from logic import ActivatorLogic
-from tests import test_util
+from pluginmanager.PluginManager import PluginManager
 
 
 class TestActivatorLogic(unittest.TestCase):
     def setUp(self):
-        self._database = test_util.get_database()
-        self._plugin_manager = test_util.get_plugin_manager()
+        self._database = DeviceDatabase("testing")
+        self._plugin_manager = PluginManager()
 
-        req = self._plugin_manager.get_required_info_of("Mock", "Lock")
-        plugin = self._plugin_manager.get_plugin("Mock", "Lock", req)
+        req = self._plugin_manager.get_required_info_of("mock", "lock")
+        plugin = self._plugin_manager.get_plugin("mock", "lock", req)
         plugin["name"] = "TestDevice"
         self._database.add_device(plugin)
 
