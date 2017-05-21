@@ -45,19 +45,11 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self.assertTrue(flag_device_two_found)
 
     def test_create_new_device(self):
-        organization = "mock"
-        plugin_name = "lock"
         device_name = "TestDevice"
+        required_info = self.__get_plugin_information(device_name)
+        self._logic.create_new_device(required_info)
 
-        req = self._plugin_manager.get_required_info_of(organization, plugin_name)
-        req["organization"] = organization
-        req["plugin_name"] = plugin_name
-        req["name"] = device_name
-
-        self._logic.create_new_device(req)
-
-        device = self._direct_database.find_one({"name" : device_name})
-
+        device = self._direct_database.find_one({"name": device_name})
         self.assertEqual(device_name, device["name"])
 
     def test_get_device(self):
@@ -117,3 +109,13 @@ class TestDeviceCollectionLogic(unittest.TestCase):
 
         data["_id"] = _id
         self._direct_database.insert_one(data)
+
+    def __get_plugin_information(self, name):
+        return {'organization': "Mock"
+                , 'plugin_name': "Lock"
+                , 'required_info': {
+                    'name': name
+                    , 'bridge_ip': '127.0.0.1'
+                    , 'bridge_port': '80'
+                    }
+                }

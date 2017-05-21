@@ -19,7 +19,8 @@ class DeviceCollectionLogic:
         try:
             organization = json.pop("organization")
             plugin_name = json.pop("plugin_name")
-            name = json.pop("name")
+            required_info = json.pop('required_info')
+            name = required_info.pop("name")
             plugin = self._plugin_manager.get_plugin(organization
                                             , plugin_name
                                             , json)
