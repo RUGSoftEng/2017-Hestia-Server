@@ -3,12 +3,11 @@ from logic.devices.ActivatorLogic import ActivatorLogic
 from logic.devices.DeviceCollectionLogic import DeviceCollectionLogic
 from logic.plugins.PluginLogic import PluginLogic
 from pluginmanager.PluginManager import PluginManager
-from util.BasePath import get_base_path
+from util.PluginPath import get_plugin_path
 
 _device_database = DeviceDatabase("devices")
 
-device_config = get_base_path() + "deviceConfig"
-_plugin_manager = PluginManager()
+_plugin_manager = PluginManager(get_plugin_path())
 
 
 device_logic = DeviceCollectionLogic(_device_database, _plugin_manager)

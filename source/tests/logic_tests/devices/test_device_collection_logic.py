@@ -3,16 +3,16 @@ import unittest
 from bson import ObjectId
 from pymongo import MongoClient
 
-from database.DeviceDatabase import DeviceDatabase
 from logic import DeviceCollectionLogic
-from pluginmanager.PluginManager import PluginManager
+from tests.tests_util import get_database
+from tests.tests_util import get_plugin_manager
 
 
 class TestDeviceCollectionLogic(unittest.TestCase):
     def setUp(self):
         self._direct_database = MongoClient()["Hestia"]["testing"]
-        self._database = DeviceDatabase("testing")
-        self._plugin_manager = PluginManager()
+        self._database = get_database()
+        self._plugin_manager = get_plugin_manager()
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
@@ -111,8 +111,8 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self._direct_database.insert_one(data)
 
     def __get_plugin_information(self, name):
-        return {'organization': "Mock"
-                , 'plugin_name': "Lock"
+        return {'organization': "mock"
+                , 'plugin_name': "lock"
                 , 'required_info': {
                     'name': name
                     , 'bridge_ip': '127.0.0.1'
