@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 
 class Database(ABC):
     """
-    This class communicates with the MongoDB database. 
-    It has several methods for this communication.
+    This is an abstract class for communication with a database.
+    It has several abstract methods for this communication.
     """
 
     @abstractmethod
