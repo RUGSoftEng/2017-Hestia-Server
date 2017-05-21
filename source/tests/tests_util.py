@@ -8,5 +8,5 @@ def get_database():
 
 
 def get_plugin_manager():
-    test_config = get_base_path() + "tests/testing_deviceConfig"
+    test_config = get_base_path() + "tests/test_plugin/"
     return PluginManager(test_config)
