@@ -25,7 +25,7 @@ class DeviceCollectionLogic:
             name = required_info.pop("name")
             plugin = self._plugin_manager.get_plugin(organization
                                             , plugin_name
-                                            , json)
+                                            , required_info)
             plugin["name"] = name
             self._database.add_device(plugin)
         except NotFoundException as exception:

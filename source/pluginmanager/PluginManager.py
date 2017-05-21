@@ -21,6 +21,9 @@ class PluginManager:
         plugin = self.__get_plugin(organization, plugin_name)
         data = copy.deepcopy(plugin)
 
+        device_id = str(ObjectId())
+        data["_id"] = device_id
+
         #Remove unneeded plugin info
         activators = data.pop('activators', None)
         data.pop("required_info", None)
