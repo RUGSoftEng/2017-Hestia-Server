@@ -44,7 +44,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self.assertTrue(flag_device_two_found)
 
     def test_create_new_device(self):
-        organization = "mock"
+        organization = "Mock"
         plugin_name = "Lock"
         device_name = "TestDevice"
 
@@ -55,7 +55,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
 
         self._logic.create_new_device(req)
 
-        device = self._direct_database.find_one({"name" : device_name})
+        device = self._direct_database.find_one({"name": device_name})
 
         self.assertEqual(device_name, device["name"])
 
