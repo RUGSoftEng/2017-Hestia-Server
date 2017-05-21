@@ -7,7 +7,7 @@ from database.Database import Database
 from util.NotFoundException import NotFoundException
 
 
-class DeviceDatabase(Database):
+class MongoDatabase(Database):
     """
     This class communicates with the MongoDB database. 
     It has several methods for this communication.

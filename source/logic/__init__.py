@@ -1,13 +1,13 @@
 import os
 
-from database.DeviceDatabase import DeviceDatabase
+from database.MongoDatabase import MongoDatabase
 from logic.devices.ActivatorLogic import ActivatorLogic
 from logic.devices.DeviceCollectionLogic import DeviceCollectionLogic
 from logic.plugins.PluginLogic import PluginLogic
 from pluginmanager.PluginManager import PluginManager
 from util.BasePath import get_base_path
 
-_device_database = DeviceDatabase("devices")
+_device_database = MongoDatabase("devices")
 
 device_config = get_base_path() + "deviceConfig"
 _plugin_manager = PluginManager(device_config)

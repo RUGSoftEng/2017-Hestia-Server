@@ -43,14 +43,5 @@ class Database(ABC):
         pass
 
     @abstractmethod
-    def _get_device_data(self, device_id):
-        """Get data of device based on its id"""
-        pass
-
-    @abstractmethod
-    def _get_activator(data, activator_id):
-        pass
-
-    @abstractmethod
     def _get_class(module, class_name):
         pass
