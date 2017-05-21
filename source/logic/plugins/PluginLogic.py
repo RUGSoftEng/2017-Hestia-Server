@@ -23,9 +23,10 @@ class PluginLogic:
         try:
             required_info = self._plugin_manager.get_required_info_of(
                 organization, plugin_name)
-            required_info["organization"] = organization
-            required_info["plugin_name"] = plugin_name
-            required_info["name"] = "default"
-            return required_info
+            required_info['name'] = 'default_name'
+            return {'organization': organization
+                , 'plugin_name': plugin_name
+                , 'required_info': required_info
+                    }
         except NotFoundException as exception:
             abort_with_error(str(exception))

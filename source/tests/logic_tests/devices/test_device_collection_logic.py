@@ -45,13 +45,10 @@ class TestDeviceCollectionLogic(unittest.TestCase):
 
     def test_create_new_device(self):
         device_name = "TestDevice"
-
         required_info = self.__get_plugin_information(device_name)
-
         self._logic.create_new_device(required_info)
 
-        device = self._direct_database.find_one({"name" : device_name})
-
+        device = self._direct_database.find_one({"name": device_name})
         self.assertEqual(device_name, device["name"])
 
     def test_get_device(self):

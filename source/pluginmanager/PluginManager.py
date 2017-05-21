@@ -51,7 +51,8 @@ class PluginManager:
     def get_required_info_of(self, organization, plugin_name):
         """ Get the required information of a specific """
         plugin = self.__get_plugin(organization, plugin_name)
-        return plugin["required_info"]
+        required_info = plugin["required_info"]
+        return required_info
 
     def _get_class(self, mod, class_name):
         mod = importlib.import_module(mod)
