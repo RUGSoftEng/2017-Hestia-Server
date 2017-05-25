@@ -24,7 +24,7 @@ class PluginLogic:
             required_info = self._plugin_manager.get_required_info_of(
                 organization, plugin_name)
             required_info['name'] = 'default_name'
-            return {'organization': organization
+            return {"collection": organization
                 , 'plugin_name': plugin_name
                 , 'required_info': required_info
                     }
