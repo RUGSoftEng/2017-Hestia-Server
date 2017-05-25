@@ -1,9 +1,18 @@
+from database.TinyDatabase import TinyDatabase
 from pluginmanager.PluginManager import PluginManager
 from database.MongoDatabase import MongoDatabase
 from util.BasePath import get_base_path
 
 
 def get_database():
+    return get_mongo_database()
+
+
+def get_tiny_database():
+    return TinyDatabase("testing")
+
+
+def get_mongo_database():
     return MongoDatabase("testing")
 
 

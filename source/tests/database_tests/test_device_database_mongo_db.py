@@ -9,7 +9,7 @@ from tests import test_util
 
 class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def setUp(self):
-        self._database = test_util.get_database()
+        self._database = test_util.get_mongo_database()
         self._direct_database = MongoClient()["Hestia"]["testing"]
 
     def tearDown(self):

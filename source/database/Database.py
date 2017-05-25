@@ -1,3 +1,4 @@
+import importlib
 from abc import ABC, abstractmethod
 
 
@@ -43,5 +44,11 @@ class Database(ABC):
         pass
 
     @abstractmethod
-    def _get_class(module, class_name):
+    def delete_all_devices(self):
         pass
+
+    @staticmethod
+    def _get_class(module, class_name):
+        module = importlib.import_module(module)
+        return getattr(module, class_name)
+
