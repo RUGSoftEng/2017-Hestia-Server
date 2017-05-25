@@ -2,12 +2,12 @@ import unittest
 
 from bson import ObjectId
 
-from tests import test_util
+from tests import tests_util
 
 
 class TestDeviceDatabaseTinyDB(unittest.TestCase):
     def setUp(self):
-        self.database = test_util.get_tiny_database()
+        self.database = tests_util.get_tiny_database()
         self.direct = self.database._devices
         self.empty_data = []
 
@@ -87,7 +87,7 @@ class TestDeviceDatabaseTinyDB(unittest.TestCase):
 
     def _get_device_data(self):
         device_data = {
-            "module": "plugins.mock.lock.Lock",
+            "module": "plugins.mock.devices.lock.Lock",
             "class": "Lock",
             "type": "Lock",
             "name": "TestDevice",
@@ -97,7 +97,7 @@ class TestDeviceDatabaseTinyDB(unittest.TestCase):
             },
             "activators": [
                 {
-                    "module": "plugins.mock.ActivateLock",
+                    "module": "plugins.mock.activators.ActivateLock",
                     "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate",
@@ -105,13 +105,14 @@ class TestDeviceDatabaseTinyDB(unittest.TestCase):
                     "state": True
                 },
                 {
-                    "module": "plugins.mock.ActivateLock",
+                    "module": "plugins.mock.activators.ActivateLock",
                     "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate#2",
                     "type": "bool",
                     "state": True
                 }
+
             ]
         }
         activators = device_data.pop("activators", None)

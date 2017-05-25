@@ -1,16 +1,16 @@
 import unittest
 
 from bson import ObjectId
-from pymongo import MongoClient
 
 from logic import DeviceCollectionLogic
-from tests import test_util
+from tests import tests_util
 
 
 class TestDeviceCollectionLogic(unittest.TestCase):
     def setUp(self):
-        self._database = test_util.get_database()
-        self._plugin_manager = test_util.get_plugin_manager()
+        self._database = tests_util.get_database()
+        self._plugin_manager = tests_util.get_plugin_manager()
+
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
@@ -79,7 +79,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
 
     def _add_device(self, name):
         data = {
-            "module": "plugins.mock.lock.Lock",
+            "module": "plugins.mock.devices.lock.Lock",
             "class": "Lock",
             "type": "Lock",
             "name": name,
@@ -89,7 +89,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
             },
             "activators": [
                 {
-                    "module": "plugins.mock.ActivateLock",
+                    "module": "plugins.mock.activators.ActivateLock",
                     "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate",
@@ -109,8 +109,8 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self.id_device_one = devices[0].identifier
 
     def __get_plugin_information(self, name):
-        return {'organization': "Mock"
-                , 'plugin_name': "Lock"
+        return {'organization': "mock"
+                , 'plugin_name': "lock"
                 , 'required_info': {
                     'name': name
                     , 'bridge_ip': '127.0.0.1'

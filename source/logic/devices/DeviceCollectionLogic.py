@@ -1,5 +1,3 @@
-from flask_restplus import abort
-
 from logic.util import abort_with_error
 from util.NotFoundException import NotFoundException
 
