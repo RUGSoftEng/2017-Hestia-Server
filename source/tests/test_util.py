@@ -5,7 +5,7 @@ from util.BasePath import get_base_path
 
 
 def get_database():
-    return get_mongo_database()
+    return get_tiny_database()
 
 
 def get_tiny_database():
