@@ -111,7 +111,7 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self._direct_database.insert_one(data)
 
     def __get_plugin_information(self, name):
-        return {'organization': "mock"
+        return {'collection': "mock"
                 , 'plugin_name': "lock"
                 , 'required_info': {
                     'name': name
