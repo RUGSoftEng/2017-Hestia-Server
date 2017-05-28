@@ -1,14 +1,13 @@
 import unittest
 
 from logic import ActivatorLogic
-from tests.tests_util import get_database
-from tests.tests_util import get_plugin_manager
+from tests import tests_util
 
 
 class TestActivatorLogic(unittest.TestCase):
     def setUp(self):
-        self._database = get_database()
-        self._plugin_manager = get_plugin_manager()
+        self._database = tests_util.get_database()
+        self._plugin_manager = tests_util.get_plugin_manager()
 
         req = self._plugin_manager.get_required_info_of("mock", "lock")
         plugin = self._plugin_manager.get_plugin("mock", "lock", req)

@@ -1,23 +1,21 @@
 import unittest
 
 from bson import ObjectId
-from pymongo import MongoClient
 
 from logic import DeviceCollectionLogic
-from tests.tests_util import get_database
-from tests.tests_util import get_plugin_manager
+from tests import tests_util
 
 
 class TestDeviceCollectionLogic(unittest.TestCase):
     def setUp(self):
-        self._direct_database = MongoClient()["Hestia"]["testing"]
-        self._database = get_database()
-        self._plugin_manager = get_plugin_manager()
+        self._database = tests_util.get_database()
+        self._plugin_manager = tests_util.get_plugin_manager()
+
 
         self._logic = DeviceCollectionLogic(self._database, self._plugin_manager)
 
     def tearDown(self):
-        self._direct_database.delete_many({})
+        self._database.delete_all_devices()
 
     def test_get_all_devices(self):
         flag_device_one_found = False
@@ -28,9 +26,8 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         retrieved_devices = self._logic.get_all_devices()
         self.assertEqual(1, len(retrieved_devices))
 
-        id_device_two = str(ObjectId())
         name_device_two = "device_two"
-        self._add_device(id_device_two, name_device_two)
+        self._add_device(name_device_two)
 
         retrieved_devices = self._logic.get_all_devices()
         self.assertEqual(2, len(retrieved_devices))
@@ -49,24 +46,25 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         required_info = self.__get_plugin_information(device_name)
         self._logic.create_new_device(required_info)
 
-        device = self._direct_database.find_one({"name": device_name})
-        self.assertEqual(device_name, device["name"])
+        devices = self._database.get_all_devices()
+        self.assertEqual(1, len(devices))
 
     def test_get_device(self):
         self.__create_database_with_one_device()
 
-        retrieved_device = self._logic.get_device(str(self.id_device_one))
+        retrieved_device = self._logic.get_device(self.id_device_one)
 
-        self.assertEqual(self.name_device_one, retrieved_device.name)
+        self.assertEqual(self.id_device_one, retrieved_device.identifier)
 
     def test_remove_device(self):
         self.__create_database_with_one_device()
 
-        count_before_delete = self._direct_database.count()
+        count_before_delete = len(self._database.get_all_devices())
 
         self._logic.remove_device(self.id_device_one)
 
-        self.assertEqual(count_before_delete - 1, self._direct_database.count())
+        count_after_delete = len(self._database.get_all_devices())
+        self.assertEqual(count_before_delete - 1, count_after_delete)
 
     def test_change_device_name(self):
         self.__create_database_with_one_device()
@@ -76,11 +74,10 @@ class TestDeviceCollectionLogic(unittest.TestCase):
         self.assertEqual(device.name, new_name)
 
     def __create_database_with_one_device(self):
-        self.id_device_one = str(ObjectId())
         self.name_device_one = "device_one"
-        self._add_device(self.id_device_one, self.name_device_one)
+        self._add_device(self.name_device_one)
 
-    def _add_device(self, _id, name):
+    def _add_device(self, name):
         data = {
             "module": "plugins.mock.devices.lock.Lock",
             "class": "Lock",
@@ -107,8 +104,9 @@ class TestDeviceCollectionLogic(unittest.TestCase):
             act_id = str(ObjectId())
             data["activators"][act_id] = activator
 
-        data["_id"] = _id
-        self._direct_database.insert_one(data)
+        self._database.add_device(data)
+        devices = self._database.get_all_devices()
+        self.id_device_one = devices[0].identifier
 
     def __get_plugin_information(self, name):
         return {'collection': "mock"

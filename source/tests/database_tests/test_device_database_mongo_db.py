@@ -3,13 +3,13 @@ import unittest
 from bson import ObjectId
 from pymongo import MongoClient
 
-from tests.tests_util import get_database
+from tests import tests_util
 from models.Device import Device
 
 
 class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def setUp(self):
-        self._database = get_database()
+        self._database = tests_util.get_mongo_database()
         self._direct_database = MongoClient()["Hestia"]["testing"]
 
     def tearDown(self):

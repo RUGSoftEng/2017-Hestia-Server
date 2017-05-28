@@ -3,4 +3,5 @@ flask-restplus
 Flask-Script
 requests
 GitPython
+tinydb
 pymongo

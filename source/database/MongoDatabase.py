@@ -1,16 +1,17 @@
-import importlib
-
 from bson.objectid import ObjectId
 from pymongo import MongoClient
+from database.Database import Database
 
 from util.NotFoundException import NotFoundException
 
 
-class DeviceDatabase:
+class MongoDatabase(Database):
     """
     This class communicates with the MongoDB database. 
     It has several methods for this communication.
     """
+
+
     def __init__(self, collection):
         self._devices = MongoClient()["Hestia"][collection]
 
@@ -56,6 +57,9 @@ class DeviceDatabase:
                                                       + "."
                                                       + field: new_value}})
 
+    def delete_all_devices(self):
+        self._devices.delete_many({})
+
     def __get_device_data(self, device_id):
         """Get data of device based on its id"""
         data = self._devices.find_one(device_id)
@@ -73,7 +77,3 @@ class DeviceDatabase:
             message = "No activator with id [" + activator_id + "] found."
             raise NotFoundException(message)
 
-    @staticmethod
-    def _get_class(module, class_name):
-        module = importlib.import_module(module)
-        return getattr(module, class_name)
