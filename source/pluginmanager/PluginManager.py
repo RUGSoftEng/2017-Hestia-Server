@@ -17,9 +17,9 @@ class PluginManager:
     def __init__(self, path):
         self.plugin_path = path
 
-    def get_plugin(self, organization, plugin_name, required_info):
+    def get_plugin(self, collection, plugin_name, required_info):
         """create new plugin"""
-        plugin = self.__get_plugin(organization, plugin_name)
+        plugin = self.__get_plugin(collection, plugin_name)
         data = copy.deepcopy(plugin)
 
         #Remove unneeded plugin info
@@ -38,17 +38,17 @@ class PluginManager:
 
         return data
 
-    def get_organizations(self):
-        """ Get a list of organizations """
-        organizations = list()
+    def get_collections(self):
+        """ Get a list of collections """
+        collections = list()
         for directory in listdir(self.plugin_path):
             if (path.isdir(path.join(self.plugin_path, directory)) and directory != "__pycache__"):
-                organizations.append(directory)
-        return organizations
+                collections.append(directory)
+        return collections
 
-    def get_required_info_of(self, organization, plugin_name):
+    def get_required_info_of(self, collection, plugin_name):
         """ Get the required information of a specific plugin """
-        plugin = self.__get_plugin(organization, plugin_name)
+        plugin = self.__get_plugin(collection, plugin_name)
         required_info = plugin["required_info"]
         return required_info
 
@@ -56,31 +56,31 @@ class PluginManager:
         mod = importlib.import_module(mod)
         return getattr(mod, class_name)
 
-    def get_plugins_of(self, organization):
-        """get all plugin names within an organization"""
-        organizations = self.get_organizations()
-        if organization in organizations:
-            devices_path = self.plugin_path + organization + "/devices/"
+    def get_plugins_of(self, collection):
+        """ Get all plugin names within an collection"""
+        collections = self.get_collections()
+        if collection in collections:
+            devices_path = self.plugin_path + collection + "/devices/"
             plugins = list()
             for directory in listdir(devices_path):
                 if path.isdir(path.join(devices_path, directory)) and directory != "__pycache__":
                     plugins.append(directory)
             return plugins
         else:
-            message = "Organization [" + organization + "] not found."
+            message = "Collection [" + collection + "] not found."
             raise NotFoundException(message)
 
-    def __get_plugin(self, organization, plugin_name):
-        """get plugin based on organization and plugin name"""
-        organization_plugins = self.get_plugins_of(organization)
-        if plugin_name in organization_plugins:
-            config_path = self.plugin_path + organization + "/devices/" + plugin_name + "/Configuration"
+    def __get_plugin(self, collection, plugin_name):
+        """ Get plugin based on collection and plugin name"""
+        collection_plugins = self.get_plugins_of(collection)
+        if plugin_name in collection_plugins:
+            config_path = self.plugin_path + collection + "/devices/" + plugin_name + "/Configuration"
             plugin = json.load(open(config_path))
             return plugin
         else:
             message = "Plugin [" \
                       + plugin_name \
-                      + "] of organization [" \
-                      + organization \
+                      + "] of collection [" \
+                      + collection \
                       + "] not found."
             raise NotFoundException(message)

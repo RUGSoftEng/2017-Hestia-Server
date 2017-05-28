@@ -1,9 +1,9 @@
 # Structure
-To distinguish between different plugins they are divided based on organization.
-The name of the organization is based on the manufacturer of the actual 
+To distinguish between different plugins they are divided based on collection.
+The name of the collection is based on the manufacturer of the actual 
 peripheral.
 For instance all plugins of philips hue peripherals can be found in the
-“Philips” organization. Within the organization every plugin is represented 
+“Philips” collection. Within the collection every plugin is represented 
 by a unique name. 
 
 # Creating new plugins
@@ -37,8 +37,8 @@ post is send to the bridge.
 ### deviceConfig
 The `deviceConfig` file contains all the static information needed in the plugin.
 As it is rather self-explanatory we have added a example below.
-Every organization has its own entry into the file.
-In the example the only organization is "Mock", it has one plugin called "Lock".
+Every collection has its own entry into the file.
+In the example the only collection is "Mock", it has one plugin called "Lock".
 The following fields are mandatory for each implementation of the `Device` class: "module", "class", "type".
 For both `Device` and`Activator` all fields shown below are mandatory.
 It is not required to have any information in the "required_info" but the field has to be there.
@@ -71,10 +71,10 @@ It is not required to have any information in the "required_info" but the field 
 
 # Examples
 To have a look at some really simple implementations take a look at the plugins
-of the mock organization.
+of the mock collection.
 These should be easily understood and give an idea about what a plugin should 
 look like.
 For more real life and working examples take a look at the plugins of the 
-"Philips" organization.
+"Philips" collection.
 These are the plugins used for installing new devices for the peripherals of 
 the Philips hue.

@@ -14,15 +14,15 @@ class TestPluginManager(unittest.TestCase):
     def setUp(self):
         self._plugin_manager = get_plugin_manager()
 
-    def test_get_organizations_from_plugin_manager(self):
-        organizations = self._plugin_manager.get_organizations()
-        self.assertEqual(organizations, ["mock"])
+    def test_get_collection_from_plugin_manager(self):
+        collections = self._plugin_manager.get_collections()
+        self.assertEqual(collections, ["mock"])
 
-    def test_get_plugins_from_plugin_manager_by_organization(self):
+    def test_get_plugins_from_plugin_manager_by_collection(self):
         plugins = self._plugin_manager.get_plugins_of("mock")
         self.assertEqual(plugins, ["lock"])
 
-    def test_get_required_info_from_plugin_manager_by_organization_and_plugin(
+    def test_get_required_info_from_plugin_manager_by_collection_and_plugin(
             self):
         required_info = self._plugin_manager.get_required_info_of("mock",
                                                                   "lock")
