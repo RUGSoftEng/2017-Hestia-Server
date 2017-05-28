@@ -51,7 +51,6 @@ class TinyDatabase(Database):
         data = self.__get_device_data(device_id)
         activator = self.__get_activator(data, activator_id)
         return activator[field]
-        pass
 
     def update_activator_field(self, device_id, activator_id, field, new_value):
         query = Query()
@@ -60,7 +59,6 @@ class TinyDatabase(Database):
         activator = activators[activator_id]
         activator[field] = new_value
         self._devices.update({"activators": activators}, query._id == device_id)
-        pass
 
     def __get_device_data(self, device_id):
         query = Query()
