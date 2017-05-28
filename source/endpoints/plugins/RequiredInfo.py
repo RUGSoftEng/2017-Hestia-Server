@@ -11,7 +11,7 @@ class Collections(Resource):
     @namespace.doc("list_collections")
     def get(self):
         """ Fetch all the collections that have plugins installed """
-        return plugin_logic.get_collection()
+        return plugin_logic.get_collections()
 
 
 @namespace.route("/<string:collections>/")
