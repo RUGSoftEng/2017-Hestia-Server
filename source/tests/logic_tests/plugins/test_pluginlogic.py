@@ -15,15 +15,15 @@ class TestPluginLogic(unittest.TestCase):
         plugin_manager = get_plugin_manager()
         self._plugin_logic = PluginLogic(plugin_manager)
 
-    def test_get_organizations(self):
-        organizations = self._plugin_logic.get_organizations()
-        self.assertEqual(organizations, ["mock"])
+    def test_get_collections(self):
+        collections = self._plugin_logic.get_collections()
+        self.assertEqual(collections, ["mock"])
 
-    def test_get_plugins_from_plugin_manager_by_organization(self):
+    def test_get_plugins_from_plugin_manager_by_collection(self):
         plugins = self._plugin_logic.get_plugins("mock")
         self.assertEqual(plugins, ["lock"])
 
-    def test_get_required_info_from_plugin_manager_by_organization_and_plugin(
+    def test_get_required_info_from_plugin_manager_by_collection_and_plugin(
             self):
         required_info = self._plugin_logic.get_required_info("mock", "lock")
         expected = self.get_expected_plugin_information()

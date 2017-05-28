@@ -17,11 +17,11 @@ class DeviceCollectionLogic:
 
     def create_new_device(self, json):
         try:
-            organization = json.pop("collection")
+            collection = json.pop("collection")
             plugin_name = json.pop("plugin_name")
             required_info = json.pop('required_info')
             name = required_info.pop("name")
-            plugin = self._plugin_manager.get_plugin(organization
+            plugin = self._plugin_manager.get_plugin(collection
                                             , plugin_name
                                             , required_info)
             plugin["name"] = name
