@@ -7,7 +7,7 @@ from logic import device_logic
 
 format_post_device = namespace.model("new_device", {
     "required_info": fields.Raw(attribute="required_info", required=True,
-                                   description="The organization and plugin_name of device and additional info")
+                                   description="The collection and plugin_name of device and additional info")
 })
 
 
