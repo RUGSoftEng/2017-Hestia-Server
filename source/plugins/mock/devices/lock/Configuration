@@ -3,8 +3,8 @@
   "class": "Lock",
   "type" : "Lock",
   "required_info": {
-    "bridge_ip": "An mock variable for an IP address",
-    "bridge_port": "An mock variable for an port"
+    "ip": "An mock variable for an IP address",
+    "port": "An mock variable for an port"
   },
   "activators": [
     {
