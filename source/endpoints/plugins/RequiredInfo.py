@@ -14,7 +14,7 @@ class Collections(Resource):
         return plugin_logic.get_collections()
 
 
-@namespace.route("/<string:collections>/")
+@namespace.route("/<string:collection>/")
 @namespace.response(404, "Collection  not found")
 @namespace.param("collection", "The name of the collection of the plugin")
 class Plugins(Resource):
