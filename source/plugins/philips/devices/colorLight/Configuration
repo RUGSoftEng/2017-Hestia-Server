@@ -3,9 +3,9 @@
   "class": "ColorLight",
   "type" : "Light",
   "required_info": {
-    "bridge_ip": "127.0.0.1",
-    "search_method": "reachable",
-    "user": "unknown"
+    "bridge_ip": "The Ip address of the bridge",
+    "search_method": "The search method for finding the light",
+    "user": "The philips hue user to which the the light should be added"
   },
   "activators": [
     {
