@@ -3,8 +3,8 @@
   "class": "Lock",
   "type" : "Lock",
   "required_info": {
-    "bridge_ip": "127.0.0.1",
-    "bridge_port": "80"
+    "bridge_ip": "An mock variable for an IP address",
+    "bridge_port": "An mock variable for an port"
   },
   "activators": [
     {
