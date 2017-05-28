@@ -27,6 +27,6 @@ class Devices(Resource):
     @namespace.response(201, "new device")
     def post(self):
         """ Post a new device """
-        json_required_info = namespace.apis[0].payload["required_info"]
+        json_required_info = namespace.apis[0].payload
         device_logic.create_new_device(json_required_info)
         return "new device", 201

@@ -17,13 +17,13 @@ class DeviceCollectionLogic:
 
     def create_new_device(self, json):
         try:
-            organization = json.pop("organization")
+            organization = json.pop("collection")
             plugin_name = json.pop("plugin_name")
             required_info = json.pop('required_info')
             name = required_info.pop("name")
             plugin = self._plugin_manager.get_plugin(organization
                                             , plugin_name
-                                            , json)
+                                            , required_info)
             plugin["name"] = name
             self._database.add_device(plugin)
         except NotFoundException as exception:

@@ -30,7 +30,7 @@ class TestPluginLogic(unittest.TestCase):
         self.assertEqual(required_info, expected)
 
     def get_expected_plugin_information(self):
-        return {'organization': "mock"
+        return {'collection': "mock"
                 , 'plugin_name': "lock"
                 , 'required_info': {
                     'name': 'default_name'
