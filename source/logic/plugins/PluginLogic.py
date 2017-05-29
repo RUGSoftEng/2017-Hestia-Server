@@ -23,7 +23,7 @@ class PluginLogic:
         try:
             required_info = self._plugin_manager.get_required_info_of(
                 collection, plugin_name)
-            required_info['name'] = 'default_name'
+            required_info['name'] = 'This name will be used to represent the device'
             return {"collection": collection
                 , 'plugin_name': plugin_name
                 , 'required_info': required_info
