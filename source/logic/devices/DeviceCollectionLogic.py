@@ -1,5 +1,3 @@
-from flask_restplus import abort
-
 from logic.util import abort_with_error
 from util.NotFoundException import NotFoundException
 
@@ -19,12 +17,13 @@ class DeviceCollectionLogic:
 
     def create_new_device(self, json):
         try:
-            organization = json.pop("organization")
+            collection = json.pop("collection")
             plugin_name = json.pop("plugin_name")
-            name = json.pop("name")
-            plugin = self._plugin_manager.get_plugin(organization
+            required_info = json.pop('required_info')
+            name = required_info.pop("name")
+            plugin = self._plugin_manager.get_plugin(collection
                                             , plugin_name
-                                            , json)
+                                            , required_info)
             plugin["name"] = name
             self._database.add_device(plugin)
         except NotFoundException as exception:
@@ -41,3 +40,7 @@ class DeviceCollectionLogic:
             return self._database.delete_device(device_id)
         except NotFoundException as exception:
             abort_with_error(str(exception))
+
+    def change_device_name(self, device_id, new_name):
+        device = self.get_device(device_id)
+        device.name = new_name

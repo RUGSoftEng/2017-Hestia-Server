@@ -3,13 +3,13 @@ import unittest
 from bson import ObjectId
 from pymongo import MongoClient
 
+from tests import tests_util
 from models.Device import Device
-from tests import test_util
 
 
 class TestDeviceDatabaseMongoDB(unittest.TestCase):
     def setUp(self):
-        self._database = test_util.get_database()
+        self._database = tests_util.get_mongo_database()
         self._direct_database = MongoClient()["Hestia"]["testing"]
 
     def tearDown(self):
@@ -112,7 +112,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
 
     def _get_device_data(self):
         device_data = {
-            "module": "plugins.mock.lock.Lock",
+            "module": "plugins.mock.devices.lock.Lock",
             "class": "Lock",
             "type": "Lock",
             "name": "TestDevice",
@@ -122,7 +122,7 @@ class TestDeviceDatabaseMongoDB(unittest.TestCase):
             },
             "activators": [
                 {
-                    "module": "plugins.mock.ActivateLock",
+                    "module": "plugins.mock.activators.ActivateLock",
                     "rank": 0,
                     "class": "ActivateLock",
                     "name": "Activate",

@@ -10,22 +10,23 @@ class PluginLogic:
     def __init__(self, plugin_manager):
         self._plugin_manager = plugin_manager
 
-    def get_organizations(self):
-        return self._plugin_manager.get_organizations()
+    def get_collections(self):
+        return self._plugin_manager.get_collections()
 
-    def get_plugins(self, organization):
+    def get_plugins(self, collection):
         try:
-            return self._plugin_manager.get_plugins_of(organization)
+            return self._plugin_manager.get_plugins_of(collection)
         except NotFoundException as exception:
             abort_with_error(str(exception))
 
-    def get_required_info(self, organization, plugin_name):
+    def get_required_info(self, collection, plugin_name):
         try:
             required_info = self._plugin_manager.get_required_info_of(
-                organization, plugin_name)
-            required_info["organization"] = organization
-            required_info["plugin_name"] = plugin_name
-            required_info["name"] = "default"
-            return required_info
+                collection, plugin_name)
+            required_info['name'] = 'This name will be used to represent the device'
+            return {"collection": collection
+                , 'plugin_name': plugin_name
+                , 'required_info': required_info
+                    }
         except NotFoundException as exception:
             abort_with_error(str(exception))

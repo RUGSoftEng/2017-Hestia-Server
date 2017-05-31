@@ -7,7 +7,7 @@ from logic import device_logic
 
 format_post_device = namespace.model("new_device", {
     "required_info": fields.Raw(attribute="required_info", required=True,
-                                   description="The organization and plugin_name of device and additional info")
+                                   description="The collection and plugin_name of device and additional info")
 })
 
 
@@ -27,6 +27,6 @@ class Devices(Resource):
     @namespace.response(201, "new device")
     def post(self):
         """ Post a new device """
-        json_required_info = namespace.apis[0].payload["required_info"]
+        json_required_info = namespace.apis[0].payload
         device_logic.create_new_device(json_required_info)
         return "new device", 201
