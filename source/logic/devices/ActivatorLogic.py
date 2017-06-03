@@ -1,5 +1,5 @@
 from flask_restplus import abort
-from util.InvalidStateException import InvalidStateException
+from exceptions.InvalidStateException import InvalidStateException
 
 from exceptions.NotFoundException import NotFoundException
 from logic.util import abort_with_error

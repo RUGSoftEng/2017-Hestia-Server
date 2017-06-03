@@ -3,6 +3,7 @@ from abc import abstractmethod
 import requests
 from flask import json
 
+from exceptions.SetupFailedException import SetupFailedException
 from models.Device import Device
 from plugins.philips.searching.NameSearch import NameSearch
 from plugins.philips.searching.LastSearch import LastSearch
@@ -44,8 +45,11 @@ class PhilipsDevice(Device):
             response = requests.post("http://" + required_info["bridge_ip"]
                                      + "/api", data)
             message = json.loads(response.content)[0]
-            success = message["success"]
 
+            if "error" in message.keys():
+                raise SetupFailedException("user", message["error"]["description"])
+
+            success = message["success"]
             return success["username"]
 
         else:

@@ -10,3 +10,4 @@ class SetupFailedException(HestiaException):
         response = dict()
         response["field"] = self._field
         response["hint"] = self._hint
+        return response
