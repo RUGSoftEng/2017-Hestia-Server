@@ -1,7 +1,9 @@
 coverage
 flask-restplus
 Flask-Script
+Flask-SSLify
 requests
 GitPython
 tinydb
 pymongo
+pyopenssl
