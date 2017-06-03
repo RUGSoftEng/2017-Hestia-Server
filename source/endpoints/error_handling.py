@@ -3,12 +3,11 @@ def handle_hestia_exception(error):
 
 
 def handle_standard_exception(error):
-    response = dict()
     return handle_exception("ServerException", error.message)
 
 
-def handle_exception(error, message):
+def handle_exception(error, details):
     response = dict()
     response["error"] = error
-    response["message"] = message
+    response["details"] = details
     return response, 500
