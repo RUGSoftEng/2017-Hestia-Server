@@ -16,30 +16,21 @@ class DeviceCollectionLogic:
         return devices
 
     def create_new_device(self, json):
-        try:
-            collection = json.pop("collection")
-            plugin_name = json.pop("plugin_name")
-            required_info = json.pop('required_info')
-            name = required_info.pop("name")
-            plugin = self._plugin_manager.get_plugin(collection
-                                            , plugin_name
-                                            , required_info)
-            plugin["name"] = name
-            self._database.add_device(plugin)
-        except NotFoundException as exception:
-            abort_with_error(str(exception))
+        collection = json.pop("collection")
+        plugin_name = json.pop("plugin_name")
+        required_info = json.pop('required_info')
+        name = required_info.pop("name")
+        plugin = self._plugin_manager.get_plugin(collection
+                                        , plugin_name
+                                        , required_info)
+        plugin["name"] = name
+        self._database.add_device(plugin)
 
     def get_device(self, device_id):
-        try:
-            return self._database.get_device(device_id)
-        except NotFoundException as exception:
-            abort_with_error(str(exception))
+        return self._database.get_device(device_id)
 
     def remove_device(self, device_id):
-        try:
-            return self._database.delete_device(device_id)
-        except NotFoundException as exception:
-            abort_with_error(str(exception))
+        return self._database.delete_device(device_id)
 
     def change_device_name(self, device_id, new_name):
         device = self.get_device(device_id)
