@@ -68,7 +68,7 @@ class TinyDatabase(Database):
                        + "id: " + device_id
             raise NotFoundException(message)
         elif len(devices) == 0:
-            raise NotFoundException("No device with id: " + device_id)
+            raise NotFoundException("device")
         else:
             return devices[0]
 
@@ -77,6 +77,5 @@ class TinyDatabase(Database):
         try:
             return data["activators"][activator_id]
         except KeyError:
-            message = "No activator with id [" + activator_id + "] found."
-            raise NotFoundException(message)
+            raise NotFoundException("activator")
 

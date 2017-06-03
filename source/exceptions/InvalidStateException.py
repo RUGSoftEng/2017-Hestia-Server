@@ -3,6 +3,7 @@ from exceptions.HestiaException import HestiaException
 
 class InvalidStateException(HestiaException):
     def __init__(self, new_value, expected_type):
+        HestiaException.__init__(self)
         self.new_value = new_value
         self.expected_type = expected_type
 
