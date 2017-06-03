@@ -33,7 +33,7 @@ class TestPluginLogic(unittest.TestCase):
         return {'collection': "mock"
                 , 'plugin_name': "lock"
                 , 'required_info': {
-                    'name': 'default_name'
+                    'name': 'This name will be used to represent the device'
                     , 'bridge_ip': '127.0.0.1'
                     , 'bridge_port': '80'
                     }
