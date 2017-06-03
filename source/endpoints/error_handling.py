@@ -1,9 +1,16 @@
+import traceback
+
+import sys
+
+
 def handle_hestia_exception(error):
+    traceback.print_exc(file=sys.stdout)
     return handle_exception(error.__class__.__name__, error.to_dict())
 
 
 def handle_standard_exception(error):
-    return handle_exception("ServerException", error.message)
+    traceback.print_exc(file=sys.stdout)
+    return handle_exception("ServerException", error.__class__.__name__)
 
 
 def handle_exception(error, details):

@@ -3,7 +3,7 @@ from flask_restplus import fields
 
 from endpoints.devices import namespace
 from endpoints.devices.Device import device
-from endpoints.error_handling import handle_hestia_exception
+from endpoints.error_handling import handle_hestia_exception, handle_standard_exception
 from exceptions.HestiaException import HestiaException
 from logic import device_logic
 
@@ -35,5 +35,5 @@ class Devices(Resource):
         except HestiaException as error:
             return handle_hestia_exception(error)
         except Exception as error:
-            return
+            return handle_standard_exception(error)
         return "new device", 201

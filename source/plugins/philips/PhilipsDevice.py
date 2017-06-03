@@ -24,12 +24,15 @@ class PhilipsDevice(Device):
     def _get_lamp_id(cls, required_info, user,  types):
         url = "http://" + required_info["bridge_ip"] + "/api" + user + "/lights"
         response = json.loads(requests.get(url).content)
-        if required_info["search_method"] == "reachable":
-            return ReachableSearch.search(response, types)
-        elif required_info["search_method"] == "last":
-            return LastSearch.search(response, types)
-        else:
-            return NameSearch.search(response, required_info["search_method"])
+        try:
+            if required_info["search_method"] == "reachable":
+                return ReachableSearch.search(response, types)
+            elif required_info["search_method"] == "last":
+                return LastSearch.search(response, types)
+            else:
+                return NameSearch.search(response, required_info["search_method"])
+        except Exception as e:
+            raise SetupFailedException("search_method", str(e))
 
     @classmethod
     def _get_new_user(cls, required_info):
@@ -42,8 +45,12 @@ class PhilipsDevice(Device):
         """
         if required_info["user"] in ["unknown", ""]:
             data = '{"devicetype":"hue# hestia"}'
-            response = requests.post("http://" + required_info["bridge_ip"]
-                                     + "/api", data)
+            try:
+                response = requests.post("http://" + required_info["bridge_ip"]
+                                        + "/api", data, timeout=2)
+            except Exception as e:
+                raise SetupFailedException("ip", "Can't connect to the hue bridge")
+
             message = json.loads(response.content)[0]
 
             if "error" in message.keys():
