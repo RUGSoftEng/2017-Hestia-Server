@@ -21,7 +21,12 @@ class Devices(Resource):
     @namespace.marshal_list_with(device)
     def get(self):
         """ List all devices """
-        devices = device_logic.get_all_devices()
+        try:
+            devices = device_logic.get_all_devices()
+        except HestiaException as error:
+            return handle_hestia_exception(error)
+        except Exception as error:
+            return handle_standard_exception(error)
         return devices
 
     @namespace.doc("post_device")
