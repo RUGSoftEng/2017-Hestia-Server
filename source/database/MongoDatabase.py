@@ -1,8 +1,8 @@
 from bson.objectid import ObjectId
 from pymongo import MongoClient
-from database.Database import Database
 
-from util.NotFoundException import NotFoundException
+from database.Database import Database
+from exceptions.NotFoundException import NotFoundException
 
 
 class MongoDatabase(Database):

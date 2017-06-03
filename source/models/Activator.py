@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from util.InvalidStateException import InvalidStateException
+from exceptions.InvalidStateException import InvalidStateException
 
 
 class Activator(ABC):

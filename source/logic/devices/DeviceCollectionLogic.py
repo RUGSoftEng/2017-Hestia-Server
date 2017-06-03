@@ -1,5 +1,5 @@
+from exceptions.NotFoundException import NotFoundException
 from logic.util import abort_with_error
-from util.NotFoundException import NotFoundException
 
 
 class DeviceCollectionLogic:

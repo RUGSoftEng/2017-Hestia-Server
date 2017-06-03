@@ -1,8 +1,8 @@
 from flask_restplus import abort
-
-from logic.util import abort_with_error
 from util.InvalidStateException import InvalidStateException
-from util.NotFoundException import NotFoundException
+
+from exceptions.NotFoundException import NotFoundException
+from logic.util import abort_with_error
 
 
 class ActivatorLogic:

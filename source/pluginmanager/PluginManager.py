@@ -1,12 +1,11 @@
-import importlib
-
 import copy
+import importlib
 import json
-
-from bson.objectid import ObjectId
 from os import listdir, path
 
-from util.NotFoundException import NotFoundException
+from bson.objectid import ObjectId
+
+from exceptions.NotFoundException import NotFoundException
 
 
 class PluginManager:

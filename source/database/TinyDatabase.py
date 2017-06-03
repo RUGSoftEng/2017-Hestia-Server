@@ -2,8 +2,8 @@ from bson import ObjectId
 from tinydb import TinyDB, Query
 
 from database.Database import Database
+from exceptions.NotFoundException import NotFoundException
 from util.BasePath import get_base_path
-from util.NotFoundException import NotFoundException
 
 
 class TinyDatabase(Database):
