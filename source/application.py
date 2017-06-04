@@ -12,6 +12,7 @@ from MyListener import MyListener
 from endpoints.api import api
 
 from zeroconf import *
+import socket
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
@@ -52,7 +53,19 @@ def __run_test():
 
 if __name__ == "__main__":
     r = Zeroconf()
+    desc = ""
+    path = ""
+
+    info = ServiceInfo("_http._tcp.local.",
+                       "HestiaServer._http._tcp.local.",
+                       server = "0.0.0.0", port=8000, properties = {'description': desc,
+                                             'path': "/" + path},
+                               address = socket.inet_aton("0.0.0.0"), weight = 0, priority = 0)
+
+    r.unregister_all_services()
+    r.register_service(info)
     type = "_http._tcp.local."
     listener = MyListener()
     browser = ServiceBrowser(r, type, listener)
+
     manager.run()
