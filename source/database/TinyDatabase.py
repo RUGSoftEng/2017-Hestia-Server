@@ -2,17 +2,19 @@ from bson import ObjectId
 from tinydb import TinyDB, Query
 
 from database.Database import Database
+from database.users.UserDatabase import UserDatabase
 from exceptions.DatabaseException import DatabaseException
 from exceptions.NotFoundException import NotFoundException
 from models.User import User
 from util.BasePath import get_base_path
 
 
-class TinyDatabase(Database):
+class TinyDatabase(Database, UserDatabase):
 
     def __init__(self, database_name):
         database_path = get_base_path() + "/database/tinydbData/"
         self._devices = TinyDB(database_path + database_name + '.json')
+        self._users = TinyDB(database_path + database_name + '.json')
 
     def get_all_devices(self):
         """Instantiates all devices in database"""
@@ -75,7 +77,7 @@ class TinyDatabase(Database):
 
     def get_user(self, user_name):
         query = Query()
-        users = self._devices.search(query._id == user_name)
+        users = self._users.search(query._id == user_name)
         if len(users) > 1:
             message = "Inconsistent database, more then one device with the same id"
             raise DatabaseException("tiny", message)

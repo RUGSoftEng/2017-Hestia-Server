@@ -2,11 +2,12 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 
 from database.Database import Database
+from database.users.UserDatabase import UserDatabase
 from exceptions.NotFoundException import NotFoundException
 from models.User import User
 
 
-class MongoDatabase(Database):
+class MongoDatabase(Database, UserDatabase):
     """
     This class communicates with the MongoDB database. 
     It has several methods for this communication.
