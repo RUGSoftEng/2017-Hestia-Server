@@ -1,8 +1,8 @@
-
 import unittest
 
 import sys
 from coverage import coverage
+from flask_sslify import SSLify
 
 from flask import Flask
 from flask_script import Manager
@@ -11,6 +11,7 @@ from endpoints.api import api
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
+sslify = SSLify(app)
 
 api.init_app(app)
 
@@ -18,11 +19,11 @@ manager = Manager(app)
 
 @manager.command
 def run():
-    app.run(host="0.0.0.0", port=8000)
+    app.run(host="0.0.0.0", port=8000, ssl_context='adhoc')
 
 @manager.command
 def dev():
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=True, host="0.0.0.0", port=8000, ssl_context='adhoc')
 
 @manager.command
 def test():
