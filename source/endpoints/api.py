@@ -2,6 +2,7 @@ from flask_restplus import Api
 
 from .devices.Devices import namespace as devices_namespace
 from .plugins.RequiredInfo import namespace as plugin_namespace
+from .users.Login import namespace as user_namespace
 
 
 api = Api(
@@ -13,5 +14,6 @@ api = Api(
 
 api.add_namespace(devices_namespace)
 api.add_namespace(plugin_namespace)
+api.add_namespace(user_namespace)
 
 
