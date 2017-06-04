@@ -1,8 +1,5 @@
-from flask import jsonify
 from flask_restplus import Api
-from werkzeug.exceptions import HTTPException
 
-from exceptions.SetupFailedException import SetupFailedException
 from .devices.Devices import namespace as devices_namespace
 from .plugins.RequiredInfo import namespace as plugin_namespace
 

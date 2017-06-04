@@ -1,10 +1,3 @@
-from flask_restplus import abort
-from exceptions.InvalidStateException import InvalidStateException
-
-from exceptions.NotFoundException import NotFoundException
-from logic.util import abort_with_error
-
-
 class ActivatorLogic:
     """This class contain all logic needed to retrieve and interact with activators. 
     Currently this only involves interaction with the database. In later versions this

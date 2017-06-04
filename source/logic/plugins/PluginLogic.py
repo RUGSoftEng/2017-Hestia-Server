@@ -1,7 +1,3 @@
-from exceptions.NotFoundException import NotFoundException
-from logic.util import abort_with_error
-
-
 class PluginLogic:
     """
     This class holds the logic to retrieve information regarding plugins.

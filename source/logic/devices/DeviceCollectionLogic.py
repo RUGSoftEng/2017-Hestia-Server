@@ -1,7 +1,3 @@
-from exceptions.NotFoundException import NotFoundException
-from logic.util import abort_with_error
-
-
 class DeviceCollectionLogic:
     """
     This class contains methods to interact with the collection of device, this
