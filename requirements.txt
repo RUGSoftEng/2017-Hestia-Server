@@ -7,3 +7,4 @@ GitPython
 tinydb
 pymongo
 pyopenssl
+zeroconf

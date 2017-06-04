@@ -7,7 +7,11 @@ from flask_sslify import SSLify
 from flask import Flask
 from flask_script import Manager
 from werkzeug.contrib.fixers import ProxyFix
+
+from MyListener import MyListener
 from endpoints.api import api
+
+from zeroconf import *
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
@@ -47,4 +51,8 @@ def __run_test():
     return not succes
 
 if __name__ == "__main__":
+    r = Zeroconf()
+    type = "_http._tcp.local."
+    listener = MyListener()
+    browser = ServiceBrowser(r, type, listener)
     manager.run()
