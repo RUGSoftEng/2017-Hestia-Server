@@ -2,8 +2,9 @@ from bson import ObjectId
 from tinydb import TinyDB, Query
 
 from database.Database import Database
+from exceptions.DatabaseException import DatabaseException
+from exceptions.NotFoundException import NotFoundException
 from util.BasePath import get_base_path
-from util.NotFoundException import NotFoundException
 
 
 class TinyDatabase(Database):
@@ -64,11 +65,10 @@ class TinyDatabase(Database):
         query = Query()
         devices = self._devices.search(query._id == device_id)
         if len(devices) > 1:
-            message = "Inconsistent database, more then one device with the " \
-                       + "id: " + device_id
-            raise NotFoundException(message)
+            message = "Inconsistent database, more then one device with the same id"
+            raise DatabaseException("tiny", message)
         elif len(devices) == 0:
-            raise NotFoundException("No device with id: " + device_id)
+            raise NotFoundException("device")
         else:
             return devices[0]
 
@@ -77,6 +77,5 @@ class TinyDatabase(Database):
         try:
             return data["activators"][activator_id]
         except KeyError:
-            message = "No activator with id [" + activator_id + "] found."
-            raise NotFoundException(message)
+            raise NotFoundException("activator")
 

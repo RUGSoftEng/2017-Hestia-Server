@@ -1,8 +1,8 @@
 from bson.objectid import ObjectId
 from pymongo import MongoClient
-from database.Database import Database
 
-from util.NotFoundException import NotFoundException
+from database.Database import Database
+from exceptions.NotFoundException import NotFoundException
 
 
 class MongoDatabase(Database):
@@ -10,7 +10,6 @@ class MongoDatabase(Database):
     This class communicates with the MongoDB database. 
     It has several methods for this communication.
     """
-
 
     def __init__(self, collection):
         self._devices = MongoClient()["Hestia"][collection]
@@ -64,8 +63,7 @@ class MongoDatabase(Database):
         """Get data of device based on its id"""
         data = self._devices.find_one(device_id)
         if data is None:
-            message = "No device with id [" + device_id + "] found."
-            raise NotFoundException(message)
+            raise NotFoundException("device")
         else:
             return data
 
@@ -74,6 +72,5 @@ class MongoDatabase(Database):
         try:
             return data["activators"][activator_id]
         except KeyError as exception:
-            message = "No activator with id [" + activator_id + "] found."
-            raise NotFoundException(message)
+            raise NotFoundException("activator")
 
