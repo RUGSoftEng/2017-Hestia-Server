@@ -56,15 +56,15 @@ if __name__ == "__main__":
     desc = ""
     path = ""
 
-    info = ServiceInfo("_http._tcp.local.",
-                       "HestiaServer._http._tcp.local.",
+    info = ServiceInfo("_hestia._tcp.local.",
+                       "HestiaServer._hestia._tcp.local.",
                        server = "0.0.0.0", port=8000, properties = {'description': desc,
                                              'path': "/" + path},
                                address = socket.inet_aton("0.0.0.0"), weight = 0, priority = 0)
 
     r.unregister_all_services()
     r.register_service(info)
-    type = "_http._tcp.local."
+    type = "_hestia._tcp.local."
     listener = MyListener()
     browser = ServiceBrowser(r, type, listener)
 
