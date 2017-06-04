@@ -3,6 +3,7 @@ from pymongo import MongoClient
 
 from database.Database import Database
 from exceptions.NotFoundException import NotFoundException
+from models.User import User
 
 
 class MongoDatabase(Database):
@@ -13,6 +14,7 @@ class MongoDatabase(Database):
 
     def __init__(self, collection):
         self._devices = MongoClient()["Hestia"][collection]
+        self._users = MongoClient()["Hestia"]["users"]
 
     def get_all_devices(self):
         """Instantiates all devices in database"""
@@ -66,6 +68,13 @@ class MongoDatabase(Database):
             raise NotFoundException("device")
         else:
             return data
+
+    def get_user(self, user_name):
+        data = self._devices.find_one({"username": user_name})
+        if data is None:
+            raise NotFoundException("user")
+        else:
+            return User(data["username"],data["password"], data["rights"], data["devices"])
 
     @staticmethod
     def __get_activator(data, activator_id):

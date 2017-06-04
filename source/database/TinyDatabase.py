@@ -4,6 +4,7 @@ from tinydb import TinyDB, Query
 from database.Database import Database
 from exceptions.DatabaseException import DatabaseException
 from exceptions.NotFoundException import NotFoundException
+from models.User import User
 from util.BasePath import get_base_path
 
 
@@ -71,6 +72,17 @@ class TinyDatabase(Database):
             raise NotFoundException("device")
         else:
             return devices[0]
+
+    def get_user(self, user_name):
+        query = Query()
+        users = self._devices.search(query._id == user_name)
+        if len(users) > 1:
+            message = "Inconsistent database, more then one device with the same id"
+            raise DatabaseException("tiny", message)
+        elif len(users) == 0:
+            raise NotFoundException("device")
+        else:
+            return User(users[0]["username"],users[0]["password"], users[0]["rights"], users[0]["devices"])
 
     @staticmethod
     def __get_activator(data, activator_id):
