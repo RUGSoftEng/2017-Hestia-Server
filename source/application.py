@@ -1,11 +1,6 @@
-import ipaddress
 import unittest
 
 import sys
-
-import struct
-
-import netaddr as netaddr
 from coverage import coverage
 from flask_sslify import SSLify
 
