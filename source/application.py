@@ -51,15 +51,21 @@ def __run_test():
     succes = unittest.TextTestRunner().run(test).wasSuccessful()
     return not succes
 
-if __name__ == "__main__":
-    r = Zeroconf()
+def _publish_server():
+    """This method publishes the server using the zero conf protocol.
+    This makes it possible for the client application to find the ip
+    of the server easily."""
+    zero_conf = Zeroconf()
     addr = get_lan_ip()
     bytes = socket.inet_aton(addr)
     info = ServiceInfo("_hestia._tcp.local.",
                        "HestiaServer._hestia._tcp.local.",
-                       port=8000, properties = {'api_level': api.version},
-                               address = bytes, weight = 0, priority = 0)
+                       port=8000, properties={'api_level': api.version},
+                       address=bytes, weight=0, priority=0)
 
-    r.unregister_all_services()
-    r.register_service(info)
+    zero_conf.unregister_all_services()
+    zero_conf.register_service(info)
+
+if __name__ == "__main__":
+    _publish_server()
     manager.run()
