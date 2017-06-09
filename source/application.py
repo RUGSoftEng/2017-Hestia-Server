@@ -1,18 +1,15 @@
 import unittest
-
 import sys
+
 from coverage import coverage
 from flask_sslify import SSLify
-
 from flask import Flask
 from flask_script import Manager
 from werkzeug.contrib.fixers import ProxyFix
-
-from MyListener import MyListener
 from endpoints.api import api
-
 from zeroconf import *
 import socket
+from util.LanIp import get_lan_ip
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
@@ -53,19 +50,12 @@ def __run_test():
 
 if __name__ == "__main__":
     r = Zeroconf()
-    desc = ""
-    path = ""
-
+    addr = get_lan_ip()
     info = ServiceInfo("_hestia._tcp.local.",
                        "HestiaServer._hestia._tcp.local.",
-                       server = "0.0.0.0", port=8000, properties = {'description': desc,
-                                             'path': "/" + path},
-                               address = socket.inet_aton("0.0.0.0"), weight = 0, priority = 0)
+                       server = "HestiaServer", port=8000, properties = {'api_level': api.version},
+                               address = socket.inet_aton(addr), weight = 0, priority = 0)
 
     r.unregister_all_services()
     r.register_service(info)
-    type = "_hestia._tcp.local."
-    listener = MyListener()
-    browser = ServiceBrowser(r, type, listener)
-
     manager.run()
