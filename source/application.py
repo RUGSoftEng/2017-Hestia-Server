@@ -1,14 +1,22 @@
+import ipaddress
 import unittest
+
 import sys
 
+import struct
+
+import netaddr as netaddr
 from coverage import coverage
 from flask_sslify import SSLify
+
 from flask import Flask
 from flask_script import Manager
 from werkzeug.contrib.fixers import ProxyFix
 from endpoints.api import api
+
 from zeroconf import *
 import socket
+
 from util.LanIp import get_lan_ip
 
 app = Flask(__name__)
@@ -51,10 +59,11 @@ def __run_test():
 if __name__ == "__main__":
     r = Zeroconf()
     addr = get_lan_ip()
+    bytes = socket.inet_aton(addr)
     info = ServiceInfo("_hestia._tcp.local.",
                        "HestiaServer._hestia._tcp.local.",
-                       server = "HestiaServer", port=8000, properties = {'api_level': api.version},
-                               address = socket.inet_aton(addr), weight = 0, priority = 0)
+                       port=8000, properties = {'api_level': api.version},
+                               address = bytes, weight = 0, priority = 0)
 
     r.unregister_all_services()
     r.register_service(info)
