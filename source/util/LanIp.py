@@ -1,13 +1,19 @@
 import os
 import socket
 
+
+# Code in this file is copied from the stack overflow page:
+# https://stackoverflow.com/questions/11735821/python-get-localhost-ip
+# It retrieves the local ip address of the server both
+# on windows and linux machines
+
 if os.name != "nt":
     import fcntl
     import struct
     def get_interface_ip(ifname):
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         return socket.inet_ntoa(fcntl.ioctl(
-                s.fileno(),
+            sock.fileno(),
                 0x8915,  # SIOCGIFADDR
                 struct.pack('256s', bytes(ifname[:15], 'utf-8'))
                 # Python 2.7: remove the second argument for the bytes call
