@@ -56,8 +56,11 @@ def _publish_server():
     This makes it possible for the client application to find the ip
     of the server easily."""
     zero_conf = Zeroconf()
-    addr = get_lan_ip()
-    bytes = socket.inet_aton(addr)
+    #addr = get_lan_ip()
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
+    local_ip_address = s.getsockname()[0]
+    bytes = socket.inet_aton("192.168.178.30")
     info = ServiceInfo("_hestia._tcp.local.",
                        "HestiaServer._hestia._tcp.local.",
                        port=8000, properties={'api_level': api.version},
