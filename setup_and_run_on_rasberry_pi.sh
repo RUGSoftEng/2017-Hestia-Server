@@ -1,7 +1,6 @@
 #! /bin/bash
-# A script that downloads all the necessary files, setups the raspberry pi
-# so that all necessary dependencies are installed. 
-# And finally run the server.
+# This script download, installs and runs the Hestia server on
+#  a debian based system (Rasberry Pi).
 
 # Install all the dependencies normally not installed by default
 # on the raspberry pi.
