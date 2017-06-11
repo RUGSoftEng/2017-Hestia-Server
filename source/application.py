@@ -55,8 +55,10 @@ def _publish_server():
     of the server easily."""
     zero_conf = Zeroconf()
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
-    local_ip_address = s.getsockname()[0]
+    s.connect(('8.8.8.8', 1))   # Prepares a socket for connecting to google
+                                # without actually sending something
+    local_ip_address = s.getsockname()[0]   # Gets the ip of the socket that
+                                            # would be used
     bytes = socket.inet_aton(local_ip_address)
     info = ServiceInfo("_hestia._tcp.local.",
                        "HestiaServer._hestia._tcp.local.",
