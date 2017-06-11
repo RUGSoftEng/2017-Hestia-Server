@@ -2,6 +2,7 @@ from exceptions.HestiaException import HestiaException
 
 
 class SetupFailedException(HestiaException):
+
     def __init__(self, field, hint):
         self._field = field
         self._hint = hint
@@ -11,3 +12,6 @@ class SetupFailedException(HestiaException):
         response["field"] = self._field
         response["hint"] = self._hint
         return response
+
+    def get_http_code(self):
+        400
