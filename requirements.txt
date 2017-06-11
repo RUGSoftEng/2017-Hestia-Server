@@ -7,3 +7,5 @@ GitPython
 tinydb
 pymongo
 pyopenssl
+zeroconf
+netaddr

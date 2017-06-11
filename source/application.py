@@ -9,6 +9,11 @@ from flask_script import Manager
 from werkzeug.contrib.fixers import ProxyFix
 from endpoints.api import api
 
+from zeroconf import *
+import socket
+
+from util.LanIp import get_lan_ip
+
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 sslify = SSLify(app)
@@ -46,5 +51,21 @@ def __run_test():
     succes = unittest.TextTestRunner().run(test).wasSuccessful()
     return not succes
 
+def _publish_server():
+    """This method publishes the server using the zero conf protocol.
+    This makes it possible for the client application to find the ip
+    of the server easily."""
+    zero_conf = Zeroconf()
+    addr = get_lan_ip()
+    bytes = socket.inet_aton(addr)
+    info = ServiceInfo("_hestia._tcp.local.",
+                       "HestiaServer._hestia._tcp.local.",
+                       port=8000, properties={'api_level': api.version},
+                       address=bytes, weight=0, priority=0)
+
+    zero_conf.unregister_all_services()
+    zero_conf.register_service(info)
+
 if __name__ == "__main__":
+    _publish_server()
     manager.run()
