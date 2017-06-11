@@ -2,6 +2,7 @@ from exceptions.HestiaException import HestiaException
 
 
 class DatabaseException(HestiaException):
+
     def __init__(self, type, message):
         HestiaException.__init__(self)
         self._type = type
@@ -9,3 +10,6 @@ class DatabaseException(HestiaException):
 
     def to_dict(self):
         return {"type":self._type, "message" : self._message}
+
+    def get_http_code(self):
+        404
