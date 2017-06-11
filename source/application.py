@@ -12,8 +12,6 @@ from endpoints.api import api
 from zeroconf import *
 import socket
 
-from util.LanIp import get_lan_ip
-
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 sslify = SSLify(app)
@@ -56,8 +54,12 @@ def _publish_server():
     This makes it possible for the client application to find the ip
     of the server easily."""
     zero_conf = Zeroconf()
-    addr = get_lan_ip()
-    bytes = socket.inet_aton(addr)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 1))   # Prepares a socket for connecting to google
+                                # without actually sending something
+    local_ip_address = s.getsockname()[0]   # Gets the ip of the socket that
+                                            # would be used
+    bytes = socket.inet_aton(local_ip_address)
     info = ServiceInfo("_hestia._tcp.local.",
                        "HestiaServer._hestia._tcp.local.",
                        port=8000, properties={'api_level': api.version},
