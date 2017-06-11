@@ -20,10 +20,10 @@ do a little setup to get the system working.
 The final goal is to make the hestia platform and thus the server easy to work
 work with, secure and plug and play.
 
-# Run the server
-
-First, you run `dev_setup.sh` contained in the root directory of this project.
-Then, you run `launch.sh` and you have a running server.
+# Run the server (On the Raspberry Pi)
+To run the server on the Raspberry Pi (or any other debian based system) you
+can use the following command to download and install the server.
+`wget -O - https://raw.githubusercontent.com/RUGSoftEng/2017-Hestia-Server/master/setup_and_run_on_rasberry_pi.sh | bash -`
 
 # Development setup
 To setup a development environments or to run the server you can follow these
