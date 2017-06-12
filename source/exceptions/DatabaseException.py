@@ -12,4 +12,4 @@ class DatabaseException(HestiaException):
         return {"type":self._type, "message" : self._message}
 
     def get_http_code(self):
-        404
+        return 404

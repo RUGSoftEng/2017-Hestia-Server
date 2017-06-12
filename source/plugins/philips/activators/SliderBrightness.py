@@ -17,6 +17,6 @@ class SliderBrightness(PhilipsActivator):
         else:
             data["on"] = True
         data["bri"] = _state
-        reponse = self._send_data_to_bridge(data)
+        response = self._send_data_to_bridge(data)
 
-        print(reponse)
+        print(response)

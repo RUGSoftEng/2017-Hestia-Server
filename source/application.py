@@ -20,13 +20,16 @@ api.init_app(app)
 
 manager = Manager(app)
 
+
 @manager.command
 def run():
     app.run(host="0.0.0.0", port=8000, ssl_context='adhoc')
 
+
 @manager.command
 def dev():
     app.run(debug=True, host="0.0.0.0", port=8000, ssl_context='adhoc')
+
 
 @manager.command
 def test():
@@ -44,10 +47,12 @@ def cov():
     cov.report()
     sys.exit(succes)
 
+
 def __run_test():
     test = unittest.TestLoader().discover("tests")
-    succes = unittest.TextTestRunner().run(test).wasSuccessful()
-    return not succes
+    success = unittest.TextTestRunner().run(test).wasSuccessful()
+    return not success
+
 
 def _publish_server():
     """This method publishes the server using the zero conf protocol.

@@ -13,5 +13,3 @@ api = Api(
 
 api.add_namespace(devices_namespace)
 api.add_namespace(plugin_namespace)
-
-
