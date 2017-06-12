@@ -1,4 +1,4 @@
-from bson import ObjectId
+from bson.objectid import ObjectId
 from tinydb import TinyDB, Query
 
 from database.Database import Database
