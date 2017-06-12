@@ -7,7 +7,7 @@ from exceptions.NotFoundException import NotFoundException
 
 class MongoDatabase(Database):
     """
-    This class communicates with the MongoDB database. 
+    This class implements the abstract class Database and communicates with the MongoDB database. 
     It has several methods for this communication.
     """
 
@@ -73,4 +73,3 @@ class MongoDatabase(Database):
             return data["activators"][activator_id]
         except KeyError as exception:
             raise NotFoundException("activator")
-
