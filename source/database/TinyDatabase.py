@@ -1,4 +1,4 @@
-from bson import ObjectId
+from bson.objectid import ObjectId
 from tinydb import TinyDB, Query
 
 from database.Database import Database
@@ -8,6 +8,11 @@ from util.BasePath import get_base_path
 
 
 class TinyDatabase(Database):
+    """
+    This class implements the abstract class Database. 
+    This database is document oriented.
+    It has several methods for this communication.
+    """
 
     def __init__(self, database_name):
         database_path = get_base_path() + "/database/tinydbData/"
@@ -78,4 +83,3 @@ class TinyDatabase(Database):
             return data["activators"][activator_id]
         except KeyError:
             raise NotFoundException("activator")
-
