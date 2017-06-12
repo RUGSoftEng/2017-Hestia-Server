@@ -14,4 +14,4 @@ class SetupFailedException(HestiaException):
         return response
 
     def get_http_code(self):
-        400
+        return 400

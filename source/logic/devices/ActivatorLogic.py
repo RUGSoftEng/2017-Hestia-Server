@@ -18,4 +18,3 @@ class ActivatorLogic:
         activator = device.get_activator(activator_id)
         activator.state = state
         activator.perform(options)
-

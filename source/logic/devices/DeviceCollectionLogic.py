@@ -3,6 +3,7 @@ class DeviceCollectionLogic:
     This class contains methods to interact with the collection of device, this
     includes methods to add devices to this collection.
     """
+
     def __init__(self, db, pm):
         self._database = db
         self._plugin_manager = pm

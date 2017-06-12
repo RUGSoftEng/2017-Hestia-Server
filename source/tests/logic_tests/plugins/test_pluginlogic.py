@@ -3,6 +3,7 @@ import unittest
 from logic import PluginLogic
 from tests.tests_util import get_plugin_manager
 
+
 class TestPluginLogic(unittest.TestCase):
     """
     A test for the endpoint RequiredInfo.

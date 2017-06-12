@@ -11,4 +11,3 @@ class SliderColor(PhilipsActivator):
     def _translate_state(self, state):
         hue = state["hue"]
         return (float(hue) / 65535)
-
