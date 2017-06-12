@@ -55,7 +55,7 @@ Here a nice swagger UI is shown similar to the picture below.
 It shows the current state of the current API and allows you to interact with
 the server.
 
-![swagger_ui_screenshot](https://cloud.githubusercontent.com/assets/6391025/24971097/076699de-1fb7-11e7-8eed-a1ceccefe38f.png)
+![swagger_ui_screenshot](https://user-images.githubusercontent.com/6391025/27036990-e99f52f6-4f86-11e7-8d27-0786a0186dda.png)
 
 
 # Information
