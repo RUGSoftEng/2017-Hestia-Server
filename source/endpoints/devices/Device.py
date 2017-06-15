@@ -3,6 +3,8 @@ from flask_restplus import fields
 
 from endpoints.devices import namespace
 from endpoints.devices.Activator import activator
+from endpoints.error_handling import handle_hestia_exception, handle_standard_exception
+from exceptions.HestiaException import HestiaException
 from logic import device_logic
 
 device = namespace.model("Device", {
@@ -28,13 +30,24 @@ class Device(Resource):
     @namespace.marshal_with(device)
     def get(self, device_id):
         """ Fetch a device given its identifier """
-        return device_logic.get_device(device_id)
+        try:
+            return_device = device_logic.get_device(device_id)
+        except HestiaException as error:
+            return handle_hestia_exception(error)
+        except Exception as error:
+            return handle_standard_exception(error)
+        return return_device
 
     @namespace.doc("delete_device")
     @namespace.response(204, "Device deleted")
     def delete(self, device_id):
         """ Delete a device given its identifier """
-        device_logic.remove_device(device_id)
+        try:
+            device_logic.remove_device(device_id)
+        except HestiaException as error:
+            return handle_hestia_exception(error)
+        except Exception as error:
+            return handle_standard_exception(error)
         return "", 204
 
     @namespace.doc("put_name")
@@ -42,6 +55,11 @@ class Device(Resource):
     @namespace.response(201, "name changed")
     def put(self, device_id):
         """ Put a new name for device given its identifier """
-        new_name = namespace.apis[0].payload["name"]
-        device_logic.change_device_name(device_id, new_name)
+        try:
+            new_name = namespace.apis[0].payload["name"]
+            device_logic.change_device_name(device_id, new_name)
+        except HestiaException as error:
+            return handle_hestia_exception(error)
+        except Exception as error:
+            return handle_standard_exception(error)
         return "name changed", 201

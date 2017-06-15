@@ -5,6 +5,7 @@ class NameSearch(SearchStrategy):
     """
     Searches based on a given name.
     """
+
     @classmethod
     def search(cls, response, name):
         found = False

@@ -1,12 +1,11 @@
-import importlib
-
 import copy
+import importlib
 import json
-
-from bson.objectid import ObjectId
 from os import listdir, path
 
-from util.NotFoundException import NotFoundException
+from bson.objectid import ObjectId
+
+from exceptions.NotFoundException import NotFoundException
 
 
 class PluginManager:
@@ -70,8 +69,7 @@ class PluginManager:
                     plugins.append(directory)
             return plugins
         else:
-            message = "Collection [" + collection + "] not found."
-            raise NotFoundException(message)
+            raise NotFoundException("collection")
 
     def __get_plugin(self, collection, plugin_name):
         """ Get plugin based on collection and plugin name"""
@@ -81,9 +79,4 @@ class PluginManager:
             plugin = json.load(open(config_path))
             return plugin
         else:
-            message = "Plugin [" \
-                      + plugin_name \
-                      + "] of collection [" \
-                      + collection \
-                      + "] not found."
-            raise NotFoundException(message)
+            raise NotFoundException("plugin")

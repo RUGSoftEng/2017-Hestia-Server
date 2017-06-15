@@ -4,7 +4,9 @@ from flask import json
 
 from models.Activator import Activator
 
+
 class PhilipsActivator(Activator):
+
     def __init__(self, database, device_id, activator_id):
         super().__init__(database, device_id, activator_id)
 
@@ -35,4 +37,3 @@ class PhilipsActivator(Activator):
     @abstractmethod
     def _translate_state(self, state):
         pass
-

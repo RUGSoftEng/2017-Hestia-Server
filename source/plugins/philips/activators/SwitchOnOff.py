@@ -16,6 +16,6 @@ class SwitchOnOff(PhilipsActivator):
             data["on"] = True
         else:
             data["on"] = False
-        reponse = self._send_data_to_bridge(data)
+        response = self._send_data_to_bridge(data)
 
-        print(reponse)
+        print(response)

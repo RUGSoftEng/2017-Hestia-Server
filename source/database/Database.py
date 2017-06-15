@@ -10,12 +10,12 @@ class Database(ABC):
 
     @abstractmethod
     def get_all_devices(self):
-        """Instantiates all devices in database"""
+        """Get all devices in database"""
         pass
 
     @abstractmethod
     def get_device(self, device_id):
-        """Instantiates the device with the given device_id"""
+        """Get the device with the given device_id"""
         pass
 
     @abstractmethod
@@ -49,6 +49,6 @@ class Database(ABC):
 
     @staticmethod
     def _get_class(module, class_name):
+        """ Instantiate plugin given the module and class name"""
         module = importlib.import_module(module)
         return getattr(module, class_name)
-

@@ -3,6 +3,8 @@ from flask_restplus import fields
 
 from endpoints.devices import namespace
 from endpoints.devices.Device import device
+from endpoints.error_handling import handle_hestia_exception, handle_standard_exception
+from exceptions.HestiaException import HestiaException
 from logic import device_logic
 
 format_post_device = namespace.model("new_device", {
@@ -19,7 +21,12 @@ class Devices(Resource):
     @namespace.marshal_list_with(device)
     def get(self):
         """ List all devices """
-        devices = device_logic.get_all_devices()
+        try:
+            devices = device_logic.get_all_devices()
+        except HestiaException as error:
+            return handle_hestia_exception(error)
+        except Exception as error:
+            return handle_standard_exception(error)
         return devices
 
     @namespace.doc("post_device")
@@ -27,6 +34,11 @@ class Devices(Resource):
     @namespace.response(201, "new device")
     def post(self):
         """ Post a new device """
-        json_required_info = namespace.apis[0].payload
-        device_logic.create_new_device(json_required_info)
+        try:
+            json_required_info = namespace.apis[0].payload
+            device_logic.create_new_device(json_required_info)
+        except HestiaException as error:
+            return handle_hestia_exception(error)
+        except Exception as error:
+            return handle_standard_exception(error)
         return "new device", 201

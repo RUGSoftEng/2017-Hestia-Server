@@ -14,4 +14,3 @@ class ColorLight(PhilipsDevice):
         types = ["Color light", "Extended color light"]
         options["base_path"] = cls._get_base_path(required_info, types)
         return options
-
